@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\FuzzyVariableModel.cs" />
+    <Compile Include="Models\Interfaces\IMembershipFunction.cs" />
+    <Compile Include="Models\MembershipFunctions\TriangleMembershipFunction.cs" />
+    <Compile Include="Models\TermModel.cs" />
     <Compile Include="Views\Dialogs\FuzzyVariablesWizard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,8 +101,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Interfaces\Variables\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

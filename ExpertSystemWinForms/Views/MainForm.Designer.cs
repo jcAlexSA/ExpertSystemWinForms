@@ -28,6 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Input");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Output");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Intermediate");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Variables", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Rule Blocks");
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,12 +47,10 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.menuStrip1.SuspendLayout();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -59,7 +65,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(746, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(631, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -81,16 +87,16 @@
             // newVariableToolStripMenuItem
             // 
             this.newVariableToolStripMenuItem.Name = "newVariableToolStripMenuItem";
-            this.newVariableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newVariableToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.newVariableToolStripMenuItem.Text = "New Variable";
-            this.newVariableToolStripMenuItem.Click += new System.EventHandler(this.newVariableToolStripMenuItem_Click);
+            this.newVariableToolStripMenuItem.Click += new System.EventHandler(this.NewVariableToolStripMenuItem_Click);
             // 
             // newRuleBlockToolStripMenuItem
             // 
             this.newRuleBlockToolStripMenuItem.Name = "newRuleBlockToolStripMenuItem";
-            this.newRuleBlockToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.newRuleBlockToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.newRuleBlockToolStripMenuItem.Text = "New Rule Block";
-            this.newRuleBlockToolStripMenuItem.Click += new System.EventHandler(this.newRuleBlockToolStripMenuItem_Click);
+            this.newRuleBlockToolStripMenuItem.Click += new System.EventHandler(this.NewRuleBlockToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -122,50 +128,59 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.mainPanel.BackColor = System.Drawing.SystemColors.Window;
+            this.mainPanel.Controls.Add(this.treeView1);
             this.mainPanel.Controls.Add(this.pictureBox1);
-            this.mainPanel.Controls.Add(this.panel1);
             this.mainPanel.Location = new System.Drawing.Point(0, 24);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(746, 402);
+            this.mainPanel.Size = new System.Drawing.Size(631, 327);
             this.mainPanel.TabIndex = 1;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(173, 0);
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.Location = new System.Drawing.Point(169, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Padding = new System.Windows.Forms.Padding(5);
-            this.pictureBox1.Size = new System.Drawing.Size(573, 402);
+            this.pictureBox1.Size = new System.Drawing.Size(462, 327);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.treeView1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(173, 402);
-            this.panel1.TabIndex = 0;
-            // 
             // treeView1
             // 
-            this.treeView1.BackColor = System.Drawing.Color.Gainsboro;
-            this.treeView1.Location = new System.Drawing.Point(8, 8);
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.treeView1.BackColor = System.Drawing.Color.White;
+            this.treeView1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.treeView1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.treeView1.Location = new System.Drawing.Point(3, 0);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(156, 210);
+            treeNode1.Name = "InputVariables";
+            treeNode1.Text = "Input";
+            treeNode2.Name = "OutputVariables";
+            treeNode2.Text = "Output";
+            treeNode3.Name = "IntermediateVariables";
+            treeNode3.Text = "Intermediate";
+            treeNode4.Name = "Variables";
+            treeNode4.Text = "Variables";
+            treeNode5.Name = "RuleBlocks";
+            treeNode5.Text = "Rule Blocks";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode5});
+            this.treeView1.ShowNodeToolTips = true;
+            this.treeView1.Size = new System.Drawing.Size(158, 327);
             this.treeView1.TabIndex = 0;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(746, 431);
+            this.ClientSize = new System.Drawing.Size(631, 356);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -175,7 +190,6 @@
             this.menuStrip1.PerformLayout();
             this.mainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,7 +208,6 @@
         private System.Windows.Forms.ToolStripMenuItem newVariableToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newRuleBlockToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TreeView treeView1;
     }
 }
