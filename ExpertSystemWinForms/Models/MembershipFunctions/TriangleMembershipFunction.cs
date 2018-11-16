@@ -39,6 +39,6 @@ namespace ExpertSystemWinForms.Models.MembershipFunction
         /// <value>
         /// The high value.
         /// </value>
-        public int High { get; set; }
+        public int Right { get; set; }
     }
 }

@@ -196,9 +196,7 @@
             this.listBoxOurputVariablesCollection.FormattingEnabled = true;
             this.listBoxOurputVariablesCollection.ItemHeight = 15;
             this.listBoxOurputVariablesCollection.Items.AddRange(new object[] {
-            "var1",
-            "var2",
-            "var3"});
+            "Contrast"});
             this.listBoxOurputVariablesCollection.Location = new System.Drawing.Point(338, 33);
             this.listBoxOurputVariablesCollection.Name = "listBoxOurputVariablesCollection";
             this.listBoxOurputVariablesCollection.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -212,9 +210,9 @@
             this.listBoxInputVariablesCollection.FormattingEnabled = true;
             this.listBoxInputVariablesCollection.ItemHeight = 15;
             this.listBoxInputVariablesCollection.Items.AddRange(new object[] {
-            "var1",
-            "var2",
-            "var3"});
+            "Autofocus",
+            "Zoom",
+            "Bokeh"});
             this.listBoxInputVariablesCollection.Location = new System.Drawing.Point(232, 33);
             this.listBoxInputVariablesCollection.Name = "listBoxInputVariablesCollection";
             this.listBoxInputVariablesCollection.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -231,9 +229,8 @@
             this.listBoxVariablesCollection.FormattingEnabled = true;
             this.listBoxVariablesCollection.ItemHeight = 15;
             this.listBoxVariablesCollection.Items.AddRange(new object[] {
-            "var1",
-            "var2",
-            "var3"});
+            "Light",
+            "Additional\t"});
             this.listBoxVariablesCollection.Location = new System.Drawing.Point(13, 33);
             this.listBoxVariablesCollection.Name = "listBoxVariablesCollection";
             this.listBoxVariablesCollection.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -281,7 +278,7 @@
             this.buttonCancel.TabIndex = 1;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = false;
-            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // RuleBlockWizard
             // 

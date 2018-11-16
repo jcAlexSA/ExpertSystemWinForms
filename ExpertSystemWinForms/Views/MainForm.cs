@@ -30,6 +30,18 @@ namespace ExpertSystemWinForms
         public MainForm()
         {
             InitializeComponent();
+
+            this.FuzzyVariables.CollectionChanged += FuzzyVariables_CollectionChanged;
+        }
+
+        /// <summary>
+        /// Handles the CollectionChanged event of the FuzzyVariables control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="System.Collections.Specialized.NotifyCollectionChangedEventArgs"/> instance containing the event data.</param>
+        /// <exception cref="NotImplementedException"></exception>
+        private void FuzzyVariables_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
         }
 
         /// <summary>
@@ -38,7 +50,24 @@ namespace ExpertSystemWinForms
         /// <param name="variable">The variable.</param>
         public void AddVariable(FuzzyVariableModel variable)
         {
-            this.FuzzyVariables.Add(variable);
+            if (!this.FuzzyVariables.Contains(variable))
+            {
+                this.FuzzyVariables.Add(variable);
+                string key = string.Empty;
+                if (variable.Type == VariableType.input)
+                {
+                    key = "Input";
+                }
+                else if (variable.Type == VariableType.output)
+                {
+                    key = "Output";
+                }
+                else
+                {
+                    key = "Intermediate";
+                }
+                this.treeView1.Nodes["Variables"].Nodes[key].Nodes.Add(variable.Name);
+            }
         }
 
         /// <summary>
@@ -78,9 +107,10 @@ namespace ExpertSystemWinForms
         /// <summary>
         /// Opens the fuzzy variable wizard dialog.
         /// </summary>
-        private static void OpenFuzzyVariableWizardDialog()
+        private void OpenFuzzyVariableWizardDialog()
         {
             var variableDialog = new FuzzyVariableWizard();
+            variableDialog.Owner = this;
             variableDialog.ShowDialog();
         }
 
@@ -88,10 +118,17 @@ namespace ExpertSystemWinForms
         /// Opens the fuzzy variable wizard dialog.
         /// </summary>
         /// <param name="variable">The variable that need to update.</param>
-        private static void OpenFuzzyVariableWizardDialog(FuzzyVariableModel variable)
+        private void OpenFuzzyVariableWizardDialog(FuzzyVariableModel variable)
         {
             var variableDialog = new FuzzyVariableWizard(variable);
+            variableDialog.Owner = this;
             variableDialog.ShowDialog();
+        }
+
+        private void ruleBlockEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var ruleBlock = new SpredsheetRuleBlock();
+            ruleBlock.ShowDialog();
         }
     }
 }

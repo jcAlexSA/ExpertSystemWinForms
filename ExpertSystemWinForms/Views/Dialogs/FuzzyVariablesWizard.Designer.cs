@@ -93,7 +93,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.60147F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.39853F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 136F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 138F));
             this.tableLayoutPanel1.Controls.Add(this.btnPrevious, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnClose, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnNext, 1, 0);
@@ -125,7 +125,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClose.Font = new System.Drawing.Font("Algerian", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnClose.Location = new System.Drawing.Point(332, 3);
+            this.btnClose.Location = new System.Drawing.Point(330, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(127, 20);
             this.btnClose.TabIndex = 2;
@@ -139,7 +139,7 @@
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnNext.Font = new System.Drawing.Font("Algerian", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnNext.Location = new System.Drawing.Point(160, 3);
+            this.btnNext.Location = new System.Drawing.Point(159, 3);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(128, 20);
             this.btnNext.TabIndex = 1;
@@ -339,11 +339,6 @@
             this.listBoxTerms.ForeColor = System.Drawing.Color.DimGray;
             this.listBoxTerms.FormattingEnabled = true;
             this.listBoxTerms.ItemHeight = 14;
-            this.listBoxTerms.Items.AddRange(new object[] {
-            "term 1",
-            "term 1",
-            "term 1",
-            "term 1"});
             this.listBoxTerms.Location = new System.Drawing.Point(210, 34);
             this.listBoxTerms.Name = "listBoxTerms";
             this.listBoxTerms.Size = new System.Drawing.Size(224, 102);
@@ -361,6 +356,7 @@
             this.buttonRemoveTerm.TabIndex = 3;
             this.buttonRemoveTerm.Text = "Remove";
             this.buttonRemoveTerm.UseVisualStyleBackColor = false;
+            this.buttonRemoveTerm.Click += new System.EventHandler(this.ButtonRemoveTerm_Click);
             // 
             // buttonAddTerm
             // 
@@ -374,6 +370,7 @@
             this.buttonAddTerm.TabIndex = 3;
             this.buttonAddTerm.Text = "Add";
             this.buttonAddTerm.UseVisualStyleBackColor = false;
+            this.buttonAddTerm.Click += new System.EventHandler(this.ButtonAddTerm_Click);
             // 
             // comboBoxVariableForm
             // 
@@ -452,6 +449,7 @@
             this.textBoxTriangleRight.Name = "textBoxTriangleRight";
             this.textBoxTriangleRight.Size = new System.Drawing.Size(72, 21);
             this.textBoxTriangleRight.TabIndex = 0;
+            this.textBoxTriangleRight.Text = "0";
             // 
             // textBoxTriangleMiddle
             // 
@@ -461,6 +459,7 @@
             this.textBoxTriangleMiddle.Name = "textBoxTriangleMiddle";
             this.textBoxTriangleMiddle.Size = new System.Drawing.Size(72, 21);
             this.textBoxTriangleMiddle.TabIndex = 0;
+            this.textBoxTriangleMiddle.Text = "0";
             // 
             // textBoxTriangleLeft
             // 
@@ -470,6 +469,7 @@
             this.textBoxTriangleLeft.Name = "textBoxTriangleLeft";
             this.textBoxTriangleLeft.Size = new System.Drawing.Size(72, 21);
             this.textBoxTriangleLeft.TabIndex = 0;
+            this.textBoxTriangleLeft.Text = "0";
             // 
             // textBoxTermName
             // 

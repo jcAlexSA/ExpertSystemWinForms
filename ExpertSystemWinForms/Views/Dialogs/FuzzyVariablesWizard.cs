@@ -1,4 +1,5 @@
 ﻿using ExpertSystemWinForms.Models;
+using ExpertSystemWinForms.Models.MembershipFunction;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
 
         private FuzzyVariableModel fuzzyVariable;
 
-        private List<TermModel> Terms;
+        //private List<TermModel> Terms;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FuzzyVariableWizard"/> class.
@@ -35,7 +36,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
             InitializeComponent();
 
             this.fuzzyVariable = fuzzyVariable ?? new FuzzyVariableModel();
-
+            
             this.isNewVariableAdding = fuzzyVariable == null;       // if null, then new variable creating.
         }
 
@@ -74,6 +75,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
         private void SendVariable()
         {
             this.fuzzyVariable.Name = this.textBoxVariableName.Text;
+            this.fuzzyVariable.Comment = this.textBoxVariableComment.Text;
 
             if (this.radioButtonInputType.Checked)
             {
@@ -88,6 +90,9 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 this.fuzzyVariable.Type = VariableType.output;
             }
 
+            var ownerWindow = (MainForm)this.Owner;
+            ownerWindow.AddVariable(this.fuzzyVariable);
+            this.Close();
         }
 
         /// <summary>
@@ -122,6 +127,63 @@ namespace ExpertSystemWinForms.Views.Dialogs
                     this.btnNext.Text = "Next";
                 }
             }
+        }
+
+        /// <summary>
+        /// Handles the Click event of the ButtonAddTerm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonAddTerm_Click(object sender, EventArgs e)
+        {
+            var term = new TermModel(this.textBoxTermName.Text.ToString());
+
+            // TODO here factory.
+
+            if (this.comboBoxVariableForm.SelectedItem == null)
+            {
+                return;
+            }
+
+            if (this.comboBoxVariableForm.SelectedItem.Equals("Triangle"))
+            {
+                // TODO: Make validation for entered values.
+                var triangleFunction = new TriangleMembershipFunction
+                {
+                    Min = Int32.Parse(this.textBoxTriangleLeft.Text),
+                    Middle = Int32.Parse(this.textBoxTriangleMiddle.Text),
+                    Right = Int32.Parse(this.textBoxTriangleRight.Text)
+                };
+                term.Function = triangleFunction;
+            }
+            this.fuzzyVariable.Terms.Add(term);
+
+            this.UpdateListBox();
+        }
+
+        /// <summary>
+        /// Handles the Click event of the ButtonRemoveTerm control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ButtonRemoveTerm_Click(object sender, EventArgs e)
+        {
+            if (this.listBoxTerms.SelectedIndex < this.listBoxTerms.Items.Count
+                && this.fuzzyVariable.Terms.Count > this.listBoxTerms.SelectedIndex)
+            {
+                this.fuzzyVariable.Terms.RemoveAt(this.listBoxTerms.SelectedIndex);
+            }
+
+            this.UpdateListBox();
+        }
+
+        /// <summary>
+        /// Updates the ListBox.
+        /// </summary>
+        private void UpdateListBox()
+        {
+            this.listBoxTerms.Items.Clear();
+            this.listBoxTerms.Items.AddRange(this.fuzzyVariable.Terms.Select(p => p.Name).ToArray());
         }
     }
 }

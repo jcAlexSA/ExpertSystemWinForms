@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Input");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Output");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Intermediate");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Variables", new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3});
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Rule Blocks");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Input");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Output");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Intermediate");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Variables", new System.Windows.Forms.TreeNode[] {
+            treeNode6,
+            treeNode7,
+            treeNode8});
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Rule Blocks");
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,8 +46,9 @@
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mainPanel = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.treeView1 = new System.Windows.Forms.TreeView();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.ruleBlockEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -79,7 +80,8 @@
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newVariableToolStripMenuItem,
-            this.newRuleBlockToolStripMenuItem});
+            this.newRuleBlockToolStripMenuItem,
+            this.ruleBlockEditorToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -136,6 +138,33 @@
             this.mainPanel.Size = new System.Drawing.Size(631, 327);
             this.mainPanel.TabIndex = 1;
             // 
+            // treeView1
+            // 
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.treeView1.BackColor = System.Drawing.Color.White;
+            this.treeView1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.treeView1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.treeView1.Location = new System.Drawing.Point(3, 0);
+            this.treeView1.Name = "treeView1";
+            treeNode6.Name = "Input";
+            treeNode6.Text = "Input";
+            treeNode7.Name = "Output";
+            treeNode7.Text = "Output";
+            treeNode8.Name = "Intermediate";
+            treeNode8.Text = "Intermediate";
+            treeNode9.Name = "Variables";
+            treeNode9.Text = "Variables";
+            treeNode10.Name = "RuleBlocks";
+            treeNode10.Text = "Rule Blocks";
+            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode9,
+            treeNode10});
+            this.treeView1.ShowNodeToolTips = true;
+            this.treeView1.Size = new System.Drawing.Size(158, 327);
+            this.treeView1.TabIndex = 0;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -149,32 +178,12 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // treeView1
+            // ruleBlockEditorToolStripMenuItem
             // 
-            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.treeView1.BackColor = System.Drawing.Color.White;
-            this.treeView1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.treeView1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.treeView1.Location = new System.Drawing.Point(3, 0);
-            this.treeView1.Name = "treeView1";
-            treeNode1.Name = "InputVariables";
-            treeNode1.Text = "Input";
-            treeNode2.Name = "OutputVariables";
-            treeNode2.Text = "Output";
-            treeNode3.Name = "IntermediateVariables";
-            treeNode3.Text = "Intermediate";
-            treeNode4.Name = "Variables";
-            treeNode4.Text = "Variables";
-            treeNode5.Name = "RuleBlocks";
-            treeNode5.Text = "Rule Blocks";
-            this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5});
-            this.treeView1.ShowNodeToolTips = true;
-            this.treeView1.Size = new System.Drawing.Size(158, 327);
-            this.treeView1.TabIndex = 0;
+            this.ruleBlockEditorToolStripMenuItem.Name = "ruleBlockEditorToolStripMenuItem";
+            this.ruleBlockEditorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ruleBlockEditorToolStripMenuItem.Text = "Rule Block Editor";
+            this.ruleBlockEditorToolStripMenuItem.Click += new System.EventHandler(this.ruleBlockEditorToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -209,6 +218,7 @@
         private System.Windows.Forms.ToolStripMenuItem newRuleBlockToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.ToolStripMenuItem ruleBlockEditorToolStripMenuItem;
     }
 }
 

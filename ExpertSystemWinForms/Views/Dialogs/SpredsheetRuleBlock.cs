@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace ExpertSystemWinForms.Views.Dialogs
 {
-    public partial class RuleBlockWizard : Form
+    public partial class SpredsheetRuleBlock : Form
     {
-        public RuleBlockWizard()
+        public SpredsheetRuleBlock()
         {
             InitializeComponent();
         }
 
-        private void ButtonCancel_Click(object sender, EventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            this.Close();
+
         }
     }
 }
