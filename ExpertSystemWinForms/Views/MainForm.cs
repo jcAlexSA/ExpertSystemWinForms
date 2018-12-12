@@ -53,20 +53,8 @@ namespace ExpertSystemWinForms
             if (!this.FuzzyVariables.Contains(variable))
             {
                 this.FuzzyVariables.Add(variable);
-                string key = string.Empty;
-                if (variable.Type == VariableType.input)
-                {
-                    key = "Input";
-                }
-                else if (variable.Type == VariableType.output)
-                {
-                    key = "Output";
-                }
-                else
-                {
-                    key = "Intermediate";
-                }
-                this.treeView1.Nodes["Variables"].Nodes[key].Nodes.Add(variable.Name);
+
+                this.treeView1.Nodes["Variables"].Nodes[variable.Type.ToString()].Nodes.Add(variable.Name);
             }
         }
 
@@ -100,7 +88,7 @@ namespace ExpertSystemWinForms
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void NewRuleBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ruleBlockDialog = new RuleBlockWizard();
+            var ruleBlockDialog = new RuleBlockWizard(this.FuzzyVariables);
             ruleBlockDialog.ShowDialog();
         }
 

@@ -36,7 +36,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
             InitializeComponent();
 
             this.fuzzyVariable = fuzzyVariable ?? new FuzzyVariableModel();
-            
+
             this.isNewVariableAdding = fuzzyVariable == null;       // if null, then new variable creating.
         }
 
@@ -140,7 +140,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
 
             // TODO here factory.
 
-            if (this.comboBoxVariableForm.SelectedItem == null)
+            if (this.comboBoxVariableForm.SelectedItem == null || string.IsNullOrEmpty(term.Name))
             {
                 return;
             }
@@ -184,6 +184,25 @@ namespace ExpertSystemWinForms.Views.Dialogs
         {
             this.listBoxTerms.Items.Clear();
             this.listBoxTerms.Items.AddRange(this.fuzzyVariable.Terms.Select(p => p.Name).ToArray());
+        }
+
+        private void ComboBoxVariableForm_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.comboBoxVariableForm.SelectedIndex < 0)
+            {
+                return;
+            }
+
+            if (this.comboBoxVariableForm.SelectedItem as string == "Triangle")
+            {
+                this.panelTriangle.Visible = true;
+                this.panelGauss.Visible = false;
+            } 
+            else if(this.comboBoxVariableForm.SelectedItem as string == "Gauss")
+            {
+                this.panelGauss.Visible = true;
+                this.panelTriangle.Visible = false;
+            }
         }
     }
 }

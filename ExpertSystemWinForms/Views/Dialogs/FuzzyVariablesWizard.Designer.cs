@@ -45,18 +45,24 @@
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.secondStep = new System.Windows.Forms.TabPage();
             this.groupBoxAddingTerms = new System.Windows.Forms.GroupBox();
+            this.panelGauss = new System.Windows.Forms.Panel();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panelTriangle = new System.Windows.Forms.Panel();
+            this.textBoxTriangleLeft = new System.Windows.Forms.TextBox();
+            this.textBoxTriangleRight = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxTriangleMiddle = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.listBoxTerms = new System.Windows.Forms.ListBox();
             this.buttonRemoveTerm = new System.Windows.Forms.Button();
             this.buttonAddTerm = new System.Windows.Forms.Button();
             this.comboBoxVariableForm = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.labelName = new System.Windows.Forms.Label();
-            this.textBoxTriangleRight = new System.Windows.Forms.TextBox();
-            this.textBoxTriangleMiddle = new System.Windows.Forms.TextBox();
-            this.textBoxTriangleLeft = new System.Windows.Forms.TextBox();
             this.textBoxTermName = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBoxMBFDescription = new System.Windows.Forms.TextBox();
@@ -64,6 +70,7 @@
             this.textBoxVariableComment = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -72,9 +79,12 @@
             this.groupBox1.SuspendLayout();
             this.secondStep.SuspendLayout();
             this.groupBoxAddingTerms.SuspendLayout();
+            this.panelGauss.SuspendLayout();
+            this.panelTriangle.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.thirdStep.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -85,7 +95,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(466, 351);
+            this.panel1.Size = new System.Drawing.Size(438, 422);
             this.panel1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -93,27 +103,27 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.60147F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.39853F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 138F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
             this.tableLayoutPanel1.Controls.Add(this.btnPrevious, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnClose, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnNext, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 325);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 394);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(466, 26);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(438, 28);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // btnPrevious
             // 
-            this.btnPrevious.BackColor = System.Drawing.Color.LightGray;
+            this.btnPrevious.BackColor = System.Drawing.Color.Gainsboro;
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPrevious.Font = new System.Drawing.Font("Algerian", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnPrevious.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnPrevious.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.btnPrevious.Location = new System.Drawing.Point(3, 3);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(116, 20);
+            this.btnPrevious.Size = new System.Drawing.Size(116, 22);
             this.btnPrevious.TabIndex = 0;
             this.btnPrevious.Text = "Previous";
             this.btnPrevious.UseVisualStyleBackColor = false;
@@ -121,13 +131,13 @@
             // 
             // btnClose
             // 
-            this.btnClose.BackColor = System.Drawing.Color.LightGray;
+            this.btnClose.BackColor = System.Drawing.Color.Gainsboro;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnClose.Font = new System.Drawing.Font("Algerian", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnClose.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnClose.Location = new System.Drawing.Point(330, 3);
+            this.btnClose.Location = new System.Drawing.Point(289, 3);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(127, 20);
+            this.btnClose.Size = new System.Drawing.Size(127, 22);
             this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -135,13 +145,13 @@
             // 
             // btnNext
             // 
-            this.btnNext.BackColor = System.Drawing.Color.LightGray;
+            this.btnNext.BackColor = System.Drawing.Color.Gainsboro;
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNext.Font = new System.Drawing.Font("Algerian", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnNext.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnNext.Location = new System.Drawing.Point(159, 3);
+            this.btnNext.Location = new System.Drawing.Point(139, 3);
             this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(128, 20);
+            this.btnNext.Size = new System.Drawing.Size(128, 22);
             this.btnNext.TabIndex = 1;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = false;
@@ -155,11 +165,11 @@
             this.tabControl.Controls.Add(this.firstStep);
             this.tabControl.Controls.Add(this.secondStep);
             this.tabControl.Controls.Add(this.thirdStep);
-            this.tabControl.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tabControl.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tabControl.Location = new System.Drawing.Point(3, 3);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(460, 316);
+            this.tabControl.Size = new System.Drawing.Size(432, 384);
             this.tabControl.TabIndex = 0;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl_SelectedIndexChanged);
             // 
@@ -171,10 +181,10 @@
             this.firstStep.Controls.Add(this.groupBox1);
             this.firstStep.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.firstStep.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.firstStep.Location = new System.Drawing.Point(4, 24);
+            this.firstStep.Location = new System.Drawing.Point(4, 23);
             this.firstStep.Name = "firstStep";
             this.firstStep.Padding = new System.Windows.Forms.Padding(3);
-            this.firstStep.Size = new System.Drawing.Size(452, 288);
+            this.firstStep.Size = new System.Drawing.Size(424, 357);
             this.firstStep.TabIndex = 0;
             this.firstStep.Text = " First Step";
             this.firstStep.UseVisualStyleBackColor = true;
@@ -186,10 +196,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxVariableName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxVariableName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxVariableName.Location = new System.Drawing.Point(74, 109);
+            this.textBoxVariableName.Location = new System.Drawing.Point(74, 117);
             this.textBoxVariableName.MaxLength = 50;
             this.textBoxVariableName.Name = "textBoxVariableName";
-            this.textBoxVariableName.Size = new System.Drawing.Size(348, 21);
+            this.textBoxVariableName.Size = new System.Drawing.Size(342, 21);
             this.textBoxVariableName.TabIndex = 3;
             this.textBoxVariableName.WordWrap = false;
             // 
@@ -198,7 +208,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(20, 112);
+            this.label1.Location = new System.Drawing.Point(20, 121);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 15);
             this.label1.TabIndex = 2;
@@ -206,17 +216,16 @@
             // 
             // groupBoxVariableType
             // 
-            this.groupBoxVariableType.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.groupBoxVariableType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBoxVariableType.Controls.Add(this.radioButtonOutputType);
             this.groupBoxVariableType.Controls.Add(this.radioButtonIntermediateType);
             this.groupBoxVariableType.Controls.Add(this.radioButtonInputType);
             this.groupBoxVariableType.Font = new System.Drawing.Font("Arial Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBoxVariableType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.groupBoxVariableType.Location = new System.Drawing.Point(3, 142);
+            this.groupBoxVariableType.Location = new System.Drawing.Point(3, 153);
             this.groupBoxVariableType.Name = "groupBoxVariableType";
-            this.groupBoxVariableType.Size = new System.Drawing.Size(430, 134);
+            this.groupBoxVariableType.Size = new System.Drawing.Size(413, 126);
             this.groupBoxVariableType.TabIndex = 1;
             this.groupBoxVariableType.TabStop = false;
             this.groupBoxVariableType.Text = "Type";
@@ -225,9 +234,9 @@
             // 
             this.radioButtonOutputType.AutoSize = true;
             this.radioButtonOutputType.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radioButtonOutputType.Location = new System.Drawing.Point(20, 81);
+            this.radioButtonOutputType.Location = new System.Drawing.Point(20, 87);
             this.radioButtonOutputType.Name = "radioButtonOutputType";
-            this.radioButtonOutputType.Size = new System.Drawing.Size(63, 19);
+            this.radioButtonOutputType.Size = new System.Drawing.Size(63, 20);
             this.radioButtonOutputType.TabIndex = 2;
             this.radioButtonOutputType.Text = "Output";
             this.radioButtonOutputType.UseVisualStyleBackColor = true;
@@ -236,9 +245,9 @@
             // 
             this.radioButtonIntermediateType.AutoSize = true;
             this.radioButtonIntermediateType.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radioButtonIntermediateType.Location = new System.Drawing.Point(20, 55);
+            this.radioButtonIntermediateType.Location = new System.Drawing.Point(20, 59);
             this.radioButtonIntermediateType.Name = "radioButtonIntermediateType";
-            this.radioButtonIntermediateType.Size = new System.Drawing.Size(97, 19);
+            this.radioButtonIntermediateType.Size = new System.Drawing.Size(97, 20);
             this.radioButtonIntermediateType.TabIndex = 1;
             this.radioButtonIntermediateType.Text = "Intermediate";
             this.radioButtonIntermediateType.UseVisualStyleBackColor = true;
@@ -248,9 +257,9 @@
             this.radioButtonInputType.AutoSize = true;
             this.radioButtonInputType.Checked = true;
             this.radioButtonInputType.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radioButtonInputType.Location = new System.Drawing.Point(20, 29);
+            this.radioButtonInputType.Location = new System.Drawing.Point(20, 31);
             this.radioButtonInputType.Name = "radioButtonInputType";
-            this.radioButtonInputType.Size = new System.Drawing.Size(53, 19);
+            this.radioButtonInputType.Size = new System.Drawing.Size(53, 20);
             this.radioButtonInputType.TabIndex = 0;
             this.radioButtonInputType.TabStop = true;
             this.radioButtonInputType.Text = "Input";
@@ -265,8 +274,8 @@
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox1.Size = new System.Drawing.Size(426, 90);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.groupBox1.Size = new System.Drawing.Size(410, 97);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Define Linguistic Variable";
@@ -278,11 +287,11 @@
             this.textBoxDescription.Dock = System.Windows.Forms.DockStyle.Top;
             this.textBoxDescription.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxDescription.Location = new System.Drawing.Point(10, 27);
+            this.textBoxDescription.Location = new System.Drawing.Point(10, 29);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.ReadOnly = true;
-            this.textBoxDescription.Size = new System.Drawing.Size(406, 47);
+            this.textBoxDescription.Size = new System.Drawing.Size(390, 51);
             this.textBoxDescription.TabIndex = 1;
             this.textBoxDescription.Text = "The Linguistic Variables Wizard will help you to create a linguistic variable wit" +
     "h an initial set of terms and membership functions. In this step you specify nam" +
@@ -294,10 +303,10 @@
             this.secondStep.Controls.Add(this.groupBox2);
             this.secondStep.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.secondStep.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.secondStep.Location = new System.Drawing.Point(4, 24);
+            this.secondStep.Location = new System.Drawing.Point(4, 23);
             this.secondStep.Name = "secondStep";
             this.secondStep.Padding = new System.Windows.Forms.Padding(3);
-            this.secondStep.Size = new System.Drawing.Size(452, 288);
+            this.secondStep.Size = new System.Drawing.Size(424, 357);
             this.secondStep.TabIndex = 1;
             this.secondStep.Text = "Second Step";
             this.secondStep.UseVisualStyleBackColor = true;
@@ -307,41 +316,168 @@
             this.groupBoxAddingTerms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxAddingTerms.Controls.Add(this.panel2);
             this.groupBoxAddingTerms.Controls.Add(this.listBoxTerms);
             this.groupBoxAddingTerms.Controls.Add(this.buttonRemoveTerm);
             this.groupBoxAddingTerms.Controls.Add(this.buttonAddTerm);
             this.groupBoxAddingTerms.Controls.Add(this.comboBoxVariableForm);
             this.groupBoxAddingTerms.Controls.Add(this.label2);
-            this.groupBoxAddingTerms.Controls.Add(this.label5);
-            this.groupBoxAddingTerms.Controls.Add(this.label4);
-            this.groupBoxAddingTerms.Controls.Add(this.label3);
             this.groupBoxAddingTerms.Controls.Add(this.labelName);
-            this.groupBoxAddingTerms.Controls.Add(this.textBoxTriangleRight);
-            this.groupBoxAddingTerms.Controls.Add(this.textBoxTriangleMiddle);
-            this.groupBoxAddingTerms.Controls.Add(this.textBoxTriangleLeft);
             this.groupBoxAddingTerms.Controls.Add(this.textBoxTermName);
             this.groupBoxAddingTerms.Font = new System.Drawing.Font("Arial Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBoxAddingTerms.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.groupBoxAddingTerms.Location = new System.Drawing.Point(6, 96);
+            this.groupBoxAddingTerms.Location = new System.Drawing.Point(6, 103);
             this.groupBoxAddingTerms.Name = "groupBoxAddingTerms";
-            this.groupBoxAddingTerms.Size = new System.Drawing.Size(440, 189);
+            this.groupBoxAddingTerms.Size = new System.Drawing.Size(411, 248);
             this.groupBoxAddingTerms.TabIndex = 1;
             this.groupBoxAddingTerms.TabStop = false;
             this.groupBoxAddingTerms.Text = "Add Terms";
             // 
+            // panelGauss
+            // 
+            this.panelGauss.Controls.Add(this.textBox2);
+            this.panelGauss.Controls.Add(this.textBox3);
+            this.panelGauss.Controls.Add(this.label6);
+            this.panelGauss.Controls.Add(this.label7);
+            this.panelGauss.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelGauss.Location = new System.Drawing.Point(0, 108);
+            this.panelGauss.Name = "panelGauss";
+            this.panelGauss.Size = new System.Drawing.Size(131, 73);
+            this.panelGauss.TabIndex = 6;
+            this.panelGauss.Visible = false;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Font = new System.Drawing.Font("Arial", 9F);
+            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox2.Location = new System.Drawing.Point(55, 9);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(72, 21);
+            this.textBox2.TabIndex = 0;
+            this.textBox2.Text = "0";
+            // 
+            // textBox3
+            // 
+            this.textBox3.Font = new System.Drawing.Font("Arial", 9F);
+            this.textBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox3.Location = new System.Drawing.Point(55, 38);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(72, 21);
+            this.textBox3.TabIndex = 0;
+            this.textBox3.Text = "0";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label6.Location = new System.Drawing.Point(3, 12);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(14, 15);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "c";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(3, 41);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(14, 15);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "b";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // panelTriangle
+            // 
+            this.panelTriangle.Controls.Add(this.textBoxTriangleLeft);
+            this.panelTriangle.Controls.Add(this.textBoxTriangleRight);
+            this.panelTriangle.Controls.Add(this.label3);
+            this.panelTriangle.Controls.Add(this.textBoxTriangleMiddle);
+            this.panelTriangle.Controls.Add(this.label4);
+            this.panelTriangle.Controls.Add(this.label5);
+            this.panelTriangle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelTriangle.Location = new System.Drawing.Point(0, 0);
+            this.panelTriangle.Name = "panelTriangle";
+            this.panelTriangle.Size = new System.Drawing.Size(131, 108);
+            this.panelTriangle.TabIndex = 5;
+            this.panelTriangle.Visible = false;
+            // 
+            // textBoxTriangleLeft
+            // 
+            this.textBoxTriangleLeft.Font = new System.Drawing.Font("Arial", 9F);
+            this.textBoxTriangleLeft.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxTriangleLeft.Location = new System.Drawing.Point(55, 10);
+            this.textBoxTriangleLeft.Name = "textBoxTriangleLeft";
+            this.textBoxTriangleLeft.Size = new System.Drawing.Size(72, 21);
+            this.textBoxTriangleLeft.TabIndex = 0;
+            this.textBoxTriangleLeft.Text = "0";
+            // 
+            // textBoxTriangleRight
+            // 
+            this.textBoxTriangleRight.Font = new System.Drawing.Font("Arial", 9F);
+            this.textBoxTriangleRight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxTriangleRight.Location = new System.Drawing.Point(55, 68);
+            this.textBoxTriangleRight.Name = "textBoxTriangleRight";
+            this.textBoxTriangleRight.Size = new System.Drawing.Size(72, 21);
+            this.textBoxTriangleRight.TabIndex = 0;
+            this.textBoxTriangleRight.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.Location = new System.Drawing.Point(3, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(31, 15);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "Low";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBoxTriangleMiddle
+            // 
+            this.textBoxTriangleMiddle.Font = new System.Drawing.Font("Arial", 9F);
+            this.textBoxTriangleMiddle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxTriangleMiddle.Location = new System.Drawing.Point(55, 39);
+            this.textBoxTriangleMiddle.Name = "textBoxTriangleMiddle";
+            this.textBoxTriangleMiddle.Size = new System.Drawing.Size(72, 21);
+            this.textBoxTriangleMiddle.TabIndex = 0;
+            this.textBoxTriangleMiddle.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label4.Location = new System.Drawing.Point(3, 42);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 15);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Middle";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label5.Location = new System.Drawing.Point(3, 71);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(36, 15);
+            this.label5.TabIndex = 1;
+            this.label5.Text = "Right";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // listBoxTerms
             // 
-            this.listBoxTerms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.listBoxTerms.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.listBoxTerms.BackColor = System.Drawing.Color.White;
             this.listBoxTerms.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listBoxTerms.ForeColor = System.Drawing.Color.DimGray;
             this.listBoxTerms.FormattingEnabled = true;
             this.listBoxTerms.ItemHeight = 14;
-            this.listBoxTerms.Location = new System.Drawing.Point(210, 34);
+            this.listBoxTerms.Location = new System.Drawing.Point(210, 37);
             this.listBoxTerms.Name = "listBoxTerms";
-            this.listBoxTerms.Size = new System.Drawing.Size(224, 102);
+            this.listBoxTerms.Size = new System.Drawing.Size(195, 102);
             this.listBoxTerms.TabIndex = 4;
             // 
             // buttonRemoveTerm
@@ -350,9 +486,9 @@
             this.buttonRemoveTerm.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonRemoveTerm.Font = new System.Drawing.Font("Algerian", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonRemoveTerm.ForeColor = System.Drawing.Color.Maroon;
-            this.buttonRemoveTerm.Location = new System.Drawing.Point(140, 117);
+            this.buttonRemoveTerm.Location = new System.Drawing.Point(143, 126);
             this.buttonRemoveTerm.Name = "buttonRemoveTerm";
-            this.buttonRemoveTerm.Size = new System.Drawing.Size(64, 20);
+            this.buttonRemoveTerm.Size = new System.Drawing.Size(61, 22);
             this.buttonRemoveTerm.TabIndex = 3;
             this.buttonRemoveTerm.Text = "Remove";
             this.buttonRemoveTerm.UseVisualStyleBackColor = false;
@@ -364,9 +500,9 @@
             this.buttonAddTerm.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonAddTerm.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonAddTerm.ForeColor = System.Drawing.Color.Green;
-            this.buttonAddTerm.Location = new System.Drawing.Point(140, 91);
+            this.buttonAddTerm.Location = new System.Drawing.Point(143, 98);
             this.buttonAddTerm.Name = "buttonAddTerm";
-            this.buttonAddTerm.Size = new System.Drawing.Size(64, 20);
+            this.buttonAddTerm.Size = new System.Drawing.Size(61, 22);
             this.buttonAddTerm.TabIndex = 3;
             this.buttonAddTerm.Text = "Add";
             this.buttonAddTerm.UseVisualStyleBackColor = false;
@@ -380,102 +516,40 @@
             this.comboBoxVariableForm.Items.AddRange(new object[] {
             "Gauss",
             "Triangle"});
-            this.comboBoxVariableForm.Location = new System.Drawing.Point(61, 61);
+            this.comboBoxVariableForm.Location = new System.Drawing.Point(61, 66);
             this.comboBoxVariableForm.Name = "comboBoxVariableForm";
             this.comboBoxVariableForm.Size = new System.Drawing.Size(143, 23);
             this.comboBoxVariableForm.TabIndex = 2;
             this.comboBoxVariableForm.Text = "Choose Type";
+            this.comboBoxVariableForm.SelectedIndexChanged += new System.EventHandler(this.ComboBoxVariableForm_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(9, 65);
+            this.label2.Location = new System.Drawing.Point(9, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "Form";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(9, 147);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(36, 15);
-            this.label5.TabIndex = 1;
-            this.label5.Text = "Right";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(9, 120);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(44, 15);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Middle";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(9, 93);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(31, 15);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Low";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // labelName
             // 
             this.labelName.AutoSize = true;
             this.labelName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelName.Location = new System.Drawing.Point(9, 37);
+            this.labelName.Location = new System.Drawing.Point(9, 40);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(40, 15);
             this.labelName.TabIndex = 1;
             this.labelName.Text = "Name";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBoxTriangleRight
-            // 
-            this.textBoxTriangleRight.Font = new System.Drawing.Font("Arial", 9F);
-            this.textBoxTriangleRight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxTriangleRight.Location = new System.Drawing.Point(61, 144);
-            this.textBoxTriangleRight.Name = "textBoxTriangleRight";
-            this.textBoxTriangleRight.Size = new System.Drawing.Size(72, 21);
-            this.textBoxTriangleRight.TabIndex = 0;
-            this.textBoxTriangleRight.Text = "0";
-            // 
-            // textBoxTriangleMiddle
-            // 
-            this.textBoxTriangleMiddle.Font = new System.Drawing.Font("Arial", 9F);
-            this.textBoxTriangleMiddle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxTriangleMiddle.Location = new System.Drawing.Point(61, 117);
-            this.textBoxTriangleMiddle.Name = "textBoxTriangleMiddle";
-            this.textBoxTriangleMiddle.Size = new System.Drawing.Size(72, 21);
-            this.textBoxTriangleMiddle.TabIndex = 0;
-            this.textBoxTriangleMiddle.Text = "0";
-            // 
-            // textBoxTriangleLeft
-            // 
-            this.textBoxTriangleLeft.Font = new System.Drawing.Font("Arial", 9F);
-            this.textBoxTriangleLeft.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxTriangleLeft.Location = new System.Drawing.Point(61, 90);
-            this.textBoxTriangleLeft.Name = "textBoxTriangleLeft";
-            this.textBoxTriangleLeft.Size = new System.Drawing.Size(72, 21);
-            this.textBoxTriangleLeft.TabIndex = 0;
-            this.textBoxTriangleLeft.Text = "0";
-            // 
             // textBoxTermName
             // 
             this.textBoxTermName.Font = new System.Drawing.Font("Arial", 9F);
             this.textBoxTermName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxTermName.Location = new System.Drawing.Point(61, 34);
+            this.textBoxTermName.Location = new System.Drawing.Point(61, 37);
             this.textBoxTermName.Name = "textBoxTermName";
             this.textBoxTermName.Size = new System.Drawing.Size(143, 21);
             this.textBoxTermName.TabIndex = 0;
@@ -489,8 +563,8 @@
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox2.Location = new System.Drawing.Point(5, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox2.Size = new System.Drawing.Size(441, 84);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.groupBox2.Size = new System.Drawing.Size(412, 90);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "MBF Definition";
@@ -503,10 +577,10 @@
             this.textBoxMBFDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxMBFDescription.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxMBFDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxMBFDescription.Location = new System.Drawing.Point(13, 27);
+            this.textBoxMBFDescription.Location = new System.Drawing.Point(13, 29);
             this.textBoxMBFDescription.Multiline = true;
             this.textBoxMBFDescription.Name = "textBoxMBFDescription";
-            this.textBoxMBFDescription.Size = new System.Drawing.Size(415, 44);
+            this.textBoxMBFDescription.Size = new System.Drawing.Size(386, 47);
             this.textBoxMBFDescription.TabIndex = 0;
             this.textBoxMBFDescription.Text = "In this step you specify the number of terms, that determines the choice of term " +
     "names and the membership function definitions for the set of terms to be created" +
@@ -516,10 +590,10 @@
             // 
             this.thirdStep.Controls.Add(this.textBoxVariableComment);
             this.thirdStep.Controls.Add(this.groupBox3);
-            this.thirdStep.Location = new System.Drawing.Point(4, 24);
+            this.thirdStep.Location = new System.Drawing.Point(4, 23);
             this.thirdStep.Name = "thirdStep";
             this.thirdStep.Padding = new System.Windows.Forms.Padding(3);
-            this.thirdStep.Size = new System.Drawing.Size(452, 288);
+            this.thirdStep.Size = new System.Drawing.Size(424, 357);
             this.thirdStep.TabIndex = 2;
             this.thirdStep.Text = "Third Step";
             this.thirdStep.UseVisualStyleBackColor = true;
@@ -530,10 +604,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxVariableComment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxVariableComment.Location = new System.Drawing.Point(7, 95);
+            this.textBoxVariableComment.Location = new System.Drawing.Point(7, 102);
             this.textBoxVariableComment.Multiline = true;
             this.textBoxVariableComment.Name = "textBoxVariableComment";
-            this.textBoxVariableComment.Size = new System.Drawing.Size(439, 187);
+            this.textBoxVariableComment.Size = new System.Drawing.Size(408, 245);
             this.textBoxVariableComment.TabIndex = 1;
             // 
             // groupBox3
@@ -545,8 +619,8 @@
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox3.Location = new System.Drawing.Point(6, 6);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox3.Size = new System.Drawing.Size(440, 83);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.groupBox3.Size = new System.Drawing.Size(409, 89);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Comment For Variable";
@@ -557,21 +631,33 @@
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBox1.Location = new System.Drawing.Point(10, 27);
+            this.textBox1.Location = new System.Drawing.Point(10, 28);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(420, 46);
+            this.textBox1.Size = new System.Drawing.Size(389, 50);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "The Linguistic Variables Wizard will help you to create a linguistic variable wit" +
     "h an initial set of terms and membership functions. In this step you specify nam" +
     "e, color and type of the variable.";
             // 
+            // panel2
+            // 
+            this.panel2.AutoScroll = true;
+            this.panel2.Controls.Add(this.panelGauss);
+            this.panel2.Controls.Add(this.panelTriangle);
+            this.panel2.Location = new System.Drawing.Point(6, 97);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(131, 200);
+            this.panel2.TabIndex = 7;
+            // 
             // FuzzyVariableWizard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(466, 351);
+            this.ClientSize = new System.Drawing.Size(438, 422);
             this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Name = "FuzzyVariableWizard";
             this.Text = "Fuzzy Variables Wizard";
             this.panel1.ResumeLayout(false);
@@ -586,12 +672,17 @@
             this.secondStep.ResumeLayout(false);
             this.groupBoxAddingTerms.ResumeLayout(false);
             this.groupBoxAddingTerms.PerformLayout();
+            this.panelGauss.ResumeLayout(false);
+            this.panelGauss.PerformLayout();
+            this.panelTriangle.ResumeLayout(false);
+            this.panelTriangle.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.thirdStep.ResumeLayout(false);
             this.thirdStep.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -634,5 +725,12 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBoxVariableComment;
+        private System.Windows.Forms.Panel panelGauss;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel panelTriangle;
+        private System.Windows.Forms.Panel panel2;
     }
 }
