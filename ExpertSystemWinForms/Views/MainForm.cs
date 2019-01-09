@@ -1,4 +1,5 @@
-﻿using ExpertSystemWinForms.Models;
+﻿using ExpertSystemWinForms.Infrastructure;
+using ExpertSystemWinForms.Models;
 using ExpertSystemWinForms.Views.Dialogs;
 using System;
 using System.Collections.Generic;
@@ -53,6 +54,9 @@ namespace ExpertSystemWinForms
             if (!this.FuzzyVariables.Contains(variable))
             {
                 this.FuzzyVariables.Add(variable);
+                var variableUI = (new FuzzyVariableCreator()).CreateElement(variable.Name);
+                this.pictureBox1.Controls.Add(variableUI);
+                variableUI.ContextMenuStrip = this.contextMenuStripControl;
 
                 this.treeView1.Nodes["Variables"].Nodes[variable.Type.ToString()].Nodes.Add(variable.Name);
             }

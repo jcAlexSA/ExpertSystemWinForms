@@ -34,9 +34,9 @@
             this.labelName = new System.Windows.Forms.Label();
             this.textBoxRuleBlockName = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonRemoveSelected = new System.Windows.Forms.Button();
+            this.buttonToOutput = new System.Windows.Forms.Button();
+            this.buttonToInput = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -105,9 +105,9 @@
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.buttonRemoveSelected);
+            this.groupBox2.Controls.Add(this.buttonToOutput);
+            this.groupBox2.Controls.Add(this.buttonToInput);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
@@ -120,44 +120,45 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             // 
-            // button3
+            // buttonRemoveSelected
             // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Font = new System.Drawing.Font("Arial Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button3.ForeColor = System.Drawing.Color.Maroon;
-            this.button3.Location = new System.Drawing.Point(139, 107);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Remove";
-            this.button3.UseVisualStyleBackColor = false;
+            this.buttonRemoveSelected.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(227)))), ((int)(((byte)(227)))));
+            this.buttonRemoveSelected.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonRemoveSelected.Font = new System.Drawing.Font("Arial Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonRemoveSelected.ForeColor = System.Drawing.Color.Maroon;
+            this.buttonRemoveSelected.Location = new System.Drawing.Point(139, 107);
+            this.buttonRemoveSelected.Name = "buttonRemoveSelected";
+            this.buttonRemoveSelected.Size = new System.Drawing.Size(75, 23);
+            this.buttonRemoveSelected.TabIndex = 2;
+            this.buttonRemoveSelected.Text = "Remove";
+            this.buttonRemoveSelected.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // buttonToOutput
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(255)))), ((int)(((byte)(254)))));
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button2.Font = new System.Drawing.Font("Arial Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button2.ForeColor = System.Drawing.Color.Teal;
-            this.button2.Location = new System.Drawing.Point(139, 78);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "Output";
-            this.button2.UseVisualStyleBackColor = false;
+            this.buttonToOutput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(255)))), ((int)(((byte)(254)))));
+            this.buttonToOutput.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonToOutput.Font = new System.Drawing.Font("Arial Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonToOutput.ForeColor = System.Drawing.Color.Teal;
+            this.buttonToOutput.Location = new System.Drawing.Point(139, 78);
+            this.buttonToOutput.Name = "buttonToOutput";
+            this.buttonToOutput.Size = new System.Drawing.Size(75, 23);
+            this.buttonToOutput.TabIndex = 2;
+            this.buttonToOutput.Text = "Output";
+            this.buttonToOutput.UseVisualStyleBackColor = false;
             // 
-            // button1
+            // buttonToInput
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(244)))), ((int)(((byte)(219)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Font = new System.Drawing.Font("Arial Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.ForeColor = System.Drawing.Color.Green;
-            this.button1.Location = new System.Drawing.Point(139, 49);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Input";
-            this.button1.UseVisualStyleBackColor = false;
+            this.buttonToInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(221)))), ((int)(((byte)(244)))), ((int)(((byte)(219)))));
+            this.buttonToInput.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonToInput.Font = new System.Drawing.Font("Arial Black", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonToInput.ForeColor = System.Drawing.Color.Green;
+            this.buttonToInput.Location = new System.Drawing.Point(139, 49);
+            this.buttonToInput.Name = "buttonToInput";
+            this.buttonToInput.Size = new System.Drawing.Size(75, 23);
+            this.buttonToInput.TabIndex = 2;
+            this.buttonToInput.Text = "Input";
+            this.buttonToInput.UseVisualStyleBackColor = false;
+            this.buttonToInput.Click += new System.EventHandler(this.ButtonToInput_Click);
             // 
             // label3
             // 
@@ -195,8 +196,6 @@
             this.listBoxOurputVariablesCollection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.listBoxOurputVariablesCollection.FormattingEnabled = true;
             this.listBoxOurputVariablesCollection.ItemHeight = 15;
-            this.listBoxOurputVariablesCollection.Items.AddRange(new object[] {
-            "Contrast"});
             this.listBoxOurputVariablesCollection.Location = new System.Drawing.Point(338, 33);
             this.listBoxOurputVariablesCollection.Name = "listBoxOurputVariablesCollection";
             this.listBoxOurputVariablesCollection.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -209,10 +208,6 @@
             this.listBoxInputVariablesCollection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.listBoxInputVariablesCollection.FormattingEnabled = true;
             this.listBoxInputVariablesCollection.ItemHeight = 15;
-            this.listBoxInputVariablesCollection.Items.AddRange(new object[] {
-            "Autofocus",
-            "Zoom",
-            "Bokeh"});
             this.listBoxInputVariablesCollection.Location = new System.Drawing.Point(232, 33);
             this.listBoxInputVariablesCollection.Name = "listBoxInputVariablesCollection";
             this.listBoxInputVariablesCollection.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -228,9 +223,6 @@
             this.listBoxVariablesCollection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.listBoxVariablesCollection.FormattingEnabled = true;
             this.listBoxVariablesCollection.ItemHeight = 15;
-            this.listBoxVariablesCollection.Items.AddRange(new object[] {
-            "Light",
-            "Additional\t"});
             this.listBoxVariablesCollection.Location = new System.Drawing.Point(13, 33);
             this.listBoxVariablesCollection.Name = "listBoxVariablesCollection";
             this.listBoxVariablesCollection.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
@@ -255,10 +247,10 @@
             // 
             // buttonAccept
             // 
-            this.buttonAccept.BackColor = System.Drawing.Color.Silver;
+            this.buttonAccept.BackColor = System.Drawing.Color.LightGray;
             this.buttonAccept.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonAccept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonAccept.Font = new System.Drawing.Font("Algerian", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonAccept.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonAccept.Location = new System.Drawing.Point(222, 3);
             this.buttonAccept.Name = "buttonAccept";
             this.buttonAccept.Size = new System.Drawing.Size(116, 23);
@@ -268,10 +260,10 @@
             // 
             // buttonCancel
             // 
-            this.buttonCancel.BackColor = System.Drawing.Color.Silver;
+            this.buttonCancel.BackColor = System.Drawing.Color.LightGray;
             this.buttonCancel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonCancel.Font = new System.Drawing.Font("Algerian", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonCancel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonCancel.Location = new System.Drawing.Point(344, 3);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(124, 23);
@@ -314,9 +306,9 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button buttonAccept;
         private System.Windows.Forms.Button buttonCancel;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonRemoveSelected;
+        private System.Windows.Forms.Button buttonToOutput;
+        private System.Windows.Forms.Button buttonToInput;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
