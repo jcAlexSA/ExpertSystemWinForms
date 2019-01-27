@@ -23,7 +23,7 @@ namespace ExpertSystemWinForms.Models.MembershipFunction
         /// <value>
         /// The minimum value.
         /// </value>
-        public int Min { get; set; }
+        public int Left { get; set; }
 
         /// <summary>
         /// Gets or sets the middle value.

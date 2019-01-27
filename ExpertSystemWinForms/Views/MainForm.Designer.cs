@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Input");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Output");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Intermediate");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Variables", new System.Windows.Forms.TreeNode[] {
-            treeNode16,
-            treeNode17,
-            treeNode18});
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Rule Blocks");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Input");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Output");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Intermediate");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Variables", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Rule Blocks");
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,9 +55,9 @@
             this.newRuleBlockToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ruleBlockEditorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStripControl = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.newVariableToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newVariableToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -116,7 +116,7 @@
             this.ruleBlockEditorToolStripMenuItem.Name = "ruleBlockEditorToolStripMenuItem";
             this.ruleBlockEditorToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.ruleBlockEditorToolStripMenuItem.Text = "Rule Block Editor";
-            this.ruleBlockEditorToolStripMenuItem.Click += new System.EventHandler(this.ruleBlockEditorToolStripMenuItem_Click);
+            this.ruleBlockEditorToolStripMenuItem.Click += new System.EventHandler(this.RuleBlockEditorToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -166,19 +166,19 @@
             this.treeView1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.treeView1.Location = new System.Drawing.Point(3, 0);
             this.treeView1.Name = "treeView1";
-            treeNode16.Name = "Input";
-            treeNode16.Text = "Input";
-            treeNode17.Name = "Output";
-            treeNode17.Text = "Output";
-            treeNode18.Name = "Intermediate";
-            treeNode18.Text = "Intermediate";
-            treeNode19.Name = "Variables";
-            treeNode19.Text = "Variables";
-            treeNode20.Name = "RuleBlocks";
-            treeNode20.Text = "Rule Blocks";
+            treeNode1.Name = "Input";
+            treeNode1.Text = "Input";
+            treeNode2.Name = "Output";
+            treeNode2.Text = "Output";
+            treeNode3.Name = "Intermediate";
+            treeNode3.Text = "Intermediate";
+            treeNode4.Name = "Variables";
+            treeNode4.Text = "Variables";
+            treeNode5.Name = "RuleBlocks";
+            treeNode5.Text = "Rule Blocks";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode19,
-            treeNode20});
+            treeNode4,
+            treeNode5});
             this.treeView1.ShowNodeToolTips = true;
             this.treeView1.Size = new System.Drawing.Size(158, 327);
             this.treeView1.TabIndex = 0;
@@ -225,7 +225,7 @@
             this.ruleBlockEditorToolStripMenuItem1.Name = "ruleBlockEditorToolStripMenuItem1";
             this.ruleBlockEditorToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
             this.ruleBlockEditorToolStripMenuItem1.Text = "Rule Block Editor";
-            this.ruleBlockEditorToolStripMenuItem1.Click += new System.EventHandler(this.ruleBlockEditorToolStripMenuItem_Click);
+            this.ruleBlockEditorToolStripMenuItem1.Click += new System.EventHandler(this.RuleBlockEditorToolStripMenuItem_Click);
             // 
             // contextMenuStripControl
             // 
@@ -236,23 +236,25 @@
             this.contextMenuStripControl.Name = "contextMenuStripControl";
             this.contextMenuStripControl.Size = new System.Drawing.Size(181, 92);
             // 
+            // newVariableToolStripMenuItem1
+            // 
+            this.newVariableToolStripMenuItem1.Name = "newVariableToolStripMenuItem1";
+            this.newVariableToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.newVariableToolStripMenuItem1.Text = "New Variable";
+            this.newVariableToolStripMenuItem1.Click += new System.EventHandler(this.NewVariableToolStripMenuItem_Click);
+            // 
             // editToolStripMenuItem1
             // 
             this.editToolStripMenuItem1.Name = "editToolStripMenuItem1";
             this.editToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.editToolStripMenuItem1.Text = "Edit Variable";
+            this.editToolStripMenuItem1.Click += new System.EventHandler(this.EditToolStripMenuItem_Click);
             // 
             // removeToolStripMenuItem
             // 
             this.removeToolStripMenuItem.Name = "removeToolStripMenuItem";
             this.removeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.removeToolStripMenuItem.Text = "Remove Variable";
-            // 
-            // newVariableToolStripMenuItem1
-            // 
-            this.newVariableToolStripMenuItem1.Name = "newVariableToolStripMenuItem1";
-            this.newVariableToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.newVariableToolStripMenuItem1.Text = "New Variable";
             // 
             // MainForm
             // 
@@ -288,7 +290,6 @@
         private System.Windows.Forms.ToolStripMenuItem newVariableToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newRuleBlockToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.ToolStripMenuItem ruleBlockEditorToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripInteractivePanel;
         private System.Windows.Forms.ToolStripMenuItem addVariableToolStripMenuItem;
@@ -298,6 +299,7 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newVariableToolStripMenuItem1;
+        private System.Windows.Forms.TreeView treeView1;
     }
 }
 

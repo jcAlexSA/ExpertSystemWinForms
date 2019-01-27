@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ExpertSystemWinForms.Views.Dialogs
 {
-    public partial class SpredsheetRuleBlock : Form
+    public partial class SpredsheetRuleBlockDialog : Form
     {
-        public SpredsheetRuleBlock()
+        public SpredsheetRuleBlockDialog()
         {
             InitializeComponent();
         }

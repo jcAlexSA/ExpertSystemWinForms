@@ -1,6 +1,6 @@
 ﻿namespace ExpertSystemWinForms.Views.Dialogs
 {
-    partial class SpredsheetRuleBlock
+    partial class SpredsheetRuleBlockDialog
     {
         /// <summary>
         /// Required designer variable.

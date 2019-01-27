@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>The Rule Block Wizard will help you to create a complete rule block with an initial set of rules. You are may alter all rules individually with the tule block editors. In this step you have to specify the rule block name and the input and output variables for the block</value>
+    <value>The Rule Block Wizard will help you to create a complete rule block with an initial set of rules. You are may alter all rules individually with the tule block editors. In this step you have to specify the rule block name and the input and output variables for the block.</value>
   </data>
 </root>

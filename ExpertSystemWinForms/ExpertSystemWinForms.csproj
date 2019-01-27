@@ -53,25 +53,26 @@
     <Compile Include="Models\FuzzyVariableModel.cs" />
     <Compile Include="Models\Interfaces\IMembershipFunction.cs" />
     <Compile Include="Infrastructure\Interfaces\IUserControlCreator.cs" />
+    <Compile Include="Models\MembershipFunctions\GaussMembershipFunction.cs" />
     <Compile Include="Models\MembershipFunctions\TriangleMembershipFunction.cs" />
     <Compile Include="Models\TermModel.cs" />
-    <Compile Include="Views\Dialogs\FuzzyVariablesWizard.cs">
+    <Compile Include="Views\Dialogs\FuzzyVariablesWizardDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Dialogs\FuzzyVariablesWizard.Designer.cs">
-      <DependentUpon>FuzzyVariablesWizard.cs</DependentUpon>
+    <Compile Include="Views\Dialogs\FuzzyVariablesWizardDialog.Designer.cs">
+      <DependentUpon>FuzzyVariablesWizardDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Dialogs\RuleBlockWizard.cs">
+    <Compile Include="Views\Dialogs\RuleBlockWizardDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Dialogs\RuleBlockWizard.Designer.cs">
-      <DependentUpon>RuleBlockWizard.cs</DependentUpon>
+    <Compile Include="Views\Dialogs\RuleBlockWizardDialog.Designer.cs">
+      <DependentUpon>RuleBlockWizardDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Dialogs\SpredsheetRuleBlock.cs">
+    <Compile Include="Views\Dialogs\SpredsheetRuleBlockDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Dialogs\SpredsheetRuleBlock.Designer.cs">
-      <DependentUpon>SpredsheetRuleBlock.cs</DependentUpon>
+    <Compile Include="Views\Dialogs\SpredsheetRuleBlockDialog.Designer.cs">
+      <DependentUpon>SpredsheetRuleBlockDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
@@ -81,14 +82,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Views\Dialogs\FuzzyVariablesWizard.resx">
-      <DependentUpon>FuzzyVariablesWizard.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Dialogs\FuzzyVariablesWizardDialog.resx">
+      <DependentUpon>FuzzyVariablesWizardDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Dialogs\RuleBlockWizard.resx">
-      <DependentUpon>RuleBlockWizard.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Dialogs\RuleBlockWizardDialog.resx">
+      <DependentUpon>RuleBlockWizardDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\Dialogs\SpredsheetRuleBlock.resx">
-      <DependentUpon>SpredsheetRuleBlock.cs</DependentUpon>
+    <EmbeddedResource Include="Views\Dialogs\SpredsheetRuleBlockDialog.resx">
+      <DependentUpon>SpredsheetRuleBlockDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -118,7 +119,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\0efMwbBDjBo.jpg" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

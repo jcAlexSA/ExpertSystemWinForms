@@ -1,6 +1,6 @@
 ﻿namespace ExpertSystemWinForms.Views.Dialogs
 {
-    partial class FuzzyVariableWizard
+    partial class FuzzyVariableWizardDialog
     {
         /// <summary>
         /// Required designer variable.
@@ -45,9 +45,10 @@
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.secondStep = new System.Windows.Forms.TabPage();
             this.groupBoxAddingTerms = new System.Windows.Forms.GroupBox();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panelGauss = new System.Windows.Forms.Panel();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxGaussC = new System.Windows.Forms.TextBox();
+            this.textBoxGaussB = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panelTriangle = new System.Windows.Forms.Panel();
@@ -70,7 +71,6 @@
             this.textBoxVariableComment = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -79,12 +79,12 @@
             this.groupBox1.SuspendLayout();
             this.secondStep.SuspendLayout();
             this.groupBoxAddingTerms.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.panelGauss.SuspendLayout();
             this.panelTriangle.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.thirdStep.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -95,7 +95,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(438, 422);
+            this.panel1.Size = new System.Drawing.Size(438, 453);
             this.panel1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -103,12 +103,12 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.60147F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.39853F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 151F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
             this.tableLayoutPanel1.Controls.Add(this.btnPrevious, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnClose, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnNext, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 394);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 425);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -135,7 +135,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClose.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnClose.Location = new System.Drawing.Point(289, 3);
+            this.btnClose.Location = new System.Drawing.Point(287, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(127, 22);
             this.btnClose.TabIndex = 2;
@@ -149,7 +149,7 @@
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnNext.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnNext.Location = new System.Drawing.Point(139, 3);
+            this.btnNext.Location = new System.Drawing.Point(138, 3);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(128, 22);
             this.btnNext.TabIndex = 1;
@@ -169,7 +169,7 @@
             this.tabControl.Location = new System.Drawing.Point(3, 3);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(432, 384);
+            this.tabControl.Size = new System.Drawing.Size(432, 415);
             this.tabControl.TabIndex = 0;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl_SelectedIndexChanged);
             // 
@@ -236,7 +236,7 @@
             this.radioButtonOutputType.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radioButtonOutputType.Location = new System.Drawing.Point(20, 87);
             this.radioButtonOutputType.Name = "radioButtonOutputType";
-            this.radioButtonOutputType.Size = new System.Drawing.Size(63, 20);
+            this.radioButtonOutputType.Size = new System.Drawing.Size(63, 19);
             this.radioButtonOutputType.TabIndex = 2;
             this.radioButtonOutputType.Text = "Output";
             this.radioButtonOutputType.UseVisualStyleBackColor = true;
@@ -247,7 +247,7 @@
             this.radioButtonIntermediateType.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radioButtonIntermediateType.Location = new System.Drawing.Point(20, 59);
             this.radioButtonIntermediateType.Name = "radioButtonIntermediateType";
-            this.radioButtonIntermediateType.Size = new System.Drawing.Size(97, 20);
+            this.radioButtonIntermediateType.Size = new System.Drawing.Size(97, 19);
             this.radioButtonIntermediateType.TabIndex = 1;
             this.radioButtonIntermediateType.Text = "Intermediate";
             this.radioButtonIntermediateType.UseVisualStyleBackColor = true;
@@ -259,7 +259,7 @@
             this.radioButtonInputType.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.radioButtonInputType.Location = new System.Drawing.Point(20, 31);
             this.radioButtonInputType.Name = "radioButtonInputType";
-            this.radioButtonInputType.Size = new System.Drawing.Size(53, 20);
+            this.radioButtonInputType.Size = new System.Drawing.Size(53, 19);
             this.radioButtonInputType.TabIndex = 0;
             this.radioButtonInputType.TabStop = true;
             this.radioButtonInputType.Text = "Input";
@@ -287,7 +287,7 @@
             this.textBoxDescription.Dock = System.Windows.Forms.DockStyle.Top;
             this.textBoxDescription.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxDescription.Location = new System.Drawing.Point(10, 29);
+            this.textBoxDescription.Location = new System.Drawing.Point(10, 28);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.ReadOnly = true;
@@ -306,7 +306,7 @@
             this.secondStep.Location = new System.Drawing.Point(4, 23);
             this.secondStep.Name = "secondStep";
             this.secondStep.Padding = new System.Windows.Forms.Padding(3);
-            this.secondStep.Size = new System.Drawing.Size(424, 357);
+            this.secondStep.Size = new System.Drawing.Size(424, 388);
             this.secondStep.TabIndex = 1;
             this.secondStep.Text = "Second Step";
             this.secondStep.UseVisualStyleBackColor = true;
@@ -328,15 +328,25 @@
             this.groupBoxAddingTerms.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBoxAddingTerms.Location = new System.Drawing.Point(6, 103);
             this.groupBoxAddingTerms.Name = "groupBoxAddingTerms";
-            this.groupBoxAddingTerms.Size = new System.Drawing.Size(411, 248);
+            this.groupBoxAddingTerms.Size = new System.Drawing.Size(411, 279);
             this.groupBoxAddingTerms.TabIndex = 1;
             this.groupBoxAddingTerms.TabStop = false;
             this.groupBoxAddingTerms.Text = "Add Terms";
             // 
+            // panel2
+            // 
+            this.panel2.AutoScroll = true;
+            this.panel2.Controls.Add(this.panelGauss);
+            this.panel2.Controls.Add(this.panelTriangle);
+            this.panel2.Location = new System.Drawing.Point(6, 97);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(131, 200);
+            this.panel2.TabIndex = 7;
+            // 
             // panelGauss
             // 
-            this.panelGauss.Controls.Add(this.textBox2);
-            this.panelGauss.Controls.Add(this.textBox3);
+            this.panelGauss.Controls.Add(this.textBoxGaussC);
+            this.panelGauss.Controls.Add(this.textBoxGaussB);
             this.panelGauss.Controls.Add(this.label6);
             this.panelGauss.Controls.Add(this.label7);
             this.panelGauss.Dock = System.Windows.Forms.DockStyle.Top;
@@ -346,25 +356,25 @@
             this.panelGauss.TabIndex = 6;
             this.panelGauss.Visible = false;
             // 
-            // textBox2
+            // textBoxGaussC
             // 
-            this.textBox2.Font = new System.Drawing.Font("Arial", 9F);
-            this.textBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBox2.Location = new System.Drawing.Point(55, 9);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(72, 21);
-            this.textBox2.TabIndex = 0;
-            this.textBox2.Text = "0";
+            this.textBoxGaussC.Font = new System.Drawing.Font("Arial", 9F);
+            this.textBoxGaussC.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxGaussC.Location = new System.Drawing.Point(55, 9);
+            this.textBoxGaussC.Name = "textBoxGaussC";
+            this.textBoxGaussC.Size = new System.Drawing.Size(72, 21);
+            this.textBoxGaussC.TabIndex = 0;
+            this.textBoxGaussC.Text = "0";
             // 
-            // textBox3
+            // textBoxGaussB
             // 
-            this.textBox3.Font = new System.Drawing.Font("Arial", 9F);
-            this.textBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBox3.Location = new System.Drawing.Point(55, 38);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(72, 21);
-            this.textBox3.TabIndex = 0;
-            this.textBox3.Text = "0";
+            this.textBoxGaussB.Font = new System.Drawing.Font("Arial", 9F);
+            this.textBoxGaussB.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxGaussB.Location = new System.Drawing.Point(55, 38);
+            this.textBoxGaussB.Name = "textBoxGaussB";
+            this.textBoxGaussB.Size = new System.Drawing.Size(72, 21);
+            this.textBoxGaussB.TabIndex = 0;
+            this.textBoxGaussB.Text = "0";
             // 
             // label6
             // 
@@ -479,6 +489,7 @@
             this.listBoxTerms.Name = "listBoxTerms";
             this.listBoxTerms.Size = new System.Drawing.Size(195, 102);
             this.listBoxTerms.TabIndex = 4;
+            this.listBoxTerms.SelectedIndexChanged += new System.EventHandler(this.ListBoxTerms_SelectedIndexChanged);
             // 
             // buttonRemoveTerm
             // 
@@ -640,25 +651,15 @@
     "h an initial set of terms and membership functions. In this step you specify nam" +
     "e, color and type of the variable.";
             // 
-            // panel2
-            // 
-            this.panel2.AutoScroll = true;
-            this.panel2.Controls.Add(this.panelGauss);
-            this.panel2.Controls.Add(this.panelTriangle);
-            this.panel2.Location = new System.Drawing.Point(6, 97);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(131, 200);
-            this.panel2.TabIndex = 7;
-            // 
-            // FuzzyVariableWizard
+            // FuzzyVariableWizardDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(438, 422);
+            this.ClientSize = new System.Drawing.Size(438, 453);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.Name = "FuzzyVariableWizard";
+            this.Name = "FuzzyVariableWizardDialog";
             this.Text = "Fuzzy Variables Wizard";
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -672,6 +673,7 @@
             this.secondStep.ResumeLayout(false);
             this.groupBoxAddingTerms.ResumeLayout(false);
             this.groupBoxAddingTerms.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.panelGauss.ResumeLayout(false);
             this.panelGauss.PerformLayout();
             this.panelTriangle.ResumeLayout(false);
@@ -682,7 +684,6 @@
             this.thirdStep.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -726,8 +727,8 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBoxVariableComment;
         private System.Windows.Forms.Panel panelGauss;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxGaussC;
+        private System.Windows.Forms.TextBox textBoxGaussB;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panelTriangle;

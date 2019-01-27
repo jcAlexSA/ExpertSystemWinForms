@@ -60,6 +60,10 @@ namespace ExpertSystemWinForms
 
                 this.treeView1.Nodes["Variables"].Nodes[variable.Type.ToString()].Nodes.Add(variable.Name);
             }
+            else
+            {
+                // todo: updating variable
+            }
         }
 
         /// <summary>
@@ -82,7 +86,16 @@ namespace ExpertSystemWinForms
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void NewVariableToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            bool b = sender is ToolStripMenuItem;
+
             OpenFuzzyVariableWizardDialog();
+        }
+
+        private void EditToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Label label = ((sender as ToolStripMenuItem).Owner as ContextMenuStrip).SourceControl as Label;
+
+            OpenFuzzyVariableWizardDialog(this.FuzzyVariables.Where(v => v.Name.Equals(label.Text)).FirstOrDefault());
         }
 
         /// <summary>
@@ -92,7 +105,7 @@ namespace ExpertSystemWinForms
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void NewRuleBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ruleBlockDialog = new RuleBlockWizard(this.FuzzyVariables);
+            var ruleBlockDialog = new RuleBlockWizardDialog(this.FuzzyVariables);
             ruleBlockDialog.ShowDialog();
         }
 
@@ -101,7 +114,7 @@ namespace ExpertSystemWinForms
         /// </summary>
         private void OpenFuzzyVariableWizardDialog()
         {
-            var variableDialog = new FuzzyVariableWizard();
+            var variableDialog = new FuzzyVariableWizardDialog();
             variableDialog.Owner = this;
             variableDialog.ShowDialog();
         }
@@ -112,14 +125,14 @@ namespace ExpertSystemWinForms
         /// <param name="variable">The variable that need to update.</param>
         private void OpenFuzzyVariableWizardDialog(FuzzyVariableModel variable)
         {
-            var variableDialog = new FuzzyVariableWizard(variable);
+            var variableDialog = new FuzzyVariableWizardDialog(variable);
             variableDialog.Owner = this;
             variableDialog.ShowDialog();
         }
 
-        private void ruleBlockEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        private void RuleBlockEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ruleBlock = new SpredsheetRuleBlock();
+            var ruleBlock = new SpredsheetRuleBlockDialog();
             ruleBlock.ShowDialog();
         }
     }

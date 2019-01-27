@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace ExpertSystemWinForms.Views.Dialogs
 {
-    public partial class RuleBlockWizard : Form
+    public partial class RuleBlockWizardDialog : Form
     {
         private ObservableCollection<FuzzyVariableModel> fuzzyVariables;
 
-        public RuleBlockWizard(ObservableCollection<FuzzyVariableModel> fuzzyVariables)
+        public RuleBlockWizardDialog(ObservableCollection<FuzzyVariableModel> fuzzyVariables)
         {
             InitializeComponent();
 
