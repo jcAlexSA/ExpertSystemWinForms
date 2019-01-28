@@ -54,6 +54,8 @@ namespace ExpertSystemWinForms
             if (!this.FuzzyVariables.Contains(variable))
             {
                 this.FuzzyVariables.Add(variable);
+
+                // TODO: move this somewhere
                 var variableUI = (new FuzzyVariableCreator()).CreateElement(variable.Name);
                 this.pictureBox1.Controls.Add(variableUI);
                 variableUI.ContextMenuStrip = this.contextMenuStripControl;
@@ -62,7 +64,8 @@ namespace ExpertSystemWinForms
             }
             else
             {
-                // todo: updating variable
+                var index = this.FuzzyVariables.IndexOf(variable);
+                this.FuzzyVariables[index] = variable;
             }
         }
 
