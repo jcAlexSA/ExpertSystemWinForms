@@ -15,9 +15,16 @@ namespace ExpertSystemWinForms.Views.Dialogs
 {
     public partial class FuzzyVariableWizardDialog : Form
     {
-        private FuzzyVariableModel fuzzyVariable;
+        /// <summary>
+        /// The old fuzzy variable that store old data in current dialog.
+        /// It should be updated before success editing.
+        /// </summary>
+        private FuzzyVariableModel oldFuzzyVariable = null;
 
-        //private List<TermModel> Terms;
+        /// <summary>
+        /// The fuzzy variable that creates in current dialog.
+        /// </summary>
+        private FuzzyVariableModel newFuzzyVariable;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FuzzyVariableWizard"/> class.
@@ -26,7 +33,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
         {
             InitializeComponent();
 
-            this.fuzzyVariable = new FuzzyVariableModel();
+            this.newFuzzyVariable = new FuzzyVariableModel();
         }
 
         /// <summary>
@@ -37,21 +44,27 @@ namespace ExpertSystemWinForms.Views.Dialogs
         {
             InitializeComponent();
 
-            this.fuzzyVariable = fuzzyVariable;
+            this.oldFuzzyVariable = fuzzyVariable;
+            this.newFuzzyVariable = new FuzzyVariableModel(
+                this.oldFuzzyVariable.Name, 
+                this.oldFuzzyVariable.Type, 
+                this.oldFuzzyVariable.Terms.ToList(), 
+                this.oldFuzzyVariable.Comment);
 
+            // update all fields in dialog
             this.UpdateListBox();
-            this.textBoxVariableName.Text = this.fuzzyVariable.Name;
-            this.textBoxVariableComment.Text = this.fuzzyVariable.Comment;
+            this.textBoxVariableName.Text = this.newFuzzyVariable.Name;
+            this.textBoxVariableComment.Text = this.newFuzzyVariable.Comment;
 
-            if (this.fuzzyVariable.Type == VariableType.input)
+            if (this.newFuzzyVariable.Type == VariableType.input)
             {
                 this.radioButtonInputType.Checked = true;
             }
-            else if (this.fuzzyVariable.Type == VariableType.input)
+            else if (this.newFuzzyVariable.Type == VariableType.intermediate)
             {
                 this.radioButtonIntermediateType.Checked = true;
             }
-            else if (this.fuzzyVariable.Type == VariableType.output)
+            else if (this.newFuzzyVariable.Type == VariableType.output)
             {
                 this.radioButtonOutputType.Checked = true;
             }
@@ -91,24 +104,40 @@ namespace ExpertSystemWinForms.Views.Dialogs
         /// </summary>
         private void SendVariable()
         {
-            this.fuzzyVariable.Name = this.textBoxVariableName.Text;
-            this.fuzzyVariable.Comment = this.textBoxVariableComment.Text;
+            this.newFuzzyVariable.Name = this.textBoxVariableName.Text;
+            this.newFuzzyVariable.Comment = this.textBoxVariableComment.Text;
 
             if (this.radioButtonInputType.Checked)
             {
-                this.fuzzyVariable.Type = VariableType.input;
+                this.newFuzzyVariable.Type = VariableType.input;
             }
             else if (this.radioButtonIntermediateType.Checked)
             {
-                this.fuzzyVariable.Type = VariableType.intermediate;
+                this.newFuzzyVariable.Type = VariableType.intermediate;
             }
             else if (this.radioButtonOutputType.Checked)
             {
-                this.fuzzyVariable.Type = VariableType.output;
+                this.newFuzzyVariable.Type = VariableType.output;
             }
 
             var ownerWindow = (MainForm)this.Owner;
-            ownerWindow.AddVariable(this.fuzzyVariable);
+
+            if (this.oldFuzzyVariable != null)
+            {
+                // update values in old variable.
+                string oldName = this.oldFuzzyVariable.Name;
+
+                this.oldFuzzyVariable.Name = this.newFuzzyVariable.Name;
+                this.oldFuzzyVariable.Comment = this.newFuzzyVariable.Comment;
+                this.oldFuzzyVariable.Type = this.newFuzzyVariable.Type;
+                this.oldFuzzyVariable.Terms = this.newFuzzyVariable.Terms;
+
+                ownerWindow.SetVariable(this.oldFuzzyVariable, oldName);
+            }
+            else
+            {
+                ownerWindow.AddVariable(this.newFuzzyVariable);
+            }
             this.Close();
         }
 
@@ -184,14 +213,14 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 term.Function = gaussFunction;
             }
 
-            if (this.fuzzyVariable.Terms.Any(t => t.Name.Equals(this.textBoxTermName.Text.ToString())))
+            if (this.newFuzzyVariable.Terms.Any(t => t.Name.Equals(this.textBoxTermName.Text.ToString())))
             {
-                int termIndex = this.fuzzyVariable.Terms.FindIndex(t => t.Name.Equals(this.textBoxTermName.Text));
-                this.fuzzyVariable.Terms[termIndex] = term;
+                int termIndex = this.newFuzzyVariable.Terms.FindIndex(t => t.Name.Equals(this.textBoxTermName.Text));
+                this.newFuzzyVariable.Terms[termIndex] = term;
             }
             else
             {
-                this.fuzzyVariable.Terms.Add(term);
+                this.newFuzzyVariable.Terms.Add(term);
             }
 
             this.ClearTermField();
@@ -209,7 +238,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
             if (this.listBoxTerms.SelectedIndex < this.listBoxTerms.Items.Count
                 && this.listBoxTerms.SelectedIndex >= 0)
             {
-                this.fuzzyVariable.Terms.RemoveAt(this.listBoxTerms.SelectedIndex);
+                this.newFuzzyVariable.Terms.RemoveAt(this.listBoxTerms.SelectedIndex);
                 this.ClearTermField();
                 this.UpdateListBox();
             }
@@ -221,7 +250,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
         private void UpdateListBox()
         {
             this.listBoxTerms.Items.Clear();
-            this.listBoxTerms.Items.AddRange(this.fuzzyVariable.Terms.Select(p => p.Name).ToArray());
+            this.listBoxTerms.Items.AddRange(this.newFuzzyVariable.Terms.Select(p => p.Name).ToArray());
         }
 
         /// <summary>
@@ -264,12 +293,14 @@ namespace ExpertSystemWinForms.Views.Dialogs
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ListBoxTerms_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TermModel term = this.fuzzyVariable.Terms.ElementAt((sender as ListBox).SelectedIndex);
+            if ((sender as ListBox).SelectedIndex >= 0){
+                TermModel term = this.newFuzzyVariable.Terms.ElementAt((sender as ListBox).SelectedIndex);
 
-            this.comboBoxVariableForm.SelectedItem = term.Function.Name;
-            this.textBoxTermName.Text = term.Name;
+                this.comboBoxVariableForm.SelectedItem = term.Function.Name;
+                this.textBoxTermName.Text = term.Name;
 
-            this.UpdateDisplayedBlockFieldValues(term);
+                this.UpdateDisplayedBlockFieldValues(term);
+            }
         }
 
         /// <summary>

@@ -83,6 +83,21 @@ namespace ExpertSystemWinForms.Models
             this.Type = variableType;
             this.Terms = terms;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FuzzyVariableModel"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="variableType">Type of the variable.</param>
+        /// <param name="terms">The terms.</param>
+        /// <param name="comment">The comment.</param>
+        public FuzzyVariableModel(string name, VariableType variableType, List<TermModel> terms, string comment)
+        {
+            this.Name = name;
+            this.Type = variableType;
+            this.Terms = terms;
+            this.Comment = comment;
+        }
     }
 
     /// <summary>

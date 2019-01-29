@@ -26,6 +26,11 @@ namespace ExpertSystemWinForms
         public ObservableCollection<FuzzyVariableModel> FuzzyVariables { get; set; } = new ObservableCollection<FuzzyVariableModel>();
 
         /// <summary>
+        /// Represent a collection of labels that correspond to variables.
+        /// </summary>
+        private List<Control> Labels { get; set; } = new List<Control>();
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
         /// </summary>
         public MainForm()
@@ -43,6 +48,32 @@ namespace ExpertSystemWinForms
         /// <exception cref="NotImplementedException"></exception>
         private void FuzzyVariables_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            switch (e.Action)
+            {
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+                    var variable = (sender as ObservableCollection<FuzzyVariableModel>)[0];
+                    var variableUI = (new FuzzyVariableCreator()).CreateElement(variable.Name);
+                    this.pictureBox1.Controls.Add(variableUI);
+                    this.Labels.Add(variableUI);
+                    variableUI.ContextMenuStrip = this.contextMenuStripControl;
+
+                    this.AddNewVariableToTreeView(variable);
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Replace:
+                    // TODO: !!!!
+                    //variable = (e.NewItems as FuzzyVariableModel);
+                    //var labelToUpdate = this.Labels.Where(lbl => (lbl as Label).Text.Equals(oldName)).FirstOrDefault();
+                    //labelToUpdate.Text = variable.Name;
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset:
+                    break;
+                default:
+                    break;
+            }
         }
 
         /// <summary>
@@ -54,32 +85,46 @@ namespace ExpertSystemWinForms
             if (!this.FuzzyVariables.Contains(variable))
             {
                 this.FuzzyVariables.Add(variable);
-
-                // TODO: move this somewhere
-                var variableUI = (new FuzzyVariableCreator()).CreateElement(variable.Name);
-                this.pictureBox1.Controls.Add(variableUI);
-                variableUI.ContextMenuStrip = this.contextMenuStripControl;
-
-                this.treeView1.Nodes["Variables"].Nodes[variable.Type.ToString()].Nodes.Add(variable.Name);
-            }
-            else
-            {
-                var index = this.FuzzyVariables.IndexOf(variable);
-                this.FuzzyVariables[index] = variable;
             }
         }
 
         /// <summary>
-        /// Sets the updated variable.
+        /// Sets the updated variable to collection.
         /// </summary>
-        /// <param name="variable">The variable.</param>
-        /// <param name="index">The index, on that variable exist.</param>
-        public void SetVariable(FuzzyVariableModel variable, int index)
+        /// <param name="variable">The variable to update.</param>
+        /// <param name="oldName">Old name of the variable</param>
+        public void SetVariable(FuzzyVariableModel variable, string oldName)
         {
-            if (this.FuzzyVariables?.Count > index)
+            if (this.FuzzyVariables.Contains(variable))
             {
+                var index = this.FuzzyVariables.IndexOf(variable);
                 this.FuzzyVariables[index] = variable;
+
+                var labelToUpdate = this.Labels.Where(lbl => (lbl as Label).Text.Equals(oldName)).FirstOrDefault();
+                labelToUpdate.Text = variable.Name;
+
+                this.AddNewVariableToTreeView(variable);
             }
+        }
+
+        /// <summary>
+        /// Add node with variable to tree view.
+        /// </summary>
+        /// <param name="type">The type of variable and node name.</param>
+        /// <param name="name">The name of variable.</param>
+        private void AddNewVariableToTreeView(FuzzyVariableModel variable)
+        {
+            this.treeView1.Nodes["Variables"].Nodes[variable.Type.ToString()].Nodes.Add(variable.Name);
+        }
+
+        /// <summary>
+        /// Remove node with old variable.
+        /// </summary>
+        /// <param name="type">The type of variable and node name.</param>
+        /// <param name="name">The name of variable.</param>
+        private void RemoveOldVariable(VariableType type, string name)
+        {
+            this.treeView1.Nodes["Variables"].Nodes[type.ToString()].Nodes.RemoveByKey(name);
         }
 
         /// <summary>
