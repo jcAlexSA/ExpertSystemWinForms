@@ -105,8 +105,8 @@ namespace ExpertSystemWinForms.Models
     /// </summary>
     public enum VariableType
     {
-        input,
-        output,
-        intermediate
+        Input,
+        Output,
+        Intermediate
     }
 }

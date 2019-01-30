@@ -30,9 +30,10 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnNext = new System.Windows.Forms.Button();
             this.btnPrevious = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.btnNext = new System.Windows.Forms.Button();
+            this.btnEnd = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.firstStep = new System.Windows.Forms.TabPage();
             this.textBoxVariableName = new System.Windows.Forms.TextBox();
@@ -95,35 +96,53 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(438, 453);
+            this.panel1.Size = new System.Drawing.Size(417, 407);
             this.panel1.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 47.60147F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 52.39853F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
+            this.tableLayoutPanel1.Controls.Add(this.btnNext, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnPrevious, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnClose, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnNext, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnEnd, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 425);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 379);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(438, 28);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(417, 28);
             this.tableLayoutPanel1.TabIndex = 1;
+            // 
+            // btnNext
+            // 
+            this.btnNext.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnNext.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnNext.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnNext.Location = new System.Drawing.Point(167, 3);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(80, 22);
+            this.btnNext.TabIndex = 5;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = false;
+            this.btnNext.Click += new System.EventHandler(this.BtnNext_Click);
             // 
             // btnPrevious
             // 
             this.btnPrevious.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnPrevious.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPrevious.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnPrevious.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnPrevious.Location = new System.Drawing.Point(3, 3);
+            this.btnPrevious.Location = new System.Drawing.Point(81, 3);
             this.btnPrevious.Name = "btnPrevious";
-            this.btnPrevious.Size = new System.Drawing.Size(116, 22);
+            this.btnPrevious.Size = new System.Drawing.Size(80, 22);
             this.btnPrevious.TabIndex = 0;
             this.btnPrevious.Text = "Previous";
             this.btnPrevious.UseVisualStyleBackColor = false;
@@ -132,30 +151,32 @@
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnClose.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClose.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnClose.Location = new System.Drawing.Point(287, 3);
+            this.btnClose.Location = new System.Drawing.Point(339, 3);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(127, 22);
+            this.btnClose.Size = new System.Drawing.Size(75, 22);
             this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
-            // btnNext
+            // btnEnd
             // 
-            this.btnNext.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNext.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnNext.Location = new System.Drawing.Point(138, 3);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(128, 22);
-            this.btnNext.TabIndex = 1;
-            this.btnNext.Text = "Next";
-            this.btnNext.UseVisualStyleBackColor = false;
-            this.btnNext.Click += new System.EventHandler(this.BtnNext_Click);
+            this.btnEnd.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnEnd.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnEnd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnEnd.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnEnd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnEnd.Location = new System.Drawing.Point(253, 3);
+            this.btnEnd.Name = "btnEnd";
+            this.btnEnd.Size = new System.Drawing.Size(80, 22);
+            this.btnEnd.TabIndex = 4;
+            this.btnEnd.Text = "End";
+            this.btnEnd.UseVisualStyleBackColor = false;
+            this.btnEnd.Click += new System.EventHandler(this.BtnEnd_Click);
             // 
             // tabControl
             // 
@@ -169,7 +190,7 @@
             this.tabControl.Location = new System.Drawing.Point(3, 3);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(432, 415);
+            this.tabControl.Size = new System.Drawing.Size(411, 369);
             this.tabControl.TabIndex = 0;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl_SelectedIndexChanged);
             // 
@@ -184,7 +205,7 @@
             this.firstStep.Location = new System.Drawing.Point(4, 23);
             this.firstStep.Name = "firstStep";
             this.firstStep.Padding = new System.Windows.Forms.Padding(3);
-            this.firstStep.Size = new System.Drawing.Size(424, 357);
+            this.firstStep.Size = new System.Drawing.Size(403, 342);
             this.firstStep.TabIndex = 0;
             this.firstStep.Text = " First Step";
             this.firstStep.UseVisualStyleBackColor = true;
@@ -196,11 +217,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxVariableName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxVariableName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxVariableName.Location = new System.Drawing.Point(74, 117);
+            this.textBoxVariableName.Location = new System.Drawing.Point(74, 118);
             this.textBoxVariableName.MaxLength = 50;
             this.textBoxVariableName.Name = "textBoxVariableName";
-            this.textBoxVariableName.Size = new System.Drawing.Size(342, 21);
-            this.textBoxVariableName.TabIndex = 3;
+            this.textBoxVariableName.Size = new System.Drawing.Size(321, 21);
+            this.textBoxVariableName.TabIndex = 0;
             this.textBoxVariableName.WordWrap = false;
             // 
             // label1
@@ -225,7 +246,7 @@
             this.groupBoxVariableType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBoxVariableType.Location = new System.Drawing.Point(3, 153);
             this.groupBoxVariableType.Name = "groupBoxVariableType";
-            this.groupBoxVariableType.Size = new System.Drawing.Size(413, 126);
+            this.groupBoxVariableType.Size = new System.Drawing.Size(392, 126);
             this.groupBoxVariableType.TabIndex = 1;
             this.groupBoxVariableType.TabStop = false;
             this.groupBoxVariableType.Text = "Type";
@@ -237,7 +258,7 @@
             this.radioButtonOutputType.Location = new System.Drawing.Point(20, 87);
             this.radioButtonOutputType.Name = "radioButtonOutputType";
             this.radioButtonOutputType.Size = new System.Drawing.Size(63, 19);
-            this.radioButtonOutputType.TabIndex = 2;
+            this.radioButtonOutputType.TabIndex = 3;
             this.radioButtonOutputType.Text = "Output";
             this.radioButtonOutputType.UseVisualStyleBackColor = true;
             // 
@@ -248,7 +269,7 @@
             this.radioButtonIntermediateType.Location = new System.Drawing.Point(20, 59);
             this.radioButtonIntermediateType.Name = "radioButtonIntermediateType";
             this.radioButtonIntermediateType.Size = new System.Drawing.Size(97, 19);
-            this.radioButtonIntermediateType.TabIndex = 1;
+            this.radioButtonIntermediateType.TabIndex = 2;
             this.radioButtonIntermediateType.Text = "Intermediate";
             this.radioButtonIntermediateType.UseVisualStyleBackColor = true;
             // 
@@ -260,7 +281,7 @@
             this.radioButtonInputType.Location = new System.Drawing.Point(20, 31);
             this.radioButtonInputType.Name = "radioButtonInputType";
             this.radioButtonInputType.Size = new System.Drawing.Size(53, 19);
-            this.radioButtonInputType.TabIndex = 0;
+            this.radioButtonInputType.TabIndex = 1;
             this.radioButtonInputType.TabStop = true;
             this.radioButtonInputType.Text = "Input";
             this.radioButtonInputType.UseVisualStyleBackColor = true;
@@ -275,7 +296,7 @@
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
-            this.groupBox1.Size = new System.Drawing.Size(410, 97);
+            this.groupBox1.Size = new System.Drawing.Size(389, 97);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Define Linguistic Variable";
@@ -291,7 +312,7 @@
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
             this.textBoxDescription.ReadOnly = true;
-            this.textBoxDescription.Size = new System.Drawing.Size(390, 51);
+            this.textBoxDescription.Size = new System.Drawing.Size(369, 51);
             this.textBoxDescription.TabIndex = 1;
             this.textBoxDescription.Text = "The Linguistic Variables Wizard will help you to create a linguistic variable wit" +
     "h an initial set of terms and membership functions. In this step you specify nam" +
@@ -306,7 +327,7 @@
             this.secondStep.Location = new System.Drawing.Point(4, 23);
             this.secondStep.Name = "secondStep";
             this.secondStep.Padding = new System.Windows.Forms.Padding(3);
-            this.secondStep.Size = new System.Drawing.Size(424, 388);
+            this.secondStep.Size = new System.Drawing.Size(408, 337);
             this.secondStep.TabIndex = 1;
             this.secondStep.Text = "Second Step";
             this.secondStep.UseVisualStyleBackColor = true;
@@ -328,7 +349,7 @@
             this.groupBoxAddingTerms.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBoxAddingTerms.Location = new System.Drawing.Point(6, 103);
             this.groupBoxAddingTerms.Name = "groupBoxAddingTerms";
-            this.groupBoxAddingTerms.Size = new System.Drawing.Size(411, 279);
+            this.groupBoxAddingTerms.Size = new System.Drawing.Size(396, 228);
             this.groupBoxAddingTerms.TabIndex = 1;
             this.groupBoxAddingTerms.TabStop = false;
             this.groupBoxAddingTerms.Text = "Add Terms";
@@ -363,7 +384,7 @@
             this.textBoxGaussC.Location = new System.Drawing.Point(55, 9);
             this.textBoxGaussC.Name = "textBoxGaussC";
             this.textBoxGaussC.Size = new System.Drawing.Size(72, 21);
-            this.textBoxGaussC.TabIndex = 0;
+            this.textBoxGaussC.TabIndex = 3;
             this.textBoxGaussC.Text = "0";
             // 
             // textBoxGaussB
@@ -420,7 +441,7 @@
             this.textBoxTriangleLeft.Location = new System.Drawing.Point(55, 10);
             this.textBoxTriangleLeft.Name = "textBoxTriangleLeft";
             this.textBoxTriangleLeft.Size = new System.Drawing.Size(72, 21);
-            this.textBoxTriangleLeft.TabIndex = 0;
+            this.textBoxTriangleLeft.TabIndex = 3;
             this.textBoxTriangleLeft.Text = "0";
             // 
             // textBoxTriangleRight
@@ -487,7 +508,7 @@
             this.listBoxTerms.ItemHeight = 14;
             this.listBoxTerms.Location = new System.Drawing.Point(210, 37);
             this.listBoxTerms.Name = "listBoxTerms";
-            this.listBoxTerms.Size = new System.Drawing.Size(195, 102);
+            this.listBoxTerms.Size = new System.Drawing.Size(180, 102);
             this.listBoxTerms.TabIndex = 4;
             this.listBoxTerms.SelectedIndexChanged += new System.EventHandler(this.ListBoxTerms_SelectedIndexChanged);
             // 
@@ -514,7 +535,7 @@
             this.buttonAddTerm.Location = new System.Drawing.Point(143, 98);
             this.buttonAddTerm.Name = "buttonAddTerm";
             this.buttonAddTerm.Size = new System.Drawing.Size(61, 22);
-            this.buttonAddTerm.TabIndex = 3;
+            this.buttonAddTerm.TabIndex = 2;
             this.buttonAddTerm.Text = "Add";
             this.buttonAddTerm.UseVisualStyleBackColor = false;
             this.buttonAddTerm.Click += new System.EventHandler(this.ButtonAddTerm_Click);
@@ -530,7 +551,7 @@
             this.comboBoxVariableForm.Location = new System.Drawing.Point(61, 66);
             this.comboBoxVariableForm.Name = "comboBoxVariableForm";
             this.comboBoxVariableForm.Size = new System.Drawing.Size(143, 23);
-            this.comboBoxVariableForm.TabIndex = 2;
+            this.comboBoxVariableForm.TabIndex = 1;
             this.comboBoxVariableForm.Text = "Choose Type";
             this.comboBoxVariableForm.SelectedIndexChanged += new System.EventHandler(this.ComboBoxVariableForm_SelectedIndexChanged);
             // 
@@ -575,7 +596,7 @@
             this.groupBox2.Location = new System.Drawing.Point(5, 6);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
-            this.groupBox2.Size = new System.Drawing.Size(412, 90);
+            this.groupBox2.Size = new System.Drawing.Size(397, 90);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "MBF Definition";
@@ -591,7 +612,7 @@
             this.textBoxMBFDescription.Location = new System.Drawing.Point(13, 29);
             this.textBoxMBFDescription.Multiline = true;
             this.textBoxMBFDescription.Name = "textBoxMBFDescription";
-            this.textBoxMBFDescription.Size = new System.Drawing.Size(386, 47);
+            this.textBoxMBFDescription.Size = new System.Drawing.Size(371, 47);
             this.textBoxMBFDescription.TabIndex = 0;
             this.textBoxMBFDescription.Text = "In this step you specify the number of terms, that determines the choice of term " +
     "names and the membership function definitions for the set of terms to be created" +
@@ -604,7 +625,7 @@
             this.thirdStep.Location = new System.Drawing.Point(4, 23);
             this.thirdStep.Name = "thirdStep";
             this.thirdStep.Padding = new System.Windows.Forms.Padding(3);
-            this.thirdStep.Size = new System.Drawing.Size(424, 357);
+            this.thirdStep.Size = new System.Drawing.Size(408, 316);
             this.thirdStep.TabIndex = 2;
             this.thirdStep.Text = "Third Step";
             this.thirdStep.UseVisualStyleBackColor = true;
@@ -618,8 +639,8 @@
             this.textBoxVariableComment.Location = new System.Drawing.Point(7, 102);
             this.textBoxVariableComment.Multiline = true;
             this.textBoxVariableComment.Name = "textBoxVariableComment";
-            this.textBoxVariableComment.Size = new System.Drawing.Size(408, 245);
-            this.textBoxVariableComment.TabIndex = 1;
+            this.textBoxVariableComment.Size = new System.Drawing.Size(395, 208);
+            this.textBoxVariableComment.TabIndex = 0;
             // 
             // groupBox3
             // 
@@ -631,7 +652,7 @@
             this.groupBox3.Location = new System.Drawing.Point(6, 6);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
-            this.groupBox3.Size = new System.Drawing.Size(409, 89);
+            this.groupBox3.Size = new System.Drawing.Size(396, 89);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Comment For Variable";
@@ -645,7 +666,7 @@
             this.textBox1.Location = new System.Drawing.Point(10, 28);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(389, 50);
+            this.textBox1.Size = new System.Drawing.Size(376, 50);
             this.textBox1.TabIndex = 0;
             this.textBox1.Text = "The Linguistic Variables Wizard will help you to create a linguistic variable wit" +
     "h an initial set of terms and membership functions. In this step you specify nam" +
@@ -655,7 +676,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(438, 453);
+            this.ClientSize = new System.Drawing.Size(417, 407);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -693,7 +714,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btnPrevious;
-        private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Button btnEnd;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage firstStep;
@@ -733,5 +754,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panelTriangle;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btnNext;
     }
 }

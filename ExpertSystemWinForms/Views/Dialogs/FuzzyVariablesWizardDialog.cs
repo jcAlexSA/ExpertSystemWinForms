@@ -56,15 +56,15 @@ namespace ExpertSystemWinForms.Views.Dialogs
             this.textBoxVariableName.Text = this.newFuzzyVariable.Name;
             this.textBoxVariableComment.Text = this.newFuzzyVariable.Comment;
 
-            if (this.newFuzzyVariable.Type == VariableType.input)
+            if (this.newFuzzyVariable.Type == VariableType.Input)
             {
                 this.radioButtonInputType.Checked = true;
             }
-            else if (this.newFuzzyVariable.Type == VariableType.intermediate)
+            else if (this.newFuzzyVariable.Type == VariableType.Intermediate)
             {
                 this.radioButtonIntermediateType.Checked = true;
             }
-            else if (this.newFuzzyVariable.Type == VariableType.output)
+            else if (this.newFuzzyVariable.Type == VariableType.Output)
             {
                 this.radioButtonOutputType.Checked = true;
             }
@@ -109,15 +109,15 @@ namespace ExpertSystemWinForms.Views.Dialogs
 
             if (this.radioButtonInputType.Checked)
             {
-                this.newFuzzyVariable.Type = VariableType.input;
+                this.newFuzzyVariable.Type = VariableType.Input;
             }
             else if (this.radioButtonIntermediateType.Checked)
             {
-                this.newFuzzyVariable.Type = VariableType.intermediate;
+                this.newFuzzyVariable.Type = VariableType.Intermediate;
             }
             else if (this.radioButtonOutputType.Checked)
             {
-                this.newFuzzyVariable.Type = VariableType.output;
+                this.newFuzzyVariable.Type = VariableType.Output;
             }
 
             var ownerWindow = (MainForm)this.Owner;
@@ -126,13 +126,14 @@ namespace ExpertSystemWinForms.Views.Dialogs
             {
                 // update values in old variable.
                 string oldName = this.oldFuzzyVariable.Name;
+                VariableType oldType = this.oldFuzzyVariable.Type;
 
                 this.oldFuzzyVariable.Name = this.newFuzzyVariable.Name;
                 this.oldFuzzyVariable.Comment = this.newFuzzyVariable.Comment;
                 this.oldFuzzyVariable.Type = this.newFuzzyVariable.Type;
                 this.oldFuzzyVariable.Terms = this.newFuzzyVariable.Terms;
 
-                ownerWindow.SetVariable(this.oldFuzzyVariable, oldName);
+                ownerWindow.SetVariable(this.oldFuzzyVariable, oldName, oldType);
             }
             else
             {
@@ -152,6 +153,16 @@ namespace ExpertSystemWinForms.Views.Dialogs
             {
                 this.tabControl.SelectedIndex--;
             }
+        }
+
+        /// <summary>
+        /// Save variable as it is. Handles the Click event of the BtnEnd control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void BtnEnd_Click(object sender, EventArgs e)
+        {
+            SendVariable();
         }
 
         /// <summary>
