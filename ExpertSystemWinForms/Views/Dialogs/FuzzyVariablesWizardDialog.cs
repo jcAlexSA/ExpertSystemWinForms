@@ -51,7 +51,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 this.oldFuzzyVariable.Terms.ToList(), 
                 this.oldFuzzyVariable.Comment);
 
-            // update all fields in dialog
+            // Update all fields in dialog according to old Fuzzy Variable.
             this.UpdateListBox();
             this.textBoxVariableName.Text = this.newFuzzyVariable.Name;
             this.textBoxVariableComment.Text = this.newFuzzyVariable.Comment;
@@ -100,6 +100,29 @@ namespace ExpertSystemWinForms.Views.Dialogs
         }
 
         /// <summary>
+        /// Handles the Click event of the btnPrevious control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void BtnPrevious_Click(object sender, EventArgs e)
+        {
+            if (this.tabControl.SelectedIndex != 0)
+            {
+                this.tabControl.SelectedIndex--;
+            }
+        }
+
+        /// <summary>
+        /// Save variable as it is. Handles the Click event of the BtnEnd control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void BtnEnd_Click(object sender, EventArgs e)
+        {
+            SendVariable();
+        }
+
+        /// <summary>
         /// Send the variable to main form.
         /// </summary>
         private void SendVariable()
@@ -140,29 +163,6 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 ownerWindow.AddVariable(this.newFuzzyVariable);
             }
             this.Close();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the btnPrevious control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void BtnPrevious_Click(object sender, EventArgs e)
-        {
-            if (this.tabControl.SelectedIndex != 0)
-            {
-                this.tabControl.SelectedIndex--;
-            }
-        }
-
-        /// <summary>
-        /// Save variable as it is. Handles the Click event of the BtnEnd control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void BtnEnd_Click(object sender, EventArgs e)
-        {
-            SendVariable();
         }
 
         /// <summary>

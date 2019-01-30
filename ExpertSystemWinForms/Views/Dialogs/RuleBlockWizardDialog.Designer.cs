@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RuleBlockWizardDialog));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.labelName = new System.Windows.Forms.Label();
             this.textBoxRuleBlockName = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -41,13 +42,12 @@
             this.buttonToInput = new System.Windows.Forms.Button();
             this.buttonToOutput = new System.Windows.Forms.Button();
             this.buttonRemoveSelected = new System.Windows.Forms.Button();
-            this.listBoxOurputVariablesCollection = new System.Windows.Forms.ListBox();
+            this.listBoxOutputVariablesCollection = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.listBoxInputVariablesCollection = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonAccept = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -69,6 +69,19 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Define Rule Block Configuration";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBox1.Location = new System.Drawing.Point(10, 27);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(448, 61);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // labelName
             // 
@@ -115,7 +128,7 @@
             this.tableLayoutPanel2.Controls.Add(this.listBoxVariablesCollection, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label2, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.panel1, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.listBoxOurputVariablesCollection, 3, 1);
+            this.tableLayoutPanel2.Controls.Add(this.listBoxOutputVariablesCollection, 3, 1);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.listBoxInputVariablesCollection, 2, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -191,6 +204,7 @@
             this.buttonToInput.TabIndex = 11;
             this.buttonToInput.Text = "Input";
             this.buttonToInput.UseVisualStyleBackColor = false;
+            this.buttonToInput.Click += new System.EventHandler(this.ButtonToInput_Click);
             // 
             // buttonToOutput
             // 
@@ -205,6 +219,7 @@
             this.buttonToOutput.TabIndex = 10;
             this.buttonToOutput.Text = "Output";
             this.buttonToOutput.UseVisualStyleBackColor = false;
+            this.buttonToOutput.Click += new System.EventHandler(this.ButtonToOutput_Click);
             // 
             // buttonRemoveSelected
             // 
@@ -219,19 +234,20 @@
             this.buttonRemoveSelected.TabIndex = 9;
             this.buttonRemoveSelected.Text = "Remove";
             this.buttonRemoveSelected.UseVisualStyleBackColor = false;
+            this.buttonRemoveSelected.Click += new System.EventHandler(this.ButtonRemoveSelected_Click);
             // 
-            // listBoxOurputVariablesCollection
+            // listBoxOutputVariablesCollection
             // 
-            this.listBoxOurputVariablesCollection.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBoxOurputVariablesCollection.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.listBoxOurputVariablesCollection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.listBoxOurputVariablesCollection.FormattingEnabled = true;
-            this.listBoxOurputVariablesCollection.ItemHeight = 15;
-            this.listBoxOurputVariablesCollection.Location = new System.Drawing.Point(358, 18);
-            this.listBoxOurputVariablesCollection.Name = "listBoxOurputVariablesCollection";
-            this.listBoxOurputVariablesCollection.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listBoxOurputVariablesCollection.Size = new System.Drawing.Size(101, 234);
-            this.listBoxOurputVariablesCollection.TabIndex = 3;
+            this.listBoxOutputVariablesCollection.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxOutputVariablesCollection.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.listBoxOutputVariablesCollection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.listBoxOutputVariablesCollection.FormattingEnabled = true;
+            this.listBoxOutputVariablesCollection.ItemHeight = 15;
+            this.listBoxOutputVariablesCollection.Location = new System.Drawing.Point(358, 18);
+            this.listBoxOutputVariablesCollection.Name = "listBoxOutputVariablesCollection";
+            this.listBoxOutputVariablesCollection.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.listBoxOutputVariablesCollection.Size = new System.Drawing.Size(101, 234);
+            this.listBoxOutputVariablesCollection.TabIndex = 3;
             // 
             // label1
             // 
@@ -286,6 +302,7 @@
             this.buttonAccept.TabIndex = 0;
             this.buttonAccept.Text = "OK";
             this.buttonAccept.UseVisualStyleBackColor = false;
+            this.buttonAccept.Click += new System.EventHandler(this.ButtonAccept_Click);
             // 
             // buttonCancel
             // 
@@ -300,19 +317,6 @@
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = false;
             this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBox1.Location = new System.Drawing.Point(10, 27);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(448, 61);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // RuleBlockWizardDialog
             // 
@@ -359,7 +363,7 @@
         private System.Windows.Forms.Button buttonToInput;
         private System.Windows.Forms.Button buttonToOutput;
         private System.Windows.Forms.Button buttonRemoveSelected;
-        private System.Windows.Forms.ListBox listBoxOurputVariablesCollection;
+        private System.Windows.Forms.ListBox listBoxOutputVariablesCollection;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBoxInputVariablesCollection;
         private System.Windows.Forms.TextBox textBox1;

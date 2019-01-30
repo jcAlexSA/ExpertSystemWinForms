@@ -18,6 +18,20 @@ namespace ExpertSystemWinForms
     public partial class MainForm : Form
     {
         /// <summary>
+        /// Represent a collection of labels that correspond to variables.
+        /// </summary>
+        private List<Control> Labels { get; set; } = new List<Control>();
+
+        /// <summary>
+        /// Represent a collection of UI elements that correspond to rule blocks.
+        /// Gets or sets the labels rule block.
+        /// </summary>
+        /// <value>
+        /// The labels rule block.
+        /// </value>
+        private List<Control> LabelsRuleBlock { get; set; } = new List<Control>();
+
+        /// <summary>
         /// Gets or sets the fuzzy variables.
         /// </summary>
         /// <value>
@@ -26,9 +40,12 @@ namespace ExpertSystemWinForms
         public ObservableCollection<FuzzyVariableModel> FuzzyVariables { get; set; } = new ObservableCollection<FuzzyVariableModel>();
 
         /// <summary>
-        /// Represent a collection of labels that correspond to variables.
+        /// Gets or sets the rule blocks.
         /// </summary>
-        private List<Control> Labels { get; set; } = new List<Control>();
+        /// <value>
+        /// The rule blocks.
+        /// </value>
+        public ObservableCollection<RuleBlockModel> RuleBlocks { get; set; } = new ObservableCollection<RuleBlockModel>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainForm"/> class.
@@ -38,6 +55,45 @@ namespace ExpertSystemWinForms
             InitializeComponent();
 
             this.FuzzyVariables.CollectionChanged += FuzzyVariables_CollectionChanged;
+            this.RuleBlocks.CollectionChanged += RuleBlocks_CollectionChanged;
+        }
+
+        private void RuleBlocks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            switch (e.Action)
+            {
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+                    var ruleBlock = (sender as ObservableCollection<RuleBlockModel>)[e.NewStartingIndex];
+                    var ruleBlockUI = (new RuleBlockCreator(null, null)).CreateElement(ruleBlock.Name);
+                    this.pictureBox1.Controls.Add(ruleBlockUI);
+                    this.LabelsRuleBlock.Add(ruleBlockUI);
+                    ruleBlockUI.ContextMenuStrip = this.contextMenuStripControl;
+
+                    //this.AddNewVariableToTreeView(ruleBlock);
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Replace:
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
+                    break;
+                case System.Collections.Specialized.NotifyCollectionChangedAction.Reset:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Adds the new rule block to collection.
+        /// </summary>
+        /// <param name="ruleBlock">The rule block.</param>
+        public void AddRuleBlock(RuleBlockModel ruleBlock)
+        {
+            if (!this.RuleBlocks.Contains(ruleBlock))
+            {
+                this.RuleBlocks.Add(ruleBlock);
+            }
         }
 
         /// <summary>
@@ -45,7 +101,6 @@ namespace ExpertSystemWinForms
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="System.Collections.Specialized.NotifyCollectionChangedEventArgs"/> instance containing the event data.</param>
-        /// <exception cref="NotImplementedException"></exception>
         private void FuzzyVariables_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
@@ -204,6 +259,7 @@ namespace ExpertSystemWinForms
         private void NewRuleBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var ruleBlockDialog = new RuleBlockWizardDialog(this.FuzzyVariables);
+            ruleBlockDialog.Owner = this;
             ruleBlockDialog.ShowDialog();
         }
 
@@ -226,24 +282,7 @@ namespace ExpertSystemWinForms
             var variableDialog = new FuzzyVariableWizardDialog(variable);
             variableDialog.Owner = this;
             variableDialog.ShowDialog();
-        }
-
-        private void RuleBlockEditorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var ruleBlock = new SpredsheetRuleBlockDialog();
-            ruleBlock.ShowDialog();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the CloseToolStripMenuItem control.
-        /// Close main form.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        }        
 
         /// <summary>
         /// Shows the saving offer dialog.
@@ -257,6 +296,16 @@ namespace ExpertSystemWinForms
 
         #region Actions with project (Invoke when something from FILE_menu choosed)
 
+        /// <summary>
+        /// Handles the Click event of the CloseToolStripMenuItem control.
+        /// Close main form.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         /// <summary>
         /// Handles the FormClosing event of the MainForm control.
         /// Offers to user save data before closing.

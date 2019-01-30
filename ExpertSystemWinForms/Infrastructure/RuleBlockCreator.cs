@@ -22,11 +22,8 @@ namespace ExpertSystemWinForms.Infrastructure
 
         private List<FuzzyVariableModel> outputFuzzyVariables;
 
-        public RuleBlockCreator(string name, 
-            List<FuzzyVariableModel> inputFuzzyVariables, 
-            List<FuzzyVariableModel> outputFuzzyVariables)
+        public RuleBlockCreator(List<FuzzyVariableModel> inputFuzzyVariables, List<FuzzyVariableModel> outputFuzzyVariables)
         {
-            this.name = name;
             this.inputFuzzyVariables = inputFuzzyVariables;
             this.outputFuzzyVariables = outputFuzzyVariables;
         }
@@ -38,25 +35,44 @@ namespace ExpertSystemWinForms.Infrastructure
         /// <returns></returns>
         public Control CreateElement(string name)
         {
+            Panel panel = new Panel();
+            panel.Width = 150;
+            panel.Height = 50;
+            panel.MinimumSize = new Size(150, 50);
+            panel.Name = "panelRuleBlock" + name;
+
+            panel.BackColor = Color.Gainsboro;
+            panel.ForeColor = Color.DimGray;
+
+            panel.BorderStyle = BorderStyle.FixedSingle;
+
+            panel.Font = new Font("Arial", 8, FontStyle.Bold);
+            panel.Location = new Point(250, 10);
+
+            ControlExtension.Draggable(panel, true);
+
+
             Label variable = new Label();
 
-            variable.BackColor = Color.Gainsboro;
-            variable.ForeColor = Color.DimGray;
+            //variable.BackColor = Color.Gainsboro;
+            //variable.ForeColor = Color.DimGray;
 
             variable.BorderStyle = BorderStyle.FixedSingle;
 
             variable.Text = name;
-            variable.Name = "lableRuleBlock" + name;
+            //variable.Name = "labelRuleBlock" + name;
 
-            variable.Width = 110;
-            variable.Height = 30;
+            //variable.Width = 110;
+            //variable.Height = 30;
 
-            variable.Font = new Font("Arial", 8, FontStyle.Bold);
-            variable.Location = new Point(250, 10);
+            //variable.Font = new Font("Arial", 8, FontStyle.Bold);
+            //variable.Location = new Point(250, 10);
 
-            ControlExtension.Draggable(variable, true);
+            variable.Dock = DockStyle.Top;
 
-            return variable;
+            panel.Controls.Add(variable);
+
+            return panel;
         }
     }
 }
