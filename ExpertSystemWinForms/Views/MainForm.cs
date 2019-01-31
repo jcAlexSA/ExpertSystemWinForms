@@ -38,7 +38,7 @@ namespace ExpertSystemWinForms
         /// The fuzzy variables.
         /// </value>
         public ObservableCollection<FuzzyVariableModel> FuzzyVariables { get; set; } = new ObservableCollection<FuzzyVariableModel>();
-
+        
         /// <summary>
         /// Gets or sets the rule blocks.
         /// </summary>
@@ -56,6 +56,12 @@ namespace ExpertSystemWinForms
 
             this.FuzzyVariables.CollectionChanged += FuzzyVariables_CollectionChanged;
             this.RuleBlocks.CollectionChanged += RuleBlocks_CollectionChanged;
+
+            this.FuzzyVariables.Add(new FuzzyVariableModel("i_var1", VariableType.Input, new List<TermModel>(), "asdfasdfasdf"));
+            this.FuzzyVariables.Add(new FuzzyVariableModel("i_var2", VariableType.Input, new List<TermModel>(), "adsf"));
+            this.FuzzyVariables.Add(new FuzzyVariableModel("mid_var3", VariableType.Intermediate, new List<TermModel>(), "cvx"));
+            this.FuzzyVariables.Add(new FuzzyVariableModel("mid_var4", VariableType.Intermediate, new List<TermModel>(), "cv"));
+            this.FuzzyVariables.Add(new FuzzyVariableModel("out_var5", VariableType.Output, new List<TermModel>(), "afgh"));
         }
 
         private void RuleBlocks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)

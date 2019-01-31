@@ -35,6 +35,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
 
             this.newRuleBlock = new RuleBlockModel();
             this.fuzzyVariables = new ObservableCollection<FuzzyVariableModel>(fuzzyVariables.ToList());
+
             this.listBoxVariablesCollection.Items.AddRange(this.fuzzyVariables.Select(p => p.Name).ToArray());
         }
 
@@ -63,12 +64,15 @@ namespace ExpertSystemWinForms.Views.Dialogs
         /// </summary>
         private void SendRuleBlock()
         {
+            if (string.IsNullOrWhiteSpace(this.textBoxRuleBlockName.Text))
+            {
+                return;
+            }
+
             this.newRuleBlock.Name = this.textBoxRuleBlockName.Text;
 
             var owner = (MainForm)this.Owner;
-
             owner.AddRuleBlock(this.newRuleBlock);
-
             this.Close();
         }
 
@@ -83,7 +87,8 @@ namespace ExpertSystemWinForms.Views.Dialogs
             if (this.fuzzyVariables[selectedIndex].Type == VariableType.Input ||
                 this.fuzzyVariables[selectedIndex].Type == VariableType.Intermediate)
             {
-                var variable = this.fuzzyVariables.ElementAt(selectedIndex);
+                var variable = this.fuzzyVariables
+                    .FirstOrDefault(v => v.Name.Equals(this.listBoxVariablesCollection.Items[selectedIndex]));
                 this.newRuleBlock.InputFuzzyVariables.Add(variable);
                 this.fuzzyVariables.Remove(variable);
 
@@ -104,19 +109,46 @@ namespace ExpertSystemWinForms.Views.Dialogs
             if (this.fuzzyVariables[selectedIndex].Type == VariableType.Output ||
                 this.fuzzyVariables[selectedIndex].Type == VariableType.Intermediate)
             {
-                var variable = this.fuzzyVariables.ElementAt(selectedIndex);
+                var variable = this.fuzzyVariables
+                    .FirstOrDefault(v => v.Name.Equals(this.listBoxVariablesCollection.Items[selectedIndex]));
                 this.newRuleBlock.OutputFuzzyVariables.Add(variable);
                 this.fuzzyVariables.Remove(variable);
 
                 this.listBoxOutputVariablesCollection.Items.Add(variable.Name);
-                this.listBoxOutputVariablesCollection.Items.RemoveAt(selectedIndex);
-                this.listBoxVariablesCollection.ClearSelected();
+                this.listBoxVariablesCollection.Items.RemoveAt(selectedIndex);
+                this.listBoxOutputVariablesCollection.Focus();
+                //this.listBoxVariablesCollection.ClearSelected();
             }
         }
 
         private void ButtonRemoveSelected_Click(object sender, EventArgs e)
         {
 
+        }
+
+        /// <summary>
+        /// Clear select all list Box except selected.
+        /// Handles the SelectedIndexChanged event of the ListBoxOutputVariablesCollection control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ListBoxVariables_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if ((sender as ListBox).Equals(this.listBoxVariablesCollection))
+            {
+                this.listBoxInputVariablesCollection.ClearSelected();
+                this.listBoxOutputVariablesCollection.ClearSelected();
+            }
+            else if ((sender as ListBox).Equals(this.listBoxInputVariablesCollection))
+            {
+                this.listBoxOutputVariablesCollection.ClearSelected();
+                this.listBoxVariablesCollection.ClearSelected();
+            }
+            else if ((sender as ListBox).Equals(this.listBoxOutputVariablesCollection))
+            {
+                this.listBoxVariablesCollection.ClearSelected();
+                this.listBoxInputVariablesCollection.ClearSelected();
+            }
         }
     }
 }

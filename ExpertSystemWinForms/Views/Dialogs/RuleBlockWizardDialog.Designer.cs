@@ -164,9 +164,9 @@
             this.listBoxVariablesCollection.ItemHeight = 15;
             this.listBoxVariablesCollection.Location = new System.Drawing.Point(3, 18);
             this.listBoxVariablesCollection.Name = "listBoxVariablesCollection";
-            this.listBoxVariablesCollection.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBoxVariablesCollection.Size = new System.Drawing.Size(122, 234);
             this.listBoxVariablesCollection.TabIndex = 5;
+            this.listBoxVariablesCollection.SelectedIndexChanged += new System.EventHandler(this.ListBoxVariables_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -245,9 +245,9 @@
             this.listBoxOutputVariablesCollection.ItemHeight = 15;
             this.listBoxOutputVariablesCollection.Location = new System.Drawing.Point(358, 18);
             this.listBoxOutputVariablesCollection.Name = "listBoxOutputVariablesCollection";
-            this.listBoxOutputVariablesCollection.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBoxOutputVariablesCollection.Size = new System.Drawing.Size(101, 234);
             this.listBoxOutputVariablesCollection.TabIndex = 3;
+            this.listBoxOutputVariablesCollection.SelectedIndexChanged += new System.EventHandler(this.ListBoxVariables_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -270,9 +270,9 @@
             this.listBoxInputVariablesCollection.ItemHeight = 15;
             this.listBoxInputVariablesCollection.Location = new System.Drawing.Point(253, 18);
             this.listBoxInputVariablesCollection.Name = "listBoxInputVariablesCollection";
-            this.listBoxInputVariablesCollection.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBoxInputVariablesCollection.Size = new System.Drawing.Size(99, 234);
             this.listBoxInputVariablesCollection.TabIndex = 4;
+            this.listBoxInputVariablesCollection.SelectedIndexChanged += new System.EventHandler(this.ListBoxVariables_SelectedIndexChanged);
             // 
             // tableLayoutPanel1
             // 
