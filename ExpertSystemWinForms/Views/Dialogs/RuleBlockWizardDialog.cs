@@ -19,6 +19,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
         /// </summary>
         /// TODO!!!! OBSERVABLE_COLLECTION????
         private ObservableCollection<FuzzyVariableModel> fuzzyVariables;
+        private RuleBlockModel oldRuleBlock;
 
         /// <summary>
         /// The creating rule block.
@@ -37,6 +38,20 @@ namespace ExpertSystemWinForms.Views.Dialogs
             this.fuzzyVariables = new ObservableCollection<FuzzyVariableModel>(fuzzyVariables.ToList());
 
             this.listBoxVariablesCollection.Items.AddRange(this.fuzzyVariables.Select(p => p.Name).ToArray());
+        }
+
+        public RuleBlockWizardDialog(ObservableCollection<FuzzyVariableModel> fuzzyVariables, RuleBlockModel ruleBlock)
+        {
+            InitializeComponent();
+
+            this.oldRuleBlock = ruleBlock;
+            this.newRuleBlock = new RuleBlockModel(this.oldRuleBlock.Name, 
+                new ObservableCollection<FuzzyVariableModel>(this.oldRuleBlock.InputFuzzyVariables), 
+                new ObservableCollection<FuzzyVariableModel>(this.oldRuleBlock.OutputFuzzyVariables));
+
+            this.fuzzyVariables = new ObservableCollection<FuzzyVariableModel>(
+                fuzzyVariables.Where(v => !this.newRuleBlock.InputFuzzyVariables.Any(i => i.Name.Equals(v.Name)) 
+                                        && !this.newRuleBlock.OutputFuzzyVariables.Any(i => i.Name.Equals(v.Name))));
         }
 
         /// <summary>

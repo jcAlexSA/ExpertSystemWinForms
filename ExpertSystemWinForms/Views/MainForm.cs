@@ -73,7 +73,7 @@ namespace ExpertSystemWinForms
                     var ruleBlockUI = (new RuleBlockCreator(null, null)).CreateElement(ruleBlock.Name);
                     this.pictureBox1.Controls.Add(ruleBlockUI);
                     this.LabelsRuleBlock.Add(ruleBlockUI);
-                    ruleBlockUI.ContextMenuStrip = this.contextMenuStripControl;
+                    ruleBlockUI.ContextMenuStrip = this.contextMenuStripControlRuleBlock;
 
                     //this.AddNewVariableToTreeView(ruleBlock);
                     break;
@@ -116,7 +116,7 @@ namespace ExpertSystemWinForms
                     var variableUI = (new FuzzyVariableCreator()).CreateElement(variable.Name);
                     this.pictureBox1.Controls.Add(variableUI);
                     this.Labels.Add(variableUI);
-                    variableUI.ContextMenuStrip = this.contextMenuStripControl;
+                    variableUI.ContextMenuStrip = this.contextMenuStripControlVariable;
 
                     this.AddNewVariableToTreeView(variable);
                     break;
@@ -270,22 +270,37 @@ namespace ExpertSystemWinForms
         }
 
         /// <summary>
-        /// Opens the fuzzy variable wizard dialog.
+        /// Handles the Click event of the EditRuleBlockToolStripMenuItem control.
         /// </summary>
-        private void OpenFuzzyVariableWizardDialog()
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void EditRuleBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var variableDialog = new FuzzyVariableWizardDialog();
-            variableDialog.Owner = this;
-            variableDialog.ShowDialog();
+            Panel label = ((sender as ToolStripMenuItem).Owner as ContextMenuStrip).SourceControl as Panel;
+
+            this.OpenRuleBlockWizardDialog(this.FuzzyVariables.Where(v => v.Name.Equals(label.Text)).FirstOrDefault());
+        }
+
+        private void OpenRuleBlockWizardDialog(FuzzyVariableModel fuzzyVariableModel = null)
+        {
+
         }
 
         /// <summary>
         /// Opens the fuzzy variable wizard dialog.
         /// </summary>
         /// <param name="variable">The variable that need to update.</param>
-        private void OpenFuzzyVariableWizardDialog(FuzzyVariableModel variable)
+        private void OpenFuzzyVariableWizardDialog(FuzzyVariableModel variable = null)
         {
-            var variableDialog = new FuzzyVariableWizardDialog(variable);
+            FuzzyVariableWizardDialog variableDialog = null;
+            if (variable == null)   // open to create
+            {
+                variableDialog = new FuzzyVariableWizardDialog();
+            }
+            else // open to edit
+            {
+                variableDialog = new FuzzyVariableWizardDialog(variable);
+            }
             variableDialog.Owner = this;
             variableDialog.ShowDialog();
         }        

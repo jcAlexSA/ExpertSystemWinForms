@@ -59,15 +59,20 @@
             this.addVariableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newRuleBlockToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ruleBlockEditorToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.contextMenuStripControl = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStripControlVariable = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.newVariableToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.removeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStripControlRuleBlock = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.newRuleBlockToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.editRuleBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeRuleBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.mainPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.contextMenuStripInteractivePanel.SuspendLayout();
-            this.contextMenuStripControl.SuspendLayout();
+            this.contextMenuStripControlVariable.SuspendLayout();
+            this.contextMenuStripControlRuleBlock.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -146,21 +151,21 @@
             // newVariableToolStripMenuItem
             // 
             this.newVariableToolStripMenuItem.Name = "newVariableToolStripMenuItem";
-            this.newVariableToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.newVariableToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newVariableToolStripMenuItem.Text = "New Variable";
             this.newVariableToolStripMenuItem.Click += new System.EventHandler(this.NewVariableToolStripMenuItem_Click);
             // 
             // newRuleBlockToolStripMenuItem
             // 
             this.newRuleBlockToolStripMenuItem.Name = "newRuleBlockToolStripMenuItem";
-            this.newRuleBlockToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.newRuleBlockToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newRuleBlockToolStripMenuItem.Text = "New Rule Block";
             this.newRuleBlockToolStripMenuItem.Click += new System.EventHandler(this.NewRuleBlockToolStripMenuItem_Click);
             // 
             // ruleBlockEditorToolStripMenuItem
             // 
             this.ruleBlockEditorToolStripMenuItem.Name = "ruleBlockEditorToolStripMenuItem";
-            this.ruleBlockEditorToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
+            this.ruleBlockEditorToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.ruleBlockEditorToolStripMenuItem.Text = "Rule Block Editor";
             // 
             // toolsToolStripMenuItem
@@ -272,14 +277,14 @@
             this.ruleBlockEditorToolStripMenuItem1.Size = new System.Drawing.Size(163, 22);
             this.ruleBlockEditorToolStripMenuItem1.Text = "Rule Block Editor";
             // 
-            // contextMenuStripControl
+            // contextMenuStripControlVariable
             // 
-            this.contextMenuStripControl.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contextMenuStripControlVariable.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newVariableToolStripMenuItem1,
             this.editToolStripMenuItem1,
             this.removeToolStripMenuItem});
-            this.contextMenuStripControl.Name = "contextMenuStripControl";
-            this.contextMenuStripControl.Size = new System.Drawing.Size(162, 70);
+            this.contextMenuStripControlVariable.Name = "contextMenuStripControl";
+            this.contextMenuStripControlVariable.Size = new System.Drawing.Size(162, 70);
             // 
             // newVariableToolStripMenuItem1
             // 
@@ -302,6 +307,35 @@
             this.removeToolStripMenuItem.Text = "Remove Variable";
             this.removeToolStripMenuItem.Click += new System.EventHandler(this.RemoveToolStripMenuItem_Click);
             // 
+            // contextMenuStripControlRuleBlock
+            // 
+            this.contextMenuStripControlRuleBlock.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.newRuleBlockToolStripMenuItem2,
+            this.editRuleBlockToolStripMenuItem,
+            this.removeRuleBlockToolStripMenuItem});
+            this.contextMenuStripControlRuleBlock.Name = "contextMenuStripControlRuleBlock";
+            this.contextMenuStripControlRuleBlock.Size = new System.Drawing.Size(181, 92);
+            // 
+            // newRuleBlockToolStripMenuItem2
+            // 
+            this.newRuleBlockToolStripMenuItem2.Name = "newRuleBlockToolStripMenuItem2";
+            this.newRuleBlockToolStripMenuItem2.Size = new System.Drawing.Size(175, 22);
+            this.newRuleBlockToolStripMenuItem2.Text = "New Rule Block";
+            this.newRuleBlockToolStripMenuItem2.Click += new System.EventHandler(this.NewRuleBlockToolStripMenuItem_Click);
+            // 
+            // editRuleBlockToolStripMenuItem
+            // 
+            this.editRuleBlockToolStripMenuItem.Name = "editRuleBlockToolStripMenuItem";
+            this.editRuleBlockToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.editRuleBlockToolStripMenuItem.Text = "Edit Rule Block";
+            this.editRuleBlockToolStripMenuItem.Click += new System.EventHandler(this.EditRuleBlockToolStripMenuItem_Click);
+            // 
+            // removeRuleBlockToolStripMenuItem
+            // 
+            this.removeRuleBlockToolStripMenuItem.Name = "removeRuleBlockToolStripMenuItem";
+            this.removeRuleBlockToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.removeRuleBlockToolStripMenuItem.Text = "Remove Rule Block";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -318,7 +352,8 @@
             this.mainPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.contextMenuStripInteractivePanel.ResumeLayout(false);
-            this.contextMenuStripControl.ResumeLayout(false);
+            this.contextMenuStripControlVariable.ResumeLayout(false);
+            this.contextMenuStripControlRuleBlock.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -342,7 +377,7 @@
         private System.Windows.Forms.ToolStripMenuItem addVariableToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newRuleBlockToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ruleBlockEditorToolStripMenuItem1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStripControl;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripControlVariable;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem removeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem newVariableToolStripMenuItem1;
@@ -352,6 +387,10 @@
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripControlRuleBlock;
+        private System.Windows.Forms.ToolStripMenuItem newRuleBlockToolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem editRuleBlockToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeRuleBlockToolStripMenuItem;
     }
 }
 
