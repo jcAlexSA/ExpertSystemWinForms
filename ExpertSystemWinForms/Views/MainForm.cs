@@ -29,7 +29,7 @@ namespace ExpertSystemWinForms
         /// <value>
         /// The labels rule block.
         /// </value>
-        private List<Control> LabelsRuleBlock { get; set; } = new List<Control>();
+        private List<Control> PanelRuleBlock { get; set; } = new List<Control>();
 
         /// <summary>
         /// Gets or sets the fuzzy variables.
@@ -38,7 +38,7 @@ namespace ExpertSystemWinForms
         /// The fuzzy variables.
         /// </value>
         public ObservableCollection<FuzzyVariableModel> FuzzyVariables { get; set; } = new ObservableCollection<FuzzyVariableModel>();
-        
+
         /// <summary>
         /// Gets or sets the rule blocks.
         /// </summary>
@@ -64,6 +64,11 @@ namespace ExpertSystemWinForms
             this.FuzzyVariables.Add(new FuzzyVariableModel("out_var5", VariableType.Output, new List<TermModel>(), "afgh"));
         }
 
+        /// <summary>
+        /// Handles the collections event of the RuleBlock control.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RuleBlocks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
@@ -72,7 +77,7 @@ namespace ExpertSystemWinForms
                     var ruleBlock = (sender as ObservableCollection<RuleBlockModel>)[e.NewStartingIndex];
                     var ruleBlockUI = (new RuleBlockCreator(null, null)).CreateElement(ruleBlock.Name);
                     this.pictureBox1.Controls.Add(ruleBlockUI);
-                    this.LabelsRuleBlock.Add(ruleBlockUI);
+                    this.PanelRuleBlock.Add(ruleBlockUI);
                     ruleBlockUI.ContextMenuStrip = this.contextMenuStripControlRuleBlock;
 
                     //this.AddNewVariableToTreeView(ruleBlock);
@@ -99,6 +104,18 @@ namespace ExpertSystemWinForms
             if (!this.RuleBlocks.Contains(ruleBlock))
             {
                 this.RuleBlocks.Add(ruleBlock);
+            }
+        }
+
+        public void SetRuleBlock(RuleBlockModel ruleBlock, string oldName)
+        {
+            if (this.RuleBlocks.Contains(ruleBlock))
+            {
+                var index = this.RuleBlocks.IndexOf(ruleBlock);
+                this.RuleBlocks[index] = ruleBlock;
+
+                var panelToUpdate = this.PanelRuleBlock.Where(p => (p as Panel).Tag.Equals(oldName)).FirstOrDefault();
+                panelToUpdate.Tag = ruleBlock.Name;
             }
         }
 
@@ -264,9 +281,7 @@ namespace ExpertSystemWinForms
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void NewRuleBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var ruleBlockDialog = new RuleBlockWizardDialog(this.FuzzyVariables);
-            ruleBlockDialog.Owner = this;
-            ruleBlockDialog.ShowDialog();
+            this.OpenRuleBlockWizardDialog(this.FuzzyVariables);
         }
 
         /// <summary>
@@ -276,14 +291,29 @@ namespace ExpertSystemWinForms
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void EditRuleBlockToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Panel label = ((sender as ToolStripMenuItem).Owner as ContextMenuStrip).SourceControl as Panel;
+            Panel panel = ((sender as ToolStripMenuItem).Owner as ContextMenuStrip).SourceControl as Panel;
 
-            this.OpenRuleBlockWizardDialog(this.FuzzyVariables.Where(v => v.Name.Equals(label.Text)).FirstOrDefault());
+            this.OpenRuleBlockWizardDialog(this.FuzzyVariables, this.RuleBlocks.Where(v => v.Name.Equals(panel.Tag)).FirstOrDefault());
         }
 
-        private void OpenRuleBlockWizardDialog(FuzzyVariableModel fuzzyVariableModel = null)
+        /// <summary>
+        /// Opens the Rule Block wizard dialog.
+        /// </summary>
+        /// <param name="fuzzyVariables"></param>
+        /// <param name="ruleBlock"></param>
+        private void OpenRuleBlockWizardDialog(ObservableCollection<FuzzyVariableModel> fuzzyVariables, RuleBlockModel ruleBlock = null)
         {
-
+            RuleBlockWizardDialog ruleBlockDialog = null;
+            if (ruleBlock == null)  // opens to create
+            {
+                ruleBlockDialog = new RuleBlockWizardDialog(fuzzyVariables);
+            }
+            else  // opens to edit
+            {
+                ruleBlockDialog = new RuleBlockWizardDialog(fuzzyVariables, ruleBlock);
+            }
+            ruleBlockDialog.Owner = this;
+            ruleBlockDialog.ShowDialog();
         }
 
         /// <summary>
@@ -303,7 +333,7 @@ namespace ExpertSystemWinForms
             }
             variableDialog.Owner = this;
             variableDialog.ShowDialog();
-        }        
+        }
 
         /// <summary>
         /// Shows the saving offer dialog.
@@ -349,7 +379,7 @@ namespace ExpertSystemWinForms
         {
             //if (this.ShowSavingOfferDialog("Do you want to create new project without saving?") == DialogResult.Yes)
             //{
-                
+
             //}
             //else
             //{

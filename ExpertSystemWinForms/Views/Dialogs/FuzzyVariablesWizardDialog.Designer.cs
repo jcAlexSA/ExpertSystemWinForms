@@ -311,7 +311,6 @@
             this.textBoxDescription.Location = new System.Drawing.Point(10, 28);
             this.textBoxDescription.Multiline = true;
             this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.ReadOnly = true;
             this.textBoxDescription.Size = new System.Drawing.Size(369, 51);
             this.textBoxDescription.TabIndex = 1;
             this.textBoxDescription.Text = "The Linguistic Variables Wizard will help you to create a linguistic variable wit" +
@@ -327,7 +326,7 @@
             this.secondStep.Location = new System.Drawing.Point(4, 23);
             this.secondStep.Name = "secondStep";
             this.secondStep.Padding = new System.Windows.Forms.Padding(3);
-            this.secondStep.Size = new System.Drawing.Size(408, 337);
+            this.secondStep.Size = new System.Drawing.Size(403, 342);
             this.secondStep.TabIndex = 1;
             this.secondStep.Text = "Second Step";
             this.secondStep.UseVisualStyleBackColor = true;
@@ -625,7 +624,7 @@
             this.thirdStep.Location = new System.Drawing.Point(4, 23);
             this.thirdStep.Name = "thirdStep";
             this.thirdStep.Padding = new System.Windows.Forms.Padding(3);
-            this.thirdStep.Size = new System.Drawing.Size(408, 316);
+            this.thirdStep.Size = new System.Drawing.Size(403, 342);
             this.thirdStep.TabIndex = 2;
             this.thirdStep.Text = "Third Step";
             this.thirdStep.UseVisualStyleBackColor = true;

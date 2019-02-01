@@ -40,6 +40,11 @@ namespace ExpertSystemWinForms.Views.Dialogs
             this.listBoxVariablesCollection.Items.AddRange(this.fuzzyVariables.Select(p => p.Name).ToArray());
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RuleBlockWizardDialog"/> class.
+        /// </summary>
+        /// <param name="fuzzyVariables">The fuzzy variables.</param>
+        /// <param name="ruleBlock">The rule block.</param>
         public RuleBlockWizardDialog(ObservableCollection<FuzzyVariableModel> fuzzyVariables, RuleBlockModel ruleBlock)
         {
             InitializeComponent();
@@ -49,9 +54,14 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 new ObservableCollection<FuzzyVariableModel>(this.oldRuleBlock.InputFuzzyVariables), 
                 new ObservableCollection<FuzzyVariableModel>(this.oldRuleBlock.OutputFuzzyVariables));
 
+            this.textBoxRuleBlockName.Text = this.newRuleBlock.Name;
+
             this.fuzzyVariables = new ObservableCollection<FuzzyVariableModel>(
                 fuzzyVariables.Where(v => !this.newRuleBlock.InputFuzzyVariables.Any(i => i.Name.Equals(v.Name)) 
                                         && !this.newRuleBlock.OutputFuzzyVariables.Any(i => i.Name.Equals(v.Name))));
+            this.listBoxVariablesCollection.Items.AddRange(this.fuzzyVariables.Select(p => p.Name).ToArray());
+            this.listBoxInputVariablesCollection.Items.AddRange(this.newRuleBlock.InputFuzzyVariables.Select(p => p.Name).ToArray());
+            this.listBoxOutputVariablesCollection.Items.AddRange(this.newRuleBlock.OutputFuzzyVariables.Select(p => p.Name).ToArray());
         }
 
         /// <summary>
@@ -87,7 +97,21 @@ namespace ExpertSystemWinForms.Views.Dialogs
             this.newRuleBlock.Name = this.textBoxRuleBlockName.Text;
 
             var owner = (MainForm)this.Owner;
-            owner.AddRuleBlock(this.newRuleBlock);
+
+            if (this.oldRuleBlock == null )
+            {
+                owner.AddRuleBlock(this.newRuleBlock);
+            }
+            else
+            {
+                string oldName = this.oldRuleBlock.Name;
+
+                this.oldRuleBlock.Name = this.newRuleBlock.Name;
+                this.oldRuleBlock.InputFuzzyVariables = this.newRuleBlock.InputFuzzyVariables;
+                this.oldRuleBlock.OutputFuzzyVariables = this.newRuleBlock.OutputFuzzyVariables;
+
+                owner.SetRuleBlock(this.oldRuleBlock, oldName);
+            }
             this.Close();
         }
 

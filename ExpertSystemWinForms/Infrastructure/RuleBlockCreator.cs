@@ -45,6 +45,7 @@ namespace ExpertSystemWinForms.Infrastructure
             panel.ForeColor = Color.DimGray;
 
             panel.BorderStyle = BorderStyle.FixedSingle;
+            panel.Tag = name;
 
             panel.Font = new Font("Arial", 8, FontStyle.Bold);
             panel.Location = new Point(250, 10);
