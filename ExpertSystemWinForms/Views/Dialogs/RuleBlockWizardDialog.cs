@@ -76,6 +76,11 @@ namespace ExpertSystemWinForms.Views.Dialogs
             this.Close();
         }
 
+        /// <summary>
+        /// Handles the Click event of the ButtonToInput control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonToInput_Click(object sender, EventArgs e)
         {
             int selectedIndex = this.listBoxVariablesCollection.SelectedIndex;
@@ -89,15 +94,17 @@ namespace ExpertSystemWinForms.Views.Dialogs
             {
                 var variable = this.fuzzyVariables
                     .FirstOrDefault(v => v.Name.Equals(this.listBoxVariablesCollection.Items[selectedIndex]));
-                this.newRuleBlock.InputFuzzyVariables.Add(variable);
-                this.fuzzyVariables.Remove(variable);
 
-                this.listBoxInputVariablesCollection.Items.Add(variable.Name);
-                this.listBoxVariablesCollection.Items.RemoveAt(selectedIndex);
-                this.listBoxVariablesCollection.ClearSelected();
+                this.MoveFuzzyVariableBetweenCollections(variable, this.fuzzyVariables, this.newRuleBlock.InputFuzzyVariables);
+                this.MoveItemBetweenListBoxes(selectedIndex, this.listBoxVariablesCollection, this.listBoxInputVariablesCollection);
             }
         }
 
+        /// <summary>
+        /// Moves variable to output variables list. Handles the Click event of the ButtonToOutput control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ButtonToOutput_Click(object sender, EventArgs e)
         {
             int selectedIndex = this.listBoxVariablesCollection.SelectedIndex;
@@ -111,28 +118,48 @@ namespace ExpertSystemWinForms.Views.Dialogs
             {
                 var variable = this.fuzzyVariables
                     .FirstOrDefault(v => v.Name.Equals(this.listBoxVariablesCollection.Items[selectedIndex]));
-                this.newRuleBlock.OutputFuzzyVariables.Add(variable);
-                this.fuzzyVariables.Remove(variable);
 
-                this.listBoxOutputVariablesCollection.Items.Add(variable.Name);
-                this.listBoxVariablesCollection.Items.RemoveAt(selectedIndex);
-                this.listBoxOutputVariablesCollection.Focus();
-                //this.listBoxVariablesCollection.ClearSelected();
+                this.MoveFuzzyVariableBetweenCollections(variable, this.fuzzyVariables, this.newRuleBlock.OutputFuzzyVariables);
+                this.MoveItemBetweenListBoxes(selectedIndex, this.listBoxVariablesCollection, this.listBoxOutputVariablesCollection);
             }
         }
 
-        private void ButtonRemoveSelected_Click(object sender, EventArgs e)
-        {
-
-        }
-
         /// <summary>
-        /// Clear select all list Box except selected.
-        /// Handles the SelectedIndexChanged event of the ListBoxOutputVariablesCollection control.
+        /// Moves Variable AND ListBox Item from input|output to common collection. 
+        /// Handles the Click event of the ButtonRemoveSelected control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void ListBoxVariables_SelectedIndexChanged(object sender, EventArgs e)
+        private void ButtonRemoveSelected_Click(object sender, EventArgs e)
+        {
+            if (this.listBoxInputVariablesCollection.SelectedIndex >= 0)
+            {
+                var index = this.listBoxInputVariablesCollection.SelectedIndex;
+
+                this.MoveFuzzyVariableBetweenCollections(this.newRuleBlock.InputFuzzyVariables
+                    .Where(v => v.Name.Equals(this.listBoxInputVariablesCollection.Items[index])).FirstOrDefault(),
+                    this.newRuleBlock.InputFuzzyVariables,
+                    this.fuzzyVariables);
+                this.MoveItemBetweenListBoxes(index, this.listBoxInputVariablesCollection, this.listBoxVariablesCollection);
+            }
+            else if (this.listBoxOutputVariablesCollection.SelectedIndex >= 0)
+            {
+                var index = this.listBoxOutputVariablesCollection.SelectedIndex;
+
+                this.MoveFuzzyVariableBetweenCollections(this.newRuleBlock.OutputFuzzyVariables
+                    .Where(v => v.Name.Equals(this.listBoxOutputVariablesCollection.Items[index])).FirstOrDefault(),
+                    this.newRuleBlock.OutputFuzzyVariables,
+                    this.fuzzyVariables);
+                this.MoveItemBetweenListBoxes(index, this.listBoxOutputVariablesCollection, this.listBoxVariablesCollection);
+            }
+        }
+
+        /// <summary>
+        ///  Handles the Click event of the ListBoxVariablesCollection control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void ListBoxVariablesCollection_Click(object sender, EventArgs e)
         {
             if ((sender as ListBox).Equals(this.listBoxVariablesCollection))
             {
@@ -149,6 +176,31 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 this.listBoxVariablesCollection.ClearSelected();
                 this.listBoxInputVariablesCollection.ClearSelected();
             }
+        }
+
+        /// <summary>
+        /// Moves the item between two list boxes.
+        /// </summary>
+        /// <param name="item">The item to move.</param>
+        /// <param name="listBoxFrom">The listBox from which move.</param>
+        /// <param name="listBoxTo">The listBox to which move.</param>
+        private void MoveItemBetweenListBoxes(int itemIndex, ListBox listBoxFrom, ListBox listBoxTo)
+        {
+            listBoxTo.Items.Add(listBoxFrom.Items[itemIndex]);
+            listBoxFrom.Items.RemoveAt(itemIndex);
+        }
+
+        /// <summary>
+        /// Moves the fuzzy variable between two collections.
+        /// </summary>
+        /// <param name="variable">The variable to move.</param>
+        /// <param name="collectionFrom">The collection from which move.</param>
+        /// <param name="collectionTo">The collection to which move.</param>
+        private void MoveFuzzyVariableBetweenCollections(FuzzyVariableModel variable, ObservableCollection<FuzzyVariableModel> collectionFrom,
+            ObservableCollection<FuzzyVariableModel> collectionTo)
+        {
+            collectionFrom.Remove(variable);
+            collectionTo.Add(variable);
         }
     }
 }

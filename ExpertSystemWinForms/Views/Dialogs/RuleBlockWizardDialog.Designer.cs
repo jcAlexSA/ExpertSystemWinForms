@@ -166,7 +166,8 @@
             this.listBoxVariablesCollection.Name = "listBoxVariablesCollection";
             this.listBoxVariablesCollection.Size = new System.Drawing.Size(122, 234);
             this.listBoxVariablesCollection.TabIndex = 5;
-            this.listBoxVariablesCollection.SelectedIndexChanged += new System.EventHandler(this.ListBoxVariables_SelectedIndexChanged);
+            this.listBoxVariablesCollection.Tag = "AllVariables";
+            this.listBoxVariablesCollection.Click += new System.EventHandler(this.ListBoxVariablesCollection_Click);
             // 
             // label2
             // 
@@ -247,7 +248,8 @@
             this.listBoxOutputVariablesCollection.Name = "listBoxOutputVariablesCollection";
             this.listBoxOutputVariablesCollection.Size = new System.Drawing.Size(101, 234);
             this.listBoxOutputVariablesCollection.TabIndex = 3;
-            this.listBoxOutputVariablesCollection.SelectedIndexChanged += new System.EventHandler(this.ListBoxVariables_SelectedIndexChanged);
+            this.listBoxOutputVariablesCollection.Tag = "OutputVariables";
+            this.listBoxOutputVariablesCollection.Click += new System.EventHandler(this.ListBoxVariablesCollection_Click);
             // 
             // label1
             // 
@@ -272,7 +274,8 @@
             this.listBoxInputVariablesCollection.Name = "listBoxInputVariablesCollection";
             this.listBoxInputVariablesCollection.Size = new System.Drawing.Size(99, 234);
             this.listBoxInputVariablesCollection.TabIndex = 4;
-            this.listBoxInputVariablesCollection.SelectedIndexChanged += new System.EventHandler(this.ListBoxVariables_SelectedIndexChanged);
+            this.listBoxInputVariablesCollection.Tag = "InputVariables";
+            this.listBoxInputVariablesCollection.Click += new System.EventHandler(this.ListBoxVariablesCollection_Click);
             // 
             // tableLayoutPanel1
             // 
