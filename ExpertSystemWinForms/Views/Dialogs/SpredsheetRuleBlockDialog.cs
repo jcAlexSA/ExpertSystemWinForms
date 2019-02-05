@@ -16,10 +16,5 @@ namespace ExpertSystemWinForms.Views.Dialogs
         {
             InitializeComponent();
         }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
     }
 }

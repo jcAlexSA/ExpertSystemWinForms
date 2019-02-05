@@ -43,7 +43,7 @@
             this.radioButtonIntermediateType = new System.Windows.Forms.RadioButton();
             this.radioButtonInputType = new System.Windows.Forms.RadioButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBoxDescription = new System.Windows.Forms.TextBox();
+            this.labelVariableWizardDescription = new System.Windows.Forms.Label();
             this.secondStep = new System.Windows.Forms.TabPage();
             this.groupBoxAddingTerms = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -67,11 +67,11 @@
             this.labelName = new System.Windows.Forms.Label();
             this.textBoxTermName = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBoxMBFDescription = new System.Windows.Forms.TextBox();
+            this.labelVariableWizardMBFDescription = new System.Windows.Forms.Label();
             this.thirdStep = new System.Windows.Forms.TabPage();
             this.textBoxVariableComment = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.labelVariableWizardComment = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -290,7 +290,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox1.Controls.Add(this.textBoxDescription);
+            this.groupBox1.Controls.Add(this.labelVariableWizardDescription);
             this.groupBox1.Font = new System.Drawing.Font("Arial Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
@@ -301,19 +301,15 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Define Linguistic Variable";
             // 
-            // textBoxDescription
+            // labelVariableWizardDescription
             // 
-            this.textBoxDescription.BackColor = System.Drawing.SystemColors.Window;
-            this.textBoxDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxDescription.Dock = System.Windows.Forms.DockStyle.Top;
-            this.textBoxDescription.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxDescription.Location = new System.Drawing.Point(10, 28);
-            this.textBoxDescription.Multiline = true;
-            this.textBoxDescription.Name = "textBoxDescription";
-            this.textBoxDescription.Size = new System.Drawing.Size(369, 51);
-            this.textBoxDescription.TabIndex = 1;
-            this.textBoxDescription.Text = "The Linguistic Variables Wizard will help you to create a linguistic variable wit" +
+            this.labelVariableWizardDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelVariableWizardDescription.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelVariableWizardDescription.Location = new System.Drawing.Point(10, 28);
+            this.labelVariableWizardDescription.Name = "labelVariableWizardDescription";
+            this.labelVariableWizardDescription.Size = new System.Drawing.Size(369, 58);
+            this.labelVariableWizardDescription.TabIndex = 0;
+            this.labelVariableWizardDescription.Text = "The Linguistic Variables Wizard will help you to create a linguistic variable wit" +
     "h an initial set of terms and membership functions. In this step you specify nam" +
     "e, color and type of the variable.";
             // 
@@ -589,7 +585,7 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.textBoxMBFDescription);
+            this.groupBox2.Controls.Add(this.labelVariableWizardMBFDescription);
             this.groupBox2.Font = new System.Drawing.Font("Arial Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox2.Location = new System.Drawing.Point(5, 6);
@@ -600,20 +596,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "MBF Definition";
             // 
-            // textBoxMBFDescription
+            // labelVariableWizardMBFDescription
             // 
-            this.textBoxMBFDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxMBFDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxMBFDescription.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxMBFDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxMBFDescription.Location = new System.Drawing.Point(13, 29);
-            this.textBoxMBFDescription.Multiline = true;
-            this.textBoxMBFDescription.Name = "textBoxMBFDescription";
-            this.textBoxMBFDescription.Size = new System.Drawing.Size(371, 47);
-            this.textBoxMBFDescription.TabIndex = 0;
-            this.textBoxMBFDescription.Text = "In this step you specify the number of terms, that determines the choice of term " +
+            this.labelVariableWizardMBFDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelVariableWizardMBFDescription.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelVariableWizardMBFDescription.Location = new System.Drawing.Point(10, 28);
+            this.labelVariableWizardMBFDescription.Name = "labelVariableWizardMBFDescription";
+            this.labelVariableWizardMBFDescription.Size = new System.Drawing.Size(377, 51);
+            this.labelVariableWizardMBFDescription.TabIndex = 8;
+            this.labelVariableWizardMBFDescription.Text = "In this step you specify the number of terms, that determines the choice of term " +
     "names and the membership function definitions for the set of terms to be created" +
     ".";
             // 
@@ -645,7 +636,7 @@
             // 
             this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.labelVariableWizardComment);
             this.groupBox3.Font = new System.Drawing.Font("Arial Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox3.Location = new System.Drawing.Point(6, 6);
@@ -656,18 +647,15 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Comment For Variable";
             // 
-            // textBox1
+            // labelVariableWizardComment
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox1.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBox1.Location = new System.Drawing.Point(10, 28);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(376, 50);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "The Linguistic Variables Wizard will help you to create a linguistic variable wit" +
+            this.labelVariableWizardComment.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelVariableWizardComment.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelVariableWizardComment.Location = new System.Drawing.Point(10, 28);
+            this.labelVariableWizardComment.Name = "labelVariableWizardComment";
+            this.labelVariableWizardComment.Size = new System.Drawing.Size(376, 50);
+            this.labelVariableWizardComment.TabIndex = 9;
+            this.labelVariableWizardComment.Text = "The Linguistic Variables Wizard will help you to create a linguistic variable wit" +
     "h an initial set of terms and membership functions. In this step you specify nam" +
     "e, color and type of the variable.";
             // 
@@ -689,7 +677,6 @@
             this.groupBoxVariableType.ResumeLayout(false);
             this.groupBoxVariableType.PerformLayout();
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.secondStep.ResumeLayout(false);
             this.groupBoxAddingTerms.ResumeLayout(false);
             this.groupBoxAddingTerms.PerformLayout();
@@ -699,11 +686,9 @@
             this.panelTriangle.ResumeLayout(false);
             this.panelTriangle.PerformLayout();
             this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.thirdStep.ResumeLayout(false);
             this.thirdStep.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -724,11 +709,9 @@
         private System.Windows.Forms.RadioButton radioButtonIntermediateType;
         private System.Windows.Forms.RadioButton radioButtonInputType;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.TextBox textBoxVariableName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBoxMBFDescription;
         private System.Windows.Forms.GroupBox groupBoxAddingTerms;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.TextBox textBoxTermName;
@@ -744,7 +727,6 @@
         private System.Windows.Forms.TextBox textBoxTriangleLeft;
         private System.Windows.Forms.ListBox listBoxTerms;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBoxVariableComment;
         private System.Windows.Forms.Panel panelGauss;
         private System.Windows.Forms.TextBox textBoxGaussC;
@@ -754,5 +736,8 @@
         private System.Windows.Forms.Panel panelTriangle;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button btnNext;
+        private System.Windows.Forms.Label labelVariableWizardDescription;
+        private System.Windows.Forms.Label labelVariableWizardMBFDescription;
+        private System.Windows.Forms.Label labelVariableWizardComment;
     }
 }

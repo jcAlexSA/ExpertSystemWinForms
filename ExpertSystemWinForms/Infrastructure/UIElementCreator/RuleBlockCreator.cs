@@ -41,10 +41,10 @@ namespace ExpertSystemWinForms.Infrastructure
             panel.MinimumSize = new Size(150, 50);
             panel.Name = "panelRuleBlock" + name;
 
-            panel.BackColor = Color.Gainsboro;
+            panel.BackColor = Color.DarkGray;
             panel.ForeColor = Color.DimGray;
 
-            panel.BorderStyle = BorderStyle.FixedSingle;
+            panel.BorderStyle = BorderStyle.None;
             panel.Tag = name;
 
             panel.Font = new Font("Arial", 8, FontStyle.Bold);
@@ -59,8 +59,10 @@ namespace ExpertSystemWinForms.Infrastructure
             //variable.ForeColor = Color.DimGray;
 
             variable.BorderStyle = BorderStyle.FixedSingle;
+            variable.Enabled = false;
 
             variable.Text = name;
+            variable.TextAlign = ContentAlignment.TopCenter;
             //variable.Name = "labelRuleBlock" + name;
 
             //variable.Width = 110;
@@ -69,7 +71,7 @@ namespace ExpertSystemWinForms.Infrastructure
             //variable.Font = new Font("Arial", 8, FontStyle.Bold);
             //variable.Location = new Point(250, 10);
 
-            variable.Dock = DockStyle.Top;
+            variable.Dock = DockStyle.Fill;
 
             panel.Controls.Add(variable);
 

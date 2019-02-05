@@ -17,9 +17,14 @@ namespace ExpertSystemWinForms
 {
     public partial class MainForm : Form
     {
+        private Graphics graphics;
+
         /// <summary>
         /// Represent a collection of labels that correspond to variables.
         /// </summary>
+        /// <value>
+        /// The labels variables.
+        /// </value>
         private List<Control> Labels { get; set; } = new List<Control>();
 
         /// <summary>
@@ -27,9 +32,17 @@ namespace ExpertSystemWinForms
         /// Gets or sets the labels rule block.
         /// </summary>
         /// <value>
-        /// The labels rule block.
+        /// The panels rule block.
         /// </value>
-        private List<Control> PanelRuleBlock { get; set; } = new List<Control>();
+        private List<Control> PanelsRuleBlock { get; set; } = new List<Control>();
+
+        /// <summary>
+        /// Gets or sets the lines that connect UI elements.
+        /// </summary>
+        /// <value>
+        /// The lines.
+        /// </value>
+        public LinesSet LinesSet { get; set; } = new LinesSet();
 
         /// <summary>
         /// Gets or sets the fuzzy variables.
@@ -38,7 +51,7 @@ namespace ExpertSystemWinForms
         /// The fuzzy variables.
         /// </value>
         public ObservableCollection<FuzzyVariableModel> FuzzyVariables { get; set; } = new ObservableCollection<FuzzyVariableModel>();
-
+        
         /// <summary>
         /// Gets or sets the rule blocks.
         /// </summary>
@@ -54,6 +67,8 @@ namespace ExpertSystemWinForms
         {
             InitializeComponent();
 
+            this.graphics = this.pictureBoxInteractiveUI.CreateGraphics();
+
             this.FuzzyVariables.CollectionChanged += FuzzyVariables_CollectionChanged;
             this.RuleBlocks.CollectionChanged += RuleBlocks_CollectionChanged;
 
@@ -62,8 +77,84 @@ namespace ExpertSystemWinForms
             this.FuzzyVariables.Add(new FuzzyVariableModel("mid_var3", VariableType.Intermediate, new List<TermModel>(), "cvx"));
             this.FuzzyVariables.Add(new FuzzyVariableModel("mid_var4", VariableType.Intermediate, new List<TermModel>(), "cv"));
             this.FuzzyVariables.Add(new FuzzyVariableModel("out_var5", VariableType.Output, new List<TermModel>(), "afgh"));
+
+            this.RuleBlocks.Add(new RuleBlockModel("rb1",
+                new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type==VariableType.Input)),
+                new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Output))));
+            this.RuleBlocks.Add(new RuleBlockModel("rb2",
+                new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type==VariableType.Input)),
+                new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Output || v.Type == VariableType.Intermediate))));
+
+            //temporary
+            this.Labels.ForEach(lbl => lbl.Move += this.OnUIElementMove);
+            this.PanelsRuleBlock.ForEach(p => p.Move += this.OnUIElementMove);
         }
 
+        /// <summary>
+        /// On UI control move event.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void OnUIElementMove(object sender, EventArgs e)
+        {
+            Control control = (sender as Label);
+            control = control ?? (sender as Panel);
+            if (control != null)
+            {
+                this.LinesSet.UpdateLinesCoordinatesAccoringControl(control);   // update lines coordinates.
+            }
+        }
+
+        /// <summary>
+        /// Clears old drawn lines and draw new.
+        /// Handles the Paint event of the PictureBox1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="PaintEventArgs"/> instance containing the event data.</param>
+        private void PictureBoxInteractiveUI_Paint(object sender, PaintEventArgs e)
+        {
+            this.LinesSet.DrawLines(this.graphics);
+        }
+
+        /// <summary>
+        /// Adds the lines between variables and rule block.
+        /// </summary>
+        /// <param name="ruleBlock">The rule block.</param>
+        /// <param name="ruleBlockUI">The rule block UI control.</param>
+        private void AddLinesBetweenVariablesAndRuleBlock(RuleBlockModel ruleBlock, Control ruleBlockUI)
+        {
+            foreach (var variable in ruleBlock.InputFuzzyVariables)
+            {
+                var variableUI = this.Labels.FirstOrDefault(lbl => lbl.Text.Equals(variable.Name));
+                if (variableUI != null)
+                {
+                    this.LinesSet.Lines.Add(new Line(variableUI, ruleBlockUI));
+                }
+            }
+            foreach (var variable in ruleBlock.OutputFuzzyVariables)
+            {
+                var variableUI = this.Labels.FirstOrDefault(lbl => lbl.Text.Equals(variable.Name));
+                if (variableUI != null)
+                {
+                    this.LinesSet.Lines.Add(new Line(ruleBlockUI, variableUI));
+                }
+            }
+            this.PictureBoxInteractiveUI_Paint(null, null);
+        }
+
+        /// <summary>
+        /// Creates new pictureBox graphic to allow drawing on a new space.
+        /// Handles the Resize event of the PictureBox1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void PictureBoxInteractiveUI_Resize(object sender, EventArgs e)
+        {
+            this.graphics = pictureBoxInteractiveUI.CreateGraphics();
+        }
+
+
+        #region Rule Blocks
         /// <summary>
         /// Handles the collections event of the RuleBlock control.
         /// </summary>
@@ -75,12 +166,15 @@ namespace ExpertSystemWinForms
             {
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
                     var ruleBlock = (sender as ObservableCollection<RuleBlockModel>)[e.NewStartingIndex];
-                    var ruleBlockUI = (new RuleBlockCreator(null, null)).CreateElement(ruleBlock.Name);
-                    this.pictureBox1.Controls.Add(ruleBlockUI);
-                    this.PanelRuleBlock.Add(ruleBlockUI);
-                    ruleBlockUI.ContextMenuStrip = this.contextMenuStripControlRuleBlock;
+                    this.AddNewRuleBlockToTreeView(ruleBlock);
 
-                    //this.AddNewVariableToTreeView(ruleBlock);
+                    var ruleBlockUI = (new RuleBlockCreator(null, null)).CreateElement(ruleBlock.Name);
+                    this.pictureBoxInteractiveUI.Controls.Add(ruleBlockUI);
+                    this.PanelsRuleBlock.Add(ruleBlockUI);
+                    ruleBlockUI.ContextMenuStrip = this.contextMenuStripControlRuleBlock;
+                    ruleBlockUI.Move += this.OnUIElementMove;
+
+                    this.AddLinesBetweenVariablesAndRuleBlock(ruleBlock, ruleBlockUI);
                     break;
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
                     break;
@@ -94,7 +188,6 @@ namespace ExpertSystemWinForms
                     break;
             }
         }
-
         /// <summary>
         /// Adds the new rule block to collection.
         /// </summary>
@@ -107,15 +200,51 @@ namespace ExpertSystemWinForms
             }
         }
 
+        /// <summary>
+        /// Updates the rule block in collection.
+        /// </summary>
+        /// <param name="ruleBlock">The rule block.</param>
+        /// <param name="oldName">The old name.</param>
         public void SetRuleBlock(RuleBlockModel ruleBlock, string oldName)
         {
             if (this.RuleBlocks.Contains(ruleBlock))
             {
+                // set the ruleBlock in collection to old position.
                 var index = this.RuleBlocks.IndexOf(ruleBlock);
                 this.RuleBlocks[index] = ruleBlock;
 
-                var panelToUpdate = this.PanelRuleBlock.Where(p => (p as Panel).Tag.Equals(oldName)).FirstOrDefault();
+                // update UI panel of ruleBlock.
+                var panelToUpdate = this.PanelsRuleBlock.Where(p => (p as Panel).Tag.Equals(oldName)).FirstOrDefault();
                 panelToUpdate.Tag = ruleBlock.Name;
+
+                // update ruleBlock node in treeViewNode.
+                this.RemoveOldRuleBlockFromTreeView(oldName);
+                this.AddNewRuleBlockToTreeView(ruleBlock);
+                
+                // update lines for ruleBlock.
+                this.LinesSet.RemoveLinesRelativeToElement(panelToUpdate);
+                this.AddLinesBetweenVariablesAndRuleBlock(ruleBlock, panelToUpdate);
+            }
+        }
+
+        /// <summary>
+        /// Removes the rule block.
+        /// </summary>
+        /// <param name="ruleBlockName">Name of the rule block.</param>
+        private void RemoveRuleBlock(string ruleBlockName)
+        {
+            var ruleBlock = this.RuleBlocks.Where(rb => rb.Name.Equals(ruleBlockName)).FirstOrDefault();
+            if (ruleBlock != null)
+            {
+                this.RuleBlocks.Remove(ruleBlock);
+
+                var panel = this.PanelsRuleBlock.Where(rb => (rb as Panel).Tag.Equals(ruleBlockName)).FirstOrDefault();
+
+                this.PanelsRuleBlock.Remove(panel);
+                this.pictureBoxInteractiveUI.Controls.Remove(panel);
+
+                this.RemoveOldRuleBlockFromTreeView(ruleBlock.Name);
+                this.LinesSet.RemoveLinesRelativeToElement(panel);
             }
         }
 
@@ -131,25 +260,18 @@ namespace ExpertSystemWinForms
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
                     var variable = (sender as ObservableCollection<FuzzyVariableModel>)[e.NewStartingIndex];
                     var variableUI = (new FuzzyVariableCreator()).CreateElement(variable.Name);
-                    this.pictureBox1.Controls.Add(variableUI);
+                    this.pictureBoxInteractiveUI.Controls.Add(variableUI);
                     this.Labels.Add(variableUI);
                     variableUI.ContextMenuStrip = this.contextMenuStripControlVariable;
+                    variableUI.Move += OnUIElementMove;
 
                     this.AddNewVariableToTreeView(variable);
                     break;
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
                     // TODO !!!!
-                    //var fv = (e.OldItems as List<FuzzyVariableModel>)[0];
-                    //var label = this.Labels.FirstOrDefault(v => v.Text.Equals(fv.Name));
-                    //this.Labels.Remove(label);
-                    //this.pictureBox1.Controls.Remove(label);
-                    //this.RemoveOldVariableFromTreeView(fv.Type, fv.Name);
                     break;
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Replace:
                     // TODO: !!!!
-                    //variable = (e.NewItems as FuzzyVariableModel);
-                    //var labelToUpdate = this.Labels.Where(lbl => (lbl as Label).Text.Equals(oldName)).FirstOrDefault();
-                    //labelToUpdate.Text = variable.Name;
                     break;
                 case System.Collections.Specialized.NotifyCollectionChangedAction.Move:
                     break;
@@ -159,7 +281,10 @@ namespace ExpertSystemWinForms
                     break;
             }
         }
+        #endregion
 
+
+        #region Variables
         /// <summary>
         /// Adds the variable.
         /// </summary>
@@ -204,16 +329,23 @@ namespace ExpertSystemWinForms
             if (fuzzyVariable != null)
             {
                 this.FuzzyVariables.Remove(fuzzyVariable);
+                this.RuleBlocks.ToList().ForEach(rb => { rb.InputFuzzyVariables.Remove(fuzzyVariable); rb.OutputFuzzyVariables.Remove(fuzzyVariable); });
+
+                // TODO: move this block to collection_changed event handler.
+                var label = this.Labels.FirstOrDefault(v => v.Text.Equals(variableName));
+
+                this.Labels.Remove(label);
+                this.pictureBoxInteractiveUI.Controls.Remove(label);
+
+                this.RemoveOldVariableFromTreeView(fuzzyVariable.Type, fuzzyVariable.Name);
+                this.LinesSet.RemoveLinesRelativeToElement(label);
             }
 
-            // TODO: move this block to collection_changed event handler.
-            var label = this.Labels.FirstOrDefault(v => v.Text.Equals(variableName));
-            this.Labels.Remove(label);
-            this.pictureBox1.Controls.Remove(label);
-
-            this.RemoveOldVariableFromTreeView(fuzzyVariable.Type, fuzzyVariable.Name);
         }
+        #endregion
 
+
+        #region Tree View methods
         /// <summary>
         /// Add node with variable to tree view.
         /// </summary>
@@ -239,39 +371,38 @@ namespace ExpertSystemWinForms
         }
 
         /// <summary>
+        /// Adds the new rule block to TreeView.
+        /// </summary>
+        /// <param name="ruleBlock">The rule block.</param>
+        private void AddNewRuleBlockToTreeView(RuleBlockModel ruleBlock)
+        {
+            this.treeView1.Nodes["RuleBlocks"].Nodes.Add(ruleBlock.Name);
+        }
+
+        /// <summary>
+        /// Removes the old rule block from TreeView.
+        /// </summary>
+        /// <param name="name">The rule block old name.</param>
+        private void RemoveOldRuleBlockFromTreeView(string name)
+        {
+            var node = this.treeView1.Nodes["RuleBlocks"].Nodes.Cast<TreeNode>().FirstOrDefault(n => n.Text.Equals(name));
+            if (node != null)
+            {
+                this.treeView1.Nodes.Remove(node);
+            }
+        }
+        #endregion
+
+
+        #region Tool Strip Menu Common
+        /// <summary>
         /// Handles the Click event of the newVariableToolStripMenuItem control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void NewVariableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bool b = sender is ToolStripMenuItem;
-
-            OpenFuzzyVariableWizardDialog();
-        }
-
-        /// <summary>
-        /// Handles the Click event of the EditToolStripMenuItem control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void EditToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Label label = ((sender as ToolStripMenuItem).Owner as ContextMenuStrip).SourceControl as Label;
-
-            OpenFuzzyVariableWizardDialog(this.FuzzyVariables.Where(v => v.Name.Equals(label.Text)).FirstOrDefault());
-        }
-
-        /// <summary>
-        /// Handles the Click event of the RemoveToolStripMenuItem control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void RemoveToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Label label = ((sender as ToolStripMenuItem).Owner as ContextMenuStrip).SourceControl as Label;
-
-            this.RemoveVariable(label.Text);
+            this.OpenFuzzyVariableWizardDialog();
         }
 
         /// <summary>
@@ -285,6 +416,106 @@ namespace ExpertSystemWinForms
         }
 
         /// <summary>
+        /// Determines which element was clicked and open corresponding dialog wizard.
+        /// Handles the Click event of the EditorToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void EditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var node = ((TreeView)((ContextMenuStrip)((ToolStripItem)sender).Owner).SourceControl).SelectedNode;
+
+            if (this.FuzzyVariables.Any(v => v.Name.Equals(node.Text)))     // if clicked above variable
+            {
+                var variable = this.FuzzyVariables.FirstOrDefault(v => v.Name.Equals(node.Text));
+                if (variable != null)   // open fuzzy variable wizard dialog on edit
+                {
+                    this.OpenFuzzyVariableWizardDialog(variable);
+                }
+            }
+            else if (this.RuleBlocks.Any(rb => rb.Name.Equals(node.Text)))  // if clicked above rule block
+            {
+                var ruleBlock = this.RuleBlocks.FirstOrDefault(rb => rb.Name.Equals(node.Text));
+                if (ruleBlock != null)
+                {
+                    this.OpenRuleBlockWizardDialog(this.FuzzyVariables, ruleBlock);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Determines which element was clicked and remove it.
+        /// Handles the Click event of the removeToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void RemoveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var node = ((TreeView)((ContextMenuStrip)((ToolStripItem)sender).Owner).SourceControl).SelectedNode;
+
+            if (this.FuzzyVariables.Any(v => v.Name.Equals(node.Text)))     // if clicked above variable
+            {
+                var variable = this.FuzzyVariables.FirstOrDefault(v => v.Name.Equals(node.Text));
+                if (variable != null)   // remove variable
+                {
+                    this.RemoveVariable(variable.Name);
+                }
+            }
+            else if (this.RuleBlocks.Any(rb => rb.Name.Equals(node.Text)))  // if clicked above rule block
+            {
+                var ruleBlock = this.RuleBlocks.FirstOrDefault(rb => rb.Name.Equals(node.Text));
+                if (ruleBlock != null)  // remove rule block
+                {
+                    this.RemoveRuleBlock(ruleBlock.Name);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Handles the MouseDown event of the TreeView1 control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="MouseEventArgs"/> instance containing the event data.</param>
+        private void TreeView1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                // Select the clicked node
+                treeView1.SelectedNode = treeView1.GetNodeAt(e.X, e.Y);
+            }
+        }
+        #endregion
+
+
+        #region Tool Strip Menu Variable
+        /// <summary>
+        /// Handles the Click event of the EditToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void EditVariableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Label label = ((sender as ToolStripMenuItem).Owner as ContextMenuStrip).SourceControl as Label;
+
+            this.OpenFuzzyVariableWizardDialog(this.FuzzyVariables.Where(v => v.Name.Equals(label.Text)).FirstOrDefault());
+        }
+
+        /// <summary>
+        /// Handles the Click event of the RemoveToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void RemoveVariableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Label label = ((sender as ToolStripMenuItem).Owner as ContextMenuStrip).SourceControl as Label;
+
+            this.RemoveVariable(label.Text);
+        }
+        #endregion
+
+
+        #region Tool Strip Menu Rule Block
+        /// <summary>
         /// Handles the Click event of the EditRuleBlockToolStripMenuItem control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -296,6 +527,21 @@ namespace ExpertSystemWinForms
             this.OpenRuleBlockWizardDialog(this.FuzzyVariables, this.RuleBlocks.Where(v => v.Name.Equals(panel.Tag)).FirstOrDefault());
         }
 
+        /// <summary>
+        /// Handles the Click event of the RemoveToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RemoveRuleBlockToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Panel panel = ((sender as ToolStripMenuItem).Owner as ContextMenuStrip).SourceControl as Panel;
+
+            this.RemoveRuleBlock(panel.Tag.ToString());
+        }
+        #endregion 
+
+
+        #region Dialogs
         /// <summary>
         /// Opens the Rule Block wizard dialog.
         /// </summary>
@@ -344,6 +590,8 @@ namespace ExpertSystemWinForms
             var res = MessageBox.Show(text, caption, MessageBoxButtons.YesNo);
             return res;
         }
+        #endregion
+
 
         #region Actions with project (Invoke when something from FILE_menu choosed)
 
@@ -410,5 +658,6 @@ namespace ExpertSystemWinForms
         }
 
         #endregion
+
     }
 }

@@ -49,8 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Infrastructure\FuzzyVariableCreator.cs" />
-    <Compile Include="Infrastructure\RuleBlockCreator.cs" />
+    <Compile Include="Infrastructure\UIElementCreator\FuzzyVariableCreator.cs" />
+    <Compile Include="Infrastructure\LinesSet.cs" />
+    <Compile Include="Infrastructure\UIElementCreator\RuleBlockCreator.cs" />
     <Compile Include="Models\FuzzyVariableModel.cs" />
     <Compile Include="Models\Interfaces\IMembershipFunction.cs" />
     <Compile Include="Infrastructure\Interfaces\IUserControlCreator.cs" />
