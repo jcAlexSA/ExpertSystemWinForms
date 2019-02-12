@@ -73,6 +73,25 @@ namespace ExpertSystemWinForms.Infrastructure
 
             variable.Dock = DockStyle.Fill;
 
+
+            Label variableAggregation = new Label();
+
+            variableAggregation.BorderStyle = BorderStyle.None;
+            variableAggregation.Enabled = false;
+
+            variableAggregation.Text = "Min/Max";
+            variableAggregation.TextAlign = ContentAlignment.BottomRight;
+            //variable.Name = "labelRuleBlock" + name;
+
+            //variable.Width = 110;
+            //variable.Height = 30;
+
+            //variable.Font = new Font("Arial", 8, FontStyle.Bold);
+            //variable.Location = new Point(250, 10);
+
+            variableAggregation.Dock = DockStyle.Bottom;
+            variable.Controls.Add(variableAggregation);
+
             panel.Controls.Add(variable);
 
             return panel;

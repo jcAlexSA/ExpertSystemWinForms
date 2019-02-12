@@ -29,14 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Input");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Output");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Intermediate");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Variables", new System.Windows.Forms.TreeNode[] {
-            treeNode6,
-            treeNode7,
-            treeNode8});
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Rule Blocks");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Input");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Output");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Intermediate");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Variables", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Rule Blocks");
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,7 +91,7 @@
             this.helpToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(723, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(721, 24);
             this.menuStripMain.TabIndex = 0;
             this.menuStripMain.Text = "menuStrip1";
             // 
@@ -200,7 +200,7 @@
             this.mainPanel.Location = new System.Drawing.Point(0, 24);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(723, 337);
+            this.mainPanel.Size = new System.Drawing.Size(721, 349);
             this.mainPanel.TabIndex = 1;
             // 
             // treeView1
@@ -214,21 +214,21 @@
             this.treeView1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.treeView1.Location = new System.Drawing.Point(3, 0);
             this.treeView1.Name = "treeView1";
-            treeNode6.Name = "Input";
-            treeNode6.Text = "Input";
-            treeNode7.Name = "Output";
-            treeNode7.Text = "Output";
-            treeNode8.Name = "Intermediate";
-            treeNode8.Text = "Intermediate";
-            treeNode9.Name = "Variables";
-            treeNode9.Text = "Variables";
-            treeNode10.Name = "RuleBlocks";
-            treeNode10.Text = "Rule Blocks";
+            treeNode1.Name = "Input";
+            treeNode1.Text = "Input";
+            treeNode2.Name = "Output";
+            treeNode2.Text = "Output";
+            treeNode3.Name = "Intermediate";
+            treeNode3.Text = "Intermediate";
+            treeNode4.Name = "Variables";
+            treeNode4.Text = "Variables";
+            treeNode5.Name = "RuleBlocks";
+            treeNode5.Text = "Rule Blocks";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode9,
-            treeNode10});
+            treeNode4,
+            treeNode5});
             this.treeView1.ShowNodeToolTips = true;
-            this.treeView1.Size = new System.Drawing.Size(158, 337);
+            this.treeView1.Size = new System.Drawing.Size(158, 349);
             this.treeView1.TabIndex = 0;
             this.treeView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TreeView1_MouseDown);
             // 
@@ -281,7 +281,7 @@
             this.pictureBoxInteractiveUI.Margin = new System.Windows.Forms.Padding(5);
             this.pictureBoxInteractiveUI.Name = "pictureBoxInteractiveUI";
             this.pictureBoxInteractiveUI.Padding = new System.Windows.Forms.Padding(5);
-            this.pictureBoxInteractiveUI.Size = new System.Drawing.Size(559, 337);
+            this.pictureBoxInteractiveUI.Size = new System.Drawing.Size(557, 349);
             this.pictureBoxInteractiveUI.TabIndex = 1;
             this.pictureBoxInteractiveUI.TabStop = false;
             this.pictureBoxInteractiveUI.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBoxInteractiveUI_Paint);
@@ -375,7 +375,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(723, 366);
+            this.ClientSize = new System.Drawing.Size(721, 378);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.menuStripMain);
             this.MainMenuStrip = this.menuStripMain;
