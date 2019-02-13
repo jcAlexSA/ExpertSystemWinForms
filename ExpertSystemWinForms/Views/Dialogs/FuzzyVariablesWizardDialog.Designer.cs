@@ -28,6 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnNext = new System.Windows.Forms.Button();
@@ -72,6 +76,7 @@
             this.textBoxVariableComment = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.labelVariableWizardComment = new System.Windows.Forms.Label();
+            this.chartTerms = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -86,6 +91,7 @@
             this.groupBox2.SuspendLayout();
             this.thirdStep.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTerms)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -332,6 +338,7 @@
             this.groupBoxAddingTerms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBoxAddingTerms.Controls.Add(this.chartTerms);
             this.groupBoxAddingTerms.Controls.Add(this.panel2);
             this.groupBoxAddingTerms.Controls.Add(this.listBoxTerms);
             this.groupBoxAddingTerms.Controls.Add(this.buttonRemoveTerm);
@@ -354,7 +361,7 @@
             this.panel2.AutoScroll = true;
             this.panel2.Controls.Add(this.panelGauss);
             this.panel2.Controls.Add(this.panelTriangle);
-            this.panel2.Location = new System.Drawing.Point(6, 97);
+            this.panel2.Location = new System.Drawing.Point(6, 83);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(131, 200);
             this.panel2.TabIndex = 7;
@@ -366,7 +373,7 @@
             this.panelGauss.Controls.Add(this.label6);
             this.panelGauss.Controls.Add(this.label7);
             this.panelGauss.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelGauss.Location = new System.Drawing.Point(0, 108);
+            this.panelGauss.Location = new System.Drawing.Point(0, 102);
             this.panelGauss.Name = "panelGauss";
             this.panelGauss.Size = new System.Drawing.Size(131, 73);
             this.panelGauss.TabIndex = 6;
@@ -425,7 +432,7 @@
             this.panelTriangle.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTriangle.Location = new System.Drawing.Point(0, 0);
             this.panelTriangle.Name = "panelTriangle";
-            this.panelTriangle.Size = new System.Drawing.Size(131, 108);
+            this.panelTriangle.Size = new System.Drawing.Size(131, 102);
             this.panelTriangle.TabIndex = 5;
             this.panelTriangle.Visible = false;
             // 
@@ -500,10 +507,12 @@
             this.listBoxTerms.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listBoxTerms.ForeColor = System.Drawing.Color.DimGray;
             this.listBoxTerms.FormattingEnabled = true;
+            this.listBoxTerms.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.listBoxTerms.IntegralHeight = false;
             this.listBoxTerms.ItemHeight = 14;
-            this.listBoxTerms.Location = new System.Drawing.Point(210, 37);
+            this.listBoxTerms.Location = new System.Drawing.Point(210, 24);
             this.listBoxTerms.Name = "listBoxTerms";
-            this.listBoxTerms.Size = new System.Drawing.Size(180, 102);
+            this.listBoxTerms.Size = new System.Drawing.Size(180, 109);
             this.listBoxTerms.TabIndex = 4;
             this.listBoxTerms.SelectedIndexChanged += new System.EventHandler(this.ListBoxTerms_SelectedIndexChanged);
             // 
@@ -513,7 +522,7 @@
             this.buttonRemoveTerm.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonRemoveTerm.Font = new System.Drawing.Font("Algerian", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonRemoveTerm.ForeColor = System.Drawing.Color.Maroon;
-            this.buttonRemoveTerm.Location = new System.Drawing.Point(143, 126);
+            this.buttonRemoveTerm.Location = new System.Drawing.Point(143, 111);
             this.buttonRemoveTerm.Name = "buttonRemoveTerm";
             this.buttonRemoveTerm.Size = new System.Drawing.Size(61, 22);
             this.buttonRemoveTerm.TabIndex = 3;
@@ -527,7 +536,7 @@
             this.buttonAddTerm.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonAddTerm.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonAddTerm.ForeColor = System.Drawing.Color.Green;
-            this.buttonAddTerm.Location = new System.Drawing.Point(143, 98);
+            this.buttonAddTerm.Location = new System.Drawing.Point(143, 83);
             this.buttonAddTerm.Name = "buttonAddTerm";
             this.buttonAddTerm.Size = new System.Drawing.Size(61, 22);
             this.buttonAddTerm.TabIndex = 2;
@@ -543,7 +552,7 @@
             this.comboBoxVariableForm.Items.AddRange(new object[] {
             "Gauss",
             "Triangle"});
-            this.comboBoxVariableForm.Location = new System.Drawing.Point(61, 66);
+            this.comboBoxVariableForm.Location = new System.Drawing.Point(61, 53);
             this.comboBoxVariableForm.Name = "comboBoxVariableForm";
             this.comboBoxVariableForm.Size = new System.Drawing.Size(143, 23);
             this.comboBoxVariableForm.TabIndex = 1;
@@ -554,7 +563,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(9, 70);
+            this.label2.Location = new System.Drawing.Point(9, 57);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 15);
             this.label2.TabIndex = 1;
@@ -565,7 +574,7 @@
             // 
             this.labelName.AutoSize = true;
             this.labelName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelName.Location = new System.Drawing.Point(9, 40);
+            this.labelName.Location = new System.Drawing.Point(9, 27);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(40, 15);
             this.labelName.TabIndex = 1;
@@ -576,7 +585,7 @@
             // 
             this.textBoxTermName.Font = new System.Drawing.Font("Arial", 9F);
             this.textBoxTermName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxTermName.Location = new System.Drawing.Point(61, 37);
+            this.textBoxTermName.Location = new System.Drawing.Point(61, 24);
             this.textBoxTermName.Name = "textBoxTermName";
             this.textBoxTermName.Size = new System.Drawing.Size(143, 21);
             this.textBoxTermName.TabIndex = 0;
@@ -659,6 +668,40 @@
     "h an initial set of terms and membership functions. In this step you specify nam" +
     "e, color and type of the variable.";
             // 
+            // chartTerms
+            // 
+            chartArea1.AxisX.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Lines;
+            chartArea1.AxisX.IsLabelAutoFit = false;
+            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Arial", 6F);
+            chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Arial", 5F);
+            chartArea1.AxisY.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Lines;
+            chartArea1.AxisY.InterlacedColor = System.Drawing.Color.White;
+            chartArea1.AxisY.IsLabelAutoFit = false;
+            chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F);
+            chartArea1.AxisY.LabelStyle.Interval = 0.2D;
+            chartArea1.AxisY.MajorGrid.Enabled = false;
+            chartArea1.AxisY.Maximum = 1D;
+            chartArea1.AxisY.Minimum = 0D;
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Arial", 7F);
+            chartArea1.Name = "ChartAreaTerms";
+            this.chartTerms.ChartAreas.Add(chartArea1);
+            this.chartTerms.Location = new System.Drawing.Point(143, 139);
+            this.chartTerms.Name = "chartTerms";
+            series1.ChartArea = "ChartAreaTerms";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Name = "SeriesLines";
+            series1.Points.Add(dataPoint1);
+            series2.ChartArea = "ChartAreaTerms";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Color = System.Drawing.Color.Gray;
+            series2.Name = "SeriesSplines";
+            this.chartTerms.Series.Add(series1);
+            this.chartTerms.Series.Add(series2);
+            this.chartTerms.Size = new System.Drawing.Size(247, 97);
+            this.chartTerms.TabIndex = 8;
+            this.chartTerms.Text = "chart1";
+            // 
             // FuzzyVariableWizardDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
@@ -689,6 +732,7 @@
             this.thirdStep.ResumeLayout(false);
             this.thirdStep.PerformLayout();
             this.groupBox3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chartTerms)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -739,5 +783,6 @@
         private System.Windows.Forms.Label labelVariableWizardDescription;
         private System.Windows.Forms.Label labelVariableWizardMBFDescription;
         private System.Windows.Forms.Label labelVariableWizardComment;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartTerms;
     }
 }

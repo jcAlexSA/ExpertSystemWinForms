@@ -48,11 +48,16 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.buttonAccept = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButtonCriteriaMimMax = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -62,10 +67,10 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Font = new System.Drawing.Font("Arial Black", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
+            this.groupBox1.Location = new System.Drawing.Point(14, 14);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(10);
-            this.groupBox1.Size = new System.Drawing.Size(468, 98);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(12, 12, 12, 12);
+            this.groupBox1.Size = new System.Drawing.Size(431, 96);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Define Rule Block Configuration";
@@ -74,9 +79,9 @@
             // 
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(10, 27);
+            this.label4.Location = new System.Drawing.Point(12, 29);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(448, 61);
+            this.label4.Size = new System.Drawing.Size(407, 55);
             this.label4.TabIndex = 0;
             this.label4.Text = resources.GetString("label4.Text");
             // 
@@ -84,7 +89,7 @@
             // 
             this.labelName.AutoSize = true;
             this.labelName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelName.Location = new System.Drawing.Point(22, 120);
+            this.labelName.Location = new System.Drawing.Point(26, 119);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(103, 15);
             this.labelName.TabIndex = 1;
@@ -96,9 +101,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxRuleBlockName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxRuleBlockName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxRuleBlockName.Location = new System.Drawing.Point(132, 117);
+            this.textBoxRuleBlockName.Location = new System.Drawing.Point(154, 116);
             this.textBoxRuleBlockName.Name = "textBoxRuleBlockName";
-            this.textBoxRuleBlockName.Size = new System.Drawing.Size(338, 21);
+            this.textBoxRuleBlockName.Size = new System.Drawing.Size(279, 21);
             this.textBoxRuleBlockName.TabIndex = 1;
             // 
             // groupBox2
@@ -107,9 +112,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.tableLayoutPanel2);
-            this.groupBox2.Location = new System.Drawing.Point(12, 144);
+            this.groupBox2.Location = new System.Drawing.Point(14, 143);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(468, 274);
+            this.groupBox2.Size = new System.Drawing.Size(431, 204);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             // 
@@ -117,10 +122,10 @@
             // 
             this.tableLayoutPanel2.AutoSize = true;
             this.tableLayoutPanel2.ColumnCount = 4;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.9201F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 41.40436F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.30241F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 110F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 34.02062F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33334F));
             this.tableLayoutPanel2.Controls.Add(this.label3, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.listBoxVariablesCollection, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label2, 2, 0);
@@ -130,14 +135,12 @@
             this.tableLayoutPanel2.Controls.Add(this.listBoxInputVariablesCollection, 2, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.GrowStyle = System.Windows.Forms.TableLayoutPanelGrowStyle.AddColumns;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 202F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(462, 255);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 234F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(425, 184);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // label3
@@ -145,9 +148,9 @@
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(358, 0);
+            this.label3.Location = new System.Drawing.Point(322, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 15);
+            this.label3.Size = new System.Drawing.Size(100, 15);
             this.label3.TabIndex = 6;
             this.label3.Text = "Output";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -161,7 +164,7 @@
             this.listBoxVariablesCollection.ItemHeight = 15;
             this.listBoxVariablesCollection.Location = new System.Drawing.Point(3, 18);
             this.listBoxVariablesCollection.Name = "listBoxVariablesCollection";
-            this.listBoxVariablesCollection.Size = new System.Drawing.Size(122, 234);
+            this.listBoxVariablesCollection.Size = new System.Drawing.Size(96, 228);
             this.listBoxVariablesCollection.TabIndex = 5;
             this.listBoxVariablesCollection.Tag = "AllVariables";
             this.listBoxVariablesCollection.Click += new System.EventHandler(this.ListBoxVariablesCollection_Click);
@@ -171,9 +174,9 @@
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.label2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(253, 0);
+            this.label2.Location = new System.Drawing.Point(215, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(99, 15);
+            this.label2.Size = new System.Drawing.Size(101, 15);
             this.label2.TabIndex = 7;
             this.label2.Text = "Input";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -184,9 +187,9 @@
             this.panel1.Controls.Add(this.buttonToOutput);
             this.panel1.Controls.Add(this.buttonRemoveSelected);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(131, 18);
+            this.panel1.Location = new System.Drawing.Point(105, 18);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(116, 234);
+            this.panel1.Size = new System.Drawing.Size(104, 228);
             this.panel1.TabIndex = 0;
             // 
             // buttonToInput
@@ -196,9 +199,9 @@
             this.buttonToInput.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonToInput.Font = new System.Drawing.Font("Arial Black", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonToInput.ForeColor = System.Drawing.Color.Green;
-            this.buttonToInput.Location = new System.Drawing.Point(9, 137);
+            this.buttonToInput.Location = new System.Drawing.Point(7, 117);
             this.buttonToInput.Name = "buttonToInput";
-            this.buttonToInput.Size = new System.Drawing.Size(100, 25);
+            this.buttonToInput.Size = new System.Drawing.Size(90, 29);
             this.buttonToInput.TabIndex = 11;
             this.buttonToInput.Text = "Input";
             this.buttonToInput.UseVisualStyleBackColor = false;
@@ -211,9 +214,9 @@
             this.buttonToOutput.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonToOutput.Font = new System.Drawing.Font("Arial Black", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonToOutput.ForeColor = System.Drawing.Color.Teal;
-            this.buttonToOutput.Location = new System.Drawing.Point(9, 75);
+            this.buttonToOutput.Location = new System.Drawing.Point(7, 45);
             this.buttonToOutput.Name = "buttonToOutput";
-            this.buttonToOutput.Size = new System.Drawing.Size(100, 25);
+            this.buttonToOutput.Size = new System.Drawing.Size(90, 29);
             this.buttonToOutput.TabIndex = 10;
             this.buttonToOutput.Text = "Output";
             this.buttonToOutput.UseVisualStyleBackColor = false;
@@ -226,9 +229,9 @@
             this.buttonRemoveSelected.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonRemoveSelected.Font = new System.Drawing.Font("Arial Black", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonRemoveSelected.ForeColor = System.Drawing.Color.Maroon;
-            this.buttonRemoveSelected.Location = new System.Drawing.Point(9, 106);
+            this.buttonRemoveSelected.Location = new System.Drawing.Point(7, 82);
             this.buttonRemoveSelected.Name = "buttonRemoveSelected";
-            this.buttonRemoveSelected.Size = new System.Drawing.Size(100, 25);
+            this.buttonRemoveSelected.Size = new System.Drawing.Size(90, 29);
             this.buttonRemoveSelected.TabIndex = 9;
             this.buttonRemoveSelected.Text = "Remove";
             this.buttonRemoveSelected.UseVisualStyleBackColor = false;
@@ -241,9 +244,9 @@
             this.listBoxOutputVariablesCollection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.listBoxOutputVariablesCollection.FormattingEnabled = true;
             this.listBoxOutputVariablesCollection.ItemHeight = 15;
-            this.listBoxOutputVariablesCollection.Location = new System.Drawing.Point(358, 18);
+            this.listBoxOutputVariablesCollection.Location = new System.Drawing.Point(322, 18);
             this.listBoxOutputVariablesCollection.Name = "listBoxOutputVariablesCollection";
-            this.listBoxOutputVariablesCollection.Size = new System.Drawing.Size(101, 234);
+            this.listBoxOutputVariablesCollection.Size = new System.Drawing.Size(100, 228);
             this.listBoxOutputVariablesCollection.TabIndex = 3;
             this.listBoxOutputVariablesCollection.Tag = "OutputVariables";
             this.listBoxOutputVariablesCollection.Click += new System.EventHandler(this.ListBoxVariablesCollection_Click);
@@ -255,7 +258,7 @@
             this.label1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 15);
+            this.label1.Size = new System.Drawing.Size(96, 15);
             this.label1.TabIndex = 8;
             this.label1.Text = "Variables";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -267,9 +270,9 @@
             this.listBoxInputVariablesCollection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.listBoxInputVariablesCollection.FormattingEnabled = true;
             this.listBoxInputVariablesCollection.ItemHeight = 15;
-            this.listBoxInputVariablesCollection.Location = new System.Drawing.Point(253, 18);
+            this.listBoxInputVariablesCollection.Location = new System.Drawing.Point(215, 18);
             this.listBoxInputVariablesCollection.Name = "listBoxInputVariablesCollection";
-            this.listBoxInputVariablesCollection.Size = new System.Drawing.Size(99, 234);
+            this.listBoxInputVariablesCollection.Size = new System.Drawing.Size(101, 228);
             this.listBoxInputVariablesCollection.TabIndex = 4;
             this.listBoxInputVariablesCollection.Tag = "InputVariables";
             this.listBoxInputVariablesCollection.Click += new System.EventHandler(this.ListBoxVariablesCollection_Click);
@@ -279,15 +282,15 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.26513F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.73487F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 146F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 173F));
             this.tableLayoutPanel1.Controls.Add(this.buttonAccept, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonCancel, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 424);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 452);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(492, 29);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(459, 33);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // buttonAccept
@@ -296,9 +299,9 @@
             this.buttonAccept.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonAccept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAccept.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAccept.Location = new System.Drawing.Point(225, 3);
+            this.buttonAccept.Location = new System.Drawing.Point(186, 3);
             this.buttonAccept.Name = "buttonAccept";
-            this.buttonAccept.Size = new System.Drawing.Size(117, 23);
+            this.buttonAccept.Size = new System.Drawing.Size(96, 27);
             this.buttonAccept.TabIndex = 0;
             this.buttonAccept.Text = "OK";
             this.buttonAccept.UseVisualStyleBackColor = false;
@@ -310,26 +313,61 @@
             this.buttonCancel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCancel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCancel.Location = new System.Drawing.Point(348, 3);
+            this.buttonCancel.Location = new System.Drawing.Point(288, 3);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(141, 23);
+            this.buttonCancel.Size = new System.Drawing.Size(168, 27);
             this.buttonCancel.TabIndex = 1;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = false;
             this.buttonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.groupBox3);
+            this.panel2.Location = new System.Drawing.Point(17, 353);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(427, 91);
+            this.panel2.TabIndex = 5;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.radioButtonCriteriaMimMax);
+            this.groupBox3.Location = new System.Drawing.Point(73, 18);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(278, 69);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Norms";
+            // 
+            // radioButtonCriteriaMimMax
+            // 
+            this.radioButtonCriteriaMimMax.AutoSize = true;
+            this.radioButtonCriteriaMimMax.Checked = true;
+            this.radioButtonCriteriaMimMax.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButtonCriteriaMimMax.Location = new System.Drawing.Point(17, 29);
+            this.radioButtonCriteriaMimMax.Name = "radioButtonCriteriaMimMax";
+            this.radioButtonCriteriaMimMax.Size = new System.Drawing.Size(70, 18);
+            this.radioButtonCriteriaMimMax.TabIndex = 0;
+            this.radioButtonCriteriaMimMax.TabStop = true;
+            this.radioButtonCriteriaMimMax.Text = "MINMAX";
+            this.radioButtonCriteriaMimMax.UseVisualStyleBackColor = true;
+            // 
             // RuleBlockWizardDialog
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(492, 453);
+            this.ClientSize = new System.Drawing.Size(459, 485);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.textBoxRuleBlockName);
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.groupBox1);
+            this.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.Name = "RuleBlockWizardDialog";
             this.Text = "Rule Block Wizard";
@@ -340,6 +378,9 @@
             this.tableLayoutPanel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -366,5 +407,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox listBoxInputVariablesCollection;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton radioButtonCriteriaMimMax;
     }
 }

@@ -13,7 +13,7 @@ namespace ExpertSystemWinForms.Infrastructure
         /// <summary>
         /// The pen
         /// </summary>
-        private Pen pen = new Pen(Color.Gray, 1.8f);
+        private Pen pen = new Pen(Color.Gray, 2);
 
         /// <summary>
         /// Gets or sets the lines collection.

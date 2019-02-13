@@ -69,6 +69,7 @@
             this.contextMenuStripControlRuleBlock = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.newRuleBlockToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.editRuleBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeRuleBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.mainPanel.SuspendLayout();
@@ -91,7 +92,7 @@
             this.helpToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(721, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(651, 24);
             this.menuStripMain.TabIndex = 0;
             this.menuStripMain.Text = "menuStrip1";
             // 
@@ -197,10 +198,10 @@
             this.mainPanel.BackColor = System.Drawing.SystemColors.Window;
             this.mainPanel.Controls.Add(this.treeView1);
             this.mainPanel.Controls.Add(this.pictureBoxInteractiveUI);
-            this.mainPanel.Location = new System.Drawing.Point(0, 24);
+            this.mainPanel.Location = new System.Drawing.Point(0, 26);
             this.mainPanel.Margin = new System.Windows.Forms.Padding(0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(721, 349);
+            this.mainPanel.Size = new System.Drawing.Size(651, 349);
             this.mainPanel.TabIndex = 1;
             // 
             // treeView1
@@ -212,7 +213,8 @@
             this.treeView1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.treeView1.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.treeView1.Location = new System.Drawing.Point(3, 0);
+            this.treeView1.Location = new System.Drawing.Point(2, 0);
+            this.treeView1.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "Input";
             treeNode1.Text = "Input";
@@ -228,7 +230,7 @@
             treeNode4,
             treeNode5});
             this.treeView1.ShowNodeToolTips = true;
-            this.treeView1.Size = new System.Drawing.Size(158, 349);
+            this.treeView1.Size = new System.Drawing.Size(158, 348);
             this.treeView1.TabIndex = 0;
             this.treeView1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TreeView1_MouseDown);
             // 
@@ -278,10 +280,10 @@
             this.pictureBoxInteractiveUI.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxInteractiveUI.ContextMenuStrip = this.contextMenuStripInteractivePanel;
             this.pictureBoxInteractiveUI.Location = new System.Drawing.Point(164, 0);
-            this.pictureBoxInteractiveUI.Margin = new System.Windows.Forms.Padding(5);
+            this.pictureBoxInteractiveUI.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.pictureBoxInteractiveUI.Name = "pictureBoxInteractiveUI";
-            this.pictureBoxInteractiveUI.Padding = new System.Windows.Forms.Padding(5);
-            this.pictureBoxInteractiveUI.Size = new System.Drawing.Size(557, 349);
+            this.pictureBoxInteractiveUI.Padding = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.pictureBoxInteractiveUI.Size = new System.Drawing.Size(486, 348);
             this.pictureBoxInteractiveUI.TabIndex = 1;
             this.pictureBoxInteractiveUI.TabStop = false;
             this.pictureBoxInteractiveUI.Paint += new System.Windows.Forms.PaintEventHandler(this.PictureBoxInteractiveUI_Paint);
@@ -346,9 +348,10 @@
             this.contextMenuStripControlRuleBlock.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newRuleBlockToolStripMenuItem2,
             this.editRuleBlockToolStripMenuItem,
+            this.rulesToolStripMenuItem,
             this.removeRuleBlockToolStripMenuItem});
             this.contextMenuStripControlRuleBlock.Name = "contextMenuStripControlRuleBlock";
-            this.contextMenuStripControlRuleBlock.Size = new System.Drawing.Size(176, 70);
+            this.contextMenuStripControlRuleBlock.Size = new System.Drawing.Size(176, 92);
             // 
             // newRuleBlockToolStripMenuItem2
             // 
@@ -364,6 +367,13 @@
             this.editRuleBlockToolStripMenuItem.Text = "Edit Rule Block";
             this.editRuleBlockToolStripMenuItem.Click += new System.EventHandler(this.EditRuleBlockToolStripMenuItem_Click);
             // 
+            // rulesToolStripMenuItem
+            // 
+            this.rulesToolStripMenuItem.Name = "rulesToolStripMenuItem";
+            this.rulesToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.rulesToolStripMenuItem.Text = "Rules";
+            this.rulesToolStripMenuItem.Click += new System.EventHandler(this.RulesToolStripMenuItem_Click);
+            // 
             // removeRuleBlockToolStripMenuItem
             // 
             this.removeRuleBlockToolStripMenuItem.Name = "removeRuleBlockToolStripMenuItem";
@@ -373,12 +383,14 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(721, 378);
+            this.ClientSize = new System.Drawing.Size(651, 380);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.menuStripMain);
+            this.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuStrip = this.menuStripMain;
+            this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "MainForm";
             this.Text = "Expert System";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
@@ -430,6 +442,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStripInteractivePanel;
         private System.Windows.Forms.ToolStripMenuItem newVariableToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem newRuleBlockToolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem rulesToolStripMenuItem;
     }
 }
 

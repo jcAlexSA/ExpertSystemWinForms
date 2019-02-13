@@ -538,6 +538,20 @@ namespace ExpertSystemWinForms
 
             this.RemoveRuleBlock(panel.Tag.ToString());
         }
+
+
+        /// <summary>
+        /// Open Rules Wizard Dialog. 
+        /// Handles the Click event of the rulesToolStripMenuItem control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void RulesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Panel panel = ((sender as ToolStripMenuItem).Owner as ContextMenuStrip).SourceControl as Panel;
+
+            this.OpenRulesWizardDialog(this.RuleBlocks.FirstOrDefault(rb => rb.Name.Equals(panel.Tag)));
+        }
         #endregion 
 
 
@@ -589,6 +603,17 @@ namespace ExpertSystemWinForms
         {
             var res = MessageBox.Show(text, caption, MessageBoxButtons.YesNo);
             return res;
+        }
+
+        /// <summary>
+        /// Opens the rules wizard dialog.
+        /// </summary>
+        private void OpenRulesWizardDialog(RuleBlockModel ruleBlock)
+        {
+            var rulesWizard = new RulesWizardDialog(ruleBlock);
+
+            rulesWizard.Owner = this;
+            rulesWizard.ShowDialog();
         }
         #endregion
 
@@ -658,6 +683,5 @@ namespace ExpertSystemWinForms
         }
 
         #endregion
-
     }
 }

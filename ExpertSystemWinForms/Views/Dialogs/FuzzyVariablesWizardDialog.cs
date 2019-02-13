@@ -1,4 +1,5 @@
 ﻿using ExpertSystemWinForms.Models;
+using ExpertSystemWinForms.Models.Interfaces;
 using ExpertSystemWinForms.Models.MembershipFunction;
 using ExpertSystemWinForms.Models.MembershipFunctions;
 using System;
@@ -194,13 +195,13 @@ namespace ExpertSystemWinForms.Views.Dialogs
         private void ButtonAddTerm_Click(object sender, EventArgs e)
         {
             var term = new TermModel(this.textBoxTermName.Text.ToString());
-
-            // TODO here factory.
-
             if (this.comboBoxVariableForm.SelectedItem == null || string.IsNullOrEmpty(term.Name))
             {
                 return;
             }
+
+            // TODO here factory.
+
 
             if (this.comboBoxVariableForm.SelectedItem.Equals("Triangle"))
             {
@@ -237,6 +238,30 @@ namespace ExpertSystemWinForms.Views.Dialogs
             this.ClearTermField();
 
             this.UpdateListBox();
+            this.UpdateChart(term);
+        }
+
+        /// <summary>
+        /// Updates the chart.
+        /// </summary>
+        private void UpdateChart(TermModel term)
+        {
+            if (term.Function is TriangleMembershipFunction)
+            {
+                var mmbf = term.Function as TriangleMembershipFunction;
+                this.chartTerms.Series["SeriesLines"].Points.AddXY(mmbf.Left, 0.1);
+                this.chartTerms.Series["SeriesLines"].Points.AddXY(mmbf.Middle, 1);
+                this.chartTerms.Series["SeriesLines"].Points.AddXY(mmbf.Right, 0.1);
+            }
+            else if (term.Function is GaussMembershipFunction)
+            {
+                var mmbf = term.Function as GaussMembershipFunction;
+                //todo here a cycle
+                this.chartTerms.Series["SeriesSplines"].Points.AddXY(mmbf.C, 0.4f);
+                this.chartTerms.Series["SeriesSplines"].Points.AddXY(mmbf.C, 1);
+                //this.chartTerms.Series["SeriesSplines"].Points.AddXY(mmbf.B, 1);
+                //this.chartTerms.Series["SeriesSplines"].Points.AddXY(mmbf.C, 0);
+            }
         }
 
         /// <summary>
@@ -341,13 +366,13 @@ namespace ExpertSystemWinForms.Views.Dialogs
             this.textBoxTermName.Text = string.Empty;
 
             // triangle function field.
-            this.textBoxTriangleLeft.Text = string.Empty;
-            this.textBoxTriangleRight.Text = string.Empty;
-            this.textBoxTriangleMiddle.Text = string.Empty;
+            this.textBoxTriangleLeft.Text = "0";
+            this.textBoxTriangleRight.Text = "0";
+            this.textBoxTriangleMiddle.Text = "0";
 
             //gauss function field.
-            this.textBoxGaussB.Text = string.Empty;
-            this.textBoxGaussC.Text = string.Empty;
+            this.textBoxGaussB.Text = "0";
+            this.textBoxGaussC.Text = "0";
         }
 
         /// <summary>
