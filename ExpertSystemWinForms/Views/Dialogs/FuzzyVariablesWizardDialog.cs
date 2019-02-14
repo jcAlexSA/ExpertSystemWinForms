@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ExpertSystemWinForms.Views.Dialogs
 {
@@ -219,8 +220,10 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 // TODO: Make validation
                 var gaussFunction = new GaussMembershipFunction
                 {
-                    B = Int32.Parse(this.textBoxGaussB.Text),
-                    C = Int32.Parse(this.textBoxGaussC.Text)
+                    B = Single.Parse(this.textBoxGaussB.Text),
+                    C = Single.Parse(this.textBoxGaussC.Text),
+                    MinX = Int32.Parse(this.textBoxGaussMin.Text),
+                    MaxX = Int32.Parse(this.textBoxGaussMax.Text)
                 };
                 term.Function = gaussFunction;
             }
@@ -245,22 +248,38 @@ namespace ExpertSystemWinForms.Views.Dialogs
         /// Updates the chart.
         /// </summary>
         private void UpdateChart(TermModel term)
-        {
+    {
+            Series series = null;
+            if ((series = this.chartTerms.Series.FindByName(term.Name)) != null){
+                series.Points.Clear();
+            }
+            else
+            {
+                series = new Series(term.Name);
+                this.chartTerms.Series.Add(series);
+            }
+
             if (term.Function is TriangleMembershipFunction)
             {
                 var mmbf = term.Function as TriangleMembershipFunction;
-                this.chartTerms.Series["SeriesLines"].Points.AddXY(mmbf.Left, 0.1);
-                this.chartTerms.Series["SeriesLines"].Points.AddXY(mmbf.Middle, 1);
-                this.chartTerms.Series["SeriesLines"].Points.AddXY(mmbf.Right, 0.1);
+
+                series.Color = Color.Red;
+                series.ChartType = SeriesChartType.Line;
+
+                series.Points.AddXY(mmbf.Left, 0);
+                series.Points.AddXY(mmbf.Middle, 1);
+                series.Points.AddXY(mmbf.Right, 0);
             }
             else if (term.Function is GaussMembershipFunction)
             {
                 var mmbf = term.Function as GaussMembershipFunction;
-                //todo here a cycle
-                this.chartTerms.Series["SeriesSplines"].Points.AddXY(mmbf.C, 0.4f);
-                this.chartTerms.Series["SeriesSplines"].Points.AddXY(mmbf.C, 1);
-                //this.chartTerms.Series["SeriesSplines"].Points.AddXY(mmbf.B, 1);
-                //this.chartTerms.Series["SeriesSplines"].Points.AddXY(mmbf.C, 0);
+                series.Color = Color.Blue;
+                series.ChartType = SeriesChartType.Spline;
+                // replace this shit to adequate model
+                for (int i = mmbf.MinX; i < mmbf.MaxX; i++)
+                {
+                    series.Points.AddXY(i, Math.Pow(Math.E, -(Math.Pow(i - mmbf.B, 2) / (2 * Math.Pow(mmbf.C, 2)))));
+                }
             }
         }
 
@@ -274,6 +293,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
             if (this.listBoxTerms.SelectedIndex < this.listBoxTerms.Items.Count
                 && this.listBoxTerms.SelectedIndex >= 0)
             {
+                this.chartTerms.Series.Remove(this.chartTerms.Series.FindByName(this.listBoxTerms.SelectedItem.ToString()));
                 this.newFuzzyVariable.Terms.RemoveAt(this.listBoxTerms.SelectedIndex);
                 this.ClearTermField();
                 this.UpdateListBox();
@@ -355,6 +375,8 @@ namespace ExpertSystemWinForms.Views.Dialogs
             {
                 this.textBoxGaussB.Text = (term.Function as GaussMembershipFunction).B.ToString();
                 this.textBoxGaussC.Text = (term.Function as GaussMembershipFunction).C.ToString();
+                this.textBoxGaussMin.Text = (term.Function as GaussMembershipFunction).MinX.ToString();
+                this.textBoxGaussMax.Text = (term.Function as GaussMembershipFunction).MaxX.ToString();
             }
         }
 
@@ -373,6 +395,8 @@ namespace ExpertSystemWinForms.Views.Dialogs
             //gauss function field.
             this.textBoxGaussB.Text = "0";
             this.textBoxGaussC.Text = "0";
+            this.textBoxGaussMin.Text = "0";
+            this.textBoxGaussMax.Text = "10";
         }
 
         /// <summary>

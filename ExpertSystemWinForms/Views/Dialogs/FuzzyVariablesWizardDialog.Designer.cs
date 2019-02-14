@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnNext = new System.Windows.Forms.Button();
@@ -50,6 +50,7 @@
             this.labelVariableWizardDescription = new System.Windows.Forms.Label();
             this.secondStep = new System.Windows.Forms.TabPage();
             this.groupBoxAddingTerms = new System.Windows.Forms.GroupBox();
+            this.chartTerms = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelGauss = new System.Windows.Forms.Panel();
             this.textBoxGaussC = new System.Windows.Forms.TextBox();
@@ -76,7 +77,9 @@
             this.textBoxVariableComment = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.labelVariableWizardComment = new System.Windows.Forms.Label();
-            this.chartTerms = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxGaussMin = new System.Windows.Forms.TextBox();
+            this.textBoxGaussMax = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -85,13 +88,13 @@
             this.groupBox1.SuspendLayout();
             this.secondStep.SuspendLayout();
             this.groupBoxAddingTerms.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTerms)).BeginInit();
             this.panel2.SuspendLayout();
             this.panelGauss.SuspendLayout();
             this.panelTriangle.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.thirdStep.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chartTerms)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -356,6 +359,41 @@
             this.groupBoxAddingTerms.TabStop = false;
             this.groupBoxAddingTerms.Text = "Add Terms";
             // 
+            // chartTerms
+            // 
+            chartArea2.AxisX.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Lines;
+            chartArea2.AxisX.IsLabelAutoFit = false;
+            chartArea2.AxisX.LabelStyle.Font = new System.Drawing.Font("Arial", 6F);
+            chartArea2.AxisX.MajorGrid.Enabled = false;
+            chartArea2.AxisX.TitleFont = new System.Drawing.Font("Arial", 5F);
+            chartArea2.AxisY.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Lines;
+            chartArea2.AxisY.InterlacedColor = System.Drawing.Color.White;
+            chartArea2.AxisY.IsLabelAutoFit = false;
+            chartArea2.AxisY.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F);
+            chartArea2.AxisY.LabelStyle.Interval = 0.2D;
+            chartArea2.AxisY.MajorGrid.Enabled = false;
+            chartArea2.AxisY.Maximum = 1D;
+            chartArea2.AxisY.Minimum = 0D;
+            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Arial", 7F);
+            chartArea2.Name = "ChartAreaTerms";
+            this.chartTerms.ChartAreas.Add(chartArea2);
+            this.chartTerms.Location = new System.Drawing.Point(143, 139);
+            this.chartTerms.Name = "chartTerms";
+            series3.ChartArea = "ChartAreaTerms";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            series3.Name = "SeriesLines";
+            series3.Points.Add(dataPoint2);
+            series4.ChartArea = "ChartAreaTerms";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series4.Color = System.Drawing.Color.Gray;
+            series4.Name = "SeriesSplines";
+            this.chartTerms.Series.Add(series3);
+            this.chartTerms.Series.Add(series4);
+            this.chartTerms.Size = new System.Drawing.Size(247, 97);
+            this.chartTerms.TabIndex = 8;
+            this.chartTerms.Text = "chart1";
+            // 
             // panel2
             // 
             this.panel2.AutoScroll = true;
@@ -369,13 +407,16 @@
             // panelGauss
             // 
             this.panelGauss.Controls.Add(this.textBoxGaussC);
+            this.panelGauss.Controls.Add(this.textBoxGaussMax);
+            this.panelGauss.Controls.Add(this.textBoxGaussMin);
             this.panelGauss.Controls.Add(this.textBoxGaussB);
             this.panelGauss.Controls.Add(this.label6);
+            this.panelGauss.Controls.Add(this.label8);
             this.panelGauss.Controls.Add(this.label7);
             this.panelGauss.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelGauss.Location = new System.Drawing.Point(0, 102);
             this.panelGauss.Name = "panelGauss";
-            this.panelGauss.Size = new System.Drawing.Size(131, 73);
+            this.panelGauss.Size = new System.Drawing.Size(131, 92);
             this.panelGauss.TabIndex = 6;
             this.panelGauss.Visible = false;
             // 
@@ -668,39 +709,36 @@
     "h an initial set of terms and membership functions. In this step you specify nam" +
     "e, color and type of the variable.";
             // 
-            // chartTerms
+            // label8
             // 
-            chartArea1.AxisX.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Lines;
-            chartArea1.AxisX.IsLabelAutoFit = false;
-            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Arial", 6F);
-            chartArea1.AxisX.MajorGrid.Enabled = false;
-            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Arial", 5F);
-            chartArea1.AxisY.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Lines;
-            chartArea1.AxisY.InterlacedColor = System.Drawing.Color.White;
-            chartArea1.AxisY.IsLabelAutoFit = false;
-            chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F);
-            chartArea1.AxisY.LabelStyle.Interval = 0.2D;
-            chartArea1.AxisY.MajorGrid.Enabled = false;
-            chartArea1.AxisY.Maximum = 1D;
-            chartArea1.AxisY.Minimum = 0D;
-            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Arial", 7F);
-            chartArea1.Name = "ChartAreaTerms";
-            this.chartTerms.ChartAreas.Add(chartArea1);
-            this.chartTerms.Location = new System.Drawing.Point(143, 139);
-            this.chartTerms.Name = "chartTerms";
-            series1.ChartArea = "ChartAreaTerms";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Name = "SeriesLines";
-            series1.Points.Add(dataPoint1);
-            series2.ChartArea = "ChartAreaTerms";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series2.Color = System.Drawing.Color.Gray;
-            series2.Name = "SeriesSplines";
-            this.chartTerms.Series.Add(series1);
-            this.chartTerms.Series.Add(series2);
-            this.chartTerms.Size = new System.Drawing.Size(247, 97);
-            this.chartTerms.TabIndex = 8;
-            this.chartTerms.Text = "chart1";
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label8.Location = new System.Drawing.Point(3, 66);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(24, 15);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "x E";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // textBoxGaussMin
+            // 
+            this.textBoxGaussMin.Font = new System.Drawing.Font("Arial", 9F);
+            this.textBoxGaussMin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxGaussMin.Location = new System.Drawing.Point(30, 63);
+            this.textBoxGaussMin.Name = "textBoxGaussMin";
+            this.textBoxGaussMin.Size = new System.Drawing.Size(47, 21);
+            this.textBoxGaussMin.TabIndex = 0;
+            this.textBoxGaussMin.Text = "0";
+            // 
+            // textBoxGaussMax
+            // 
+            this.textBoxGaussMax.Font = new System.Drawing.Font("Arial", 9F);
+            this.textBoxGaussMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxGaussMax.Location = new System.Drawing.Point(80, 63);
+            this.textBoxGaussMax.Name = "textBoxGaussMax";
+            this.textBoxGaussMax.Size = new System.Drawing.Size(47, 21);
+            this.textBoxGaussMax.TabIndex = 0;
+            this.textBoxGaussMax.Text = "10";
             // 
             // FuzzyVariableWizardDialog
             // 
@@ -723,6 +761,7 @@
             this.secondStep.ResumeLayout(false);
             this.groupBoxAddingTerms.ResumeLayout(false);
             this.groupBoxAddingTerms.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTerms)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panelGauss.ResumeLayout(false);
             this.panelGauss.PerformLayout();
@@ -732,7 +771,6 @@
             this.thirdStep.ResumeLayout(false);
             this.thirdStep.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chartTerms)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -784,5 +822,8 @@
         private System.Windows.Forms.Label labelVariableWizardMBFDescription;
         private System.Windows.Forms.Label labelVariableWizardComment;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartTerms;
+        private System.Windows.Forms.TextBox textBoxGaussMax;
+        private System.Windows.Forms.TextBox textBoxGaussMin;
+        private System.Windows.Forms.Label label8;
     }
 }

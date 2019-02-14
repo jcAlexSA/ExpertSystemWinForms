@@ -32,5 +32,15 @@ namespace ExpertSystemWinForms.Models.MembershipFunctions
         /// The b params.
         /// </value>
         public float B { get; set; }
+
+        /// <summary>
+        /// Minimum Ox axis value.
+        /// </summary>
+        public int MinX { get; set; }
+
+        /// <summary>
+        /// Maximum Ox axis value.
+        /// </summary>
+        public int MaxX { get; set; }
     }
 }
