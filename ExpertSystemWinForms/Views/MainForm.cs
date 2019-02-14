@@ -1,5 +1,6 @@
 ﻿using ExpertSystemWinForms.Infrastructure;
 using ExpertSystemWinForms.Models;
+using ExpertSystemWinForms.Models.MembershipFunction;
 using ExpertSystemWinForms.Views.Dialogs;
 using System;
 using System.Collections.Generic;
@@ -72,8 +73,18 @@ namespace ExpertSystemWinForms
             this.FuzzyVariables.CollectionChanged += FuzzyVariables_CollectionChanged;
             this.RuleBlocks.CollectionChanged += RuleBlocks_CollectionChanged;
 
-            this.FuzzyVariables.Add(new FuzzyVariableModel("i_var1", VariableType.Input, new List<TermModel>(), "asdfasdfasdf"));
-            this.FuzzyVariables.Add(new FuzzyVariableModel("i_var2", VariableType.Input, new List<TermModel>(), "adsf"));
+            this.FuzzyVariables.Add(new FuzzyVariableModel("i_var1", VariableType.Input, new List<TermModel>()
+            {
+                new TermModel("low", new TriangleMembershipFunction()),
+                new TermModel("middle", new TriangleMembershipFunction()),
+                new TermModel("high", new TriangleMembershipFunction())
+            }, "asdfasdfasdf"));
+            this.FuzzyVariables.Add(new FuzzyVariableModel("i_var2", VariableType.Input, new List<TermModel>()
+            {
+                new TermModel("light", new TriangleMembershipFunction()),
+                new TermModel("normal", new TriangleMembershipFunction()),
+                new TermModel("hard", new TriangleMembershipFunction())
+            }, "adsf"));
             this.FuzzyVariables.Add(new FuzzyVariableModel("mid_var3", VariableType.Intermediate, new List<TermModel>(), "cvx"));
             this.FuzzyVariables.Add(new FuzzyVariableModel("mid_var4", VariableType.Intermediate, new List<TermModel>(), "cv"));
             this.FuzzyVariables.Add(new FuzzyVariableModel("out_var5", VariableType.Output, new List<TermModel>(), "afgh"));

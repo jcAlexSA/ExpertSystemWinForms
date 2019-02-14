@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnOk = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnOk = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.partialRuleBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fullRuleBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,21 +61,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(366, 31);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // btnOk
-            // 
-            this.btnOk.AutoSize = true;
-            this.btnOk.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnOk.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnOk.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnOk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnOk.Location = new System.Drawing.Point(186, 3);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(85, 25);
-            this.btnOk.TabIndex = 6;
-            this.btnOk.Text = "OK";
-            this.btnOk.UseVisualStyleBackColor = false;
-            // 
             // btnClose
             // 
             this.btnClose.AutoSize = true;
@@ -90,6 +75,21 @@
             this.btnClose.TabIndex = 6;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
+            // 
+            // btnOk
+            // 
+            this.btnOk.AutoSize = true;
+            this.btnOk.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnOk.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnOk.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnOk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.btnOk.Location = new System.Drawing.Point(186, 3);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(85, 25);
+            this.btnOk.TabIndex = 6;
+            this.btnOk.Text = "OK";
+            this.btnOk.UseVisualStyleBackColor = false;
             // 
             // menuStrip1
             // 
@@ -138,7 +138,7 @@
             this.dataGridViewRules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridViewRules.BackgroundColor = System.Drawing.Color.CadetBlue;
+            this.dataGridViewRules.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
             this.dataGridViewRules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewRules.Location = new System.Drawing.Point(11, 3);
             this.dataGridViewRules.Name = "dataGridViewRules";

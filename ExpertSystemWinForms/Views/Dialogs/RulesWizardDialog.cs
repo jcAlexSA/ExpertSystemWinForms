@@ -27,10 +27,28 @@ namespace ExpertSystemWinForms.Views.Dialogs
 
                 foreach (var term in variable.Terms)
                 {
-                    Console.WriteLine($"term {term.Name}, \\t {term.Function.Name}");
+                    Console.WriteLine($"term {term.Name}, \t {term.Function.Name}");
                 }
                 Console.WriteLine("-------------------------------");
             }
+
+            this.BindingDataGridToSource(this.ruleBlock.InputFuzzyVariables.Select(v => new { Name = v.Terms.Select(t => t.Name) } ));
+        }
+
+        private void BindingDataGridToSource<T>(IList<T> collection)
+        {
+            BindingList<T> bindingList = new BindingList<T>(collection);
+            var sourceCustomer = new BindingSource(bindingList, null);
+            this.dataGridViewRules.DataSource = sourceCustomer;
+            this.dataGridViewRules.Refresh();
+        }
+
+        private void BindingDataGridToSource(object obj)
+        {
+            var sourceCustomer = new BindingSource(obj, null);
+            this.dataGridViewRules.DataSource = sourceCustomer;
+
+            this.dataGridViewRules.Refresh();
         }
     }
 }
