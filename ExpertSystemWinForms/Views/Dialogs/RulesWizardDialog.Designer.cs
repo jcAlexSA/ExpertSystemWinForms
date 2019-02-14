@@ -54,11 +54,11 @@
             this.tableLayoutPanel1.Controls.Add(this.btnClose, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnOk, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 298);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 285);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(366, 31);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(415, 31);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // btnClose
@@ -69,9 +69,9 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClose.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnClose.Location = new System.Drawing.Point(277, 3);
+            this.btnClose.Location = new System.Drawing.Point(313, 3);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(86, 25);
+            this.btnClose.Size = new System.Drawing.Size(99, 25);
             this.btnClose.TabIndex = 6;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -84,9 +84,9 @@
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnOk.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnOk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnOk.Location = new System.Drawing.Point(186, 3);
+            this.btnOk.Location = new System.Drawing.Point(210, 3);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(85, 25);
+            this.btnOk.Size = new System.Drawing.Size(97, 25);
             this.btnOk.TabIndex = 6;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = false;
@@ -101,7 +101,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(366, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(415, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStripRulesControl";
             // 
@@ -130,7 +130,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(366, 274);
+            this.panel1.Size = new System.Drawing.Size(415, 261);
             this.panel1.TabIndex = 4;
             // 
             // dataGridViewRules
@@ -142,15 +142,16 @@
             this.dataGridViewRules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewRules.Location = new System.Drawing.Point(11, 3);
             this.dataGridViewRules.Name = "dataGridViewRules";
-            this.dataGridViewRules.Size = new System.Drawing.Size(342, 264);
+            this.dataGridViewRules.Size = new System.Drawing.Size(391, 251);
             this.dataGridViewRules.TabIndex = 0;
+            this.dataGridViewRules.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridViewRules_RowsAdded);
             // 
             // RulesWizardDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(366, 329);
+            this.ClientSize = new System.Drawing.Size(415, 316);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
