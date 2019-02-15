@@ -78,16 +78,20 @@ namespace ExpertSystemWinForms
                 new TermModel("low", new TriangleMembershipFunction()),
                 new TermModel("middle", new TriangleMembershipFunction()),
                 new TermModel("high", new TriangleMembershipFunction())
-            }, "asdfasdfasdf"));
+            }, "comment for input"));
             this.FuzzyVariables.Add(new FuzzyVariableModel("i_var2", VariableType.Input, new List<TermModel>()
             {
                 new TermModel("light", new TriangleMembershipFunction()),
                 new TermModel("normal", new TriangleMembershipFunction()),
                 new TermModel("hard", new TriangleMembershipFunction())
-            }, "adsf"));
+            }, "comment for input"));
             this.FuzzyVariables.Add(new FuzzyVariableModel("mid_var3", VariableType.Intermediate, new List<TermModel>(), "cvx"));
             this.FuzzyVariables.Add(new FuzzyVariableModel("mid_var4", VariableType.Intermediate, new List<TermModel>(), "cv"));
-            this.FuzzyVariables.Add(new FuzzyVariableModel("out_var5", VariableType.Output, new List<TermModel>(), "afgh"));
+            this.FuzzyVariables.Add(new FuzzyVariableModel("out_var5", VariableType.Output, new List<TermModel>(){
+                new TermModel("positive", new TriangleMembershipFunction()),
+                new TermModel("normal", new TriangleMembershipFunction()),
+                new TermModel("negative", new TriangleMembershipFunction())
+            }, "comment for output"));
 
             this.RuleBlocks.Add(new RuleBlockModel("rb1",
                 new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type==VariableType.Input)),

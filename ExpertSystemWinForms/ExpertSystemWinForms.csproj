@@ -56,9 +56,11 @@
     <Compile Include="Models\FuzzyVariableModel.cs" />
     <Compile Include="Models\Interfaces\IMembershipFunction.cs" />
     <Compile Include="Infrastructure\Interfaces\IUserControlCreator.cs" />
+    <Compile Include="Models\Interfaces\IRules.cs" />
     <Compile Include="Models\MembershipFunctions\GaussMembershipFunction.cs" />
     <Compile Include="Models\MembershipFunctions\TriangleMembershipFunction.cs" />
     <Compile Include="Models\RuleBlockModel.cs" />
+    <Compile Include="Models\RulesModels\RulesModel.cs" />
     <Compile Include="Models\TermModel.cs" />
     <Compile Include="Views\Dialogs\FuzzyVariablesWizardDialog.cs">
       <SubType>Form</SubType>

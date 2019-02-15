@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExpertSystemWinForms.Models.RulesModels;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -37,6 +38,14 @@ namespace ExpertSystemWinForms.Models
         public ObservableCollection<FuzzyVariableModel> OutputFuzzyVariables { get; set; } = new ObservableCollection<FuzzyVariableModel>();
 
         /// <summary>
+        /// Gets or sets the expert rules of current rule block.
+        /// </summary>
+        /// <value>
+        /// The rules.
+        /// </value>
+        public RulesModel Rules { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="RuleBlockModel"/> class.
         /// </summary>
         public RuleBlockModel()
@@ -64,6 +73,21 @@ namespace ExpertSystemWinForms.Models
             this.Name = name;
             this.InputFuzzyVariables = inputFuzzyVariables;
             this.OutputFuzzyVariables = outputFuzzyVariables;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RuleBlockModel"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="inputFuzzyVariables">The input fuzzy variables.</param>
+        /// <param name="outputFuzzyVariables">The output fuzzy variables.</param>
+        /// <param name="rules">The rules.</param>
+        public RuleBlockModel(string name, ObservableCollection<FuzzyVariableModel> inputFuzzyVariables, ObservableCollection<FuzzyVariableModel> outputFuzzyVariables, RulesModel rules)
+        {
+            this.Name = name;
+            this.InputFuzzyVariables = inputFuzzyVariables;
+            this.OutputFuzzyVariables = outputFuzzyVariables;
+            this.Rules = rules;
         }
     }
 }

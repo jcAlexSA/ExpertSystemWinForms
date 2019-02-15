@@ -1,4 +1,6 @@
 ﻿using ExpertSystemWinForms.Models;
+using ExpertSystemWinForms.Models.MembershipFunction;
+using ExpertSystemWinForms.Models.RulesModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,7 +16,8 @@ namespace ExpertSystemWinForms.Views.Dialogs
     public partial class RulesWizardDialog : Form
     {
         private RuleBlockModel ruleBlock;
-        private string[][] row = new string[6][];
+
+        private RulesModel rules;
 
         public RulesWizardDialog(RuleBlockModel ruleBlock)
         {
@@ -22,62 +25,72 @@ namespace ExpertSystemWinForms.Views.Dialogs
 
             this.ruleBlock = ruleBlock;
 
-            foreach (var variable in this.ruleBlock.InputFuzzyVariables)
+            if (this.ruleBlock.Rules == null)
             {
-                Console.WriteLine(variable.Name);
+                rules = new RulesModel();
+            }
+            else
+            {
+                rules = this.ruleBlock.Rules;
+            }
 
-                foreach (var term in variable.Terms)
+            this.AddColumnsAndCreateCellTemplates(this.rules, this.ruleBlock.InputFuzzyVariables, this.ruleBlock.OutputFuzzyVariables);
+
+            this.SetRulesToDataGrid(this.rules);
+        }
+        
+        private void AddColumnsAndCreateCellTemplates(RulesModel rules, ICollection<FuzzyVariableModel> inputVariables, ICollection<FuzzyVariableModel> ourputVariables)
+        {
+            foreach (var variable in inputVariables.Concat(ourputVariables))
+            {
+                var col = new DataGridViewComboBoxColumn        // TODO: here could be call an interface method
                 {
-                    Console.WriteLine($"term {term.Name}, \t {term.Function.Name}");
-                }
-                Console.WriteLine("-------------------------------");
+                    Name = variable.Name,
+                    DataSource = variable.Terms.Select(t => t.Name).ToList(),
+                    ValueType = typeof(string)
+                };
+                this.dataGridViewRules.Columns.Add(col);
             }
-
-            this.dataGridViewRules.ColumnCount = 3;
-            this.dataGridViewRules.Columns[0].Name = "ID";
-            this.dataGridViewRules.Columns[1].Name = "Name";
-            this.dataGridViewRules.Columns[2].Name = "City";
-
-            row[0] = new string[] { "1", "DEvesh omar", "NOIDA" };
-            this.dataGridViewRules.Rows.Add(row[0]);
-
-            row[1] = new string[] { "2", "ROLI", "KANPUR" };
-            this.dataGridViewRules.Rows.Add(row[1]);
-
-            row[2] = new string[] { "3", "DEVESH", "NOIDA!22" };
-            this.dataGridViewRules.Rows.Add(row[2]);
-
-            row[3] = new string[] { "4", "ROLI", "MAINPURI" };
-            this.dataGridViewRules.Rows.Add(row[3]);
-
-            //this.BindingDataGridToSource(this.ruleBlock.InputFuzzyVariables.Select(v => new { Name = v.Name, Comm = v.Comment }));
+            this.dataGridViewRules.Columns[inputVariables.Count - 1].DividerWidth = 3;  // width = 3px
         }
 
-        private void BindingDataGridToSource<T>(IList<T> collection)
+        private void BtnOk_Click(object sender, EventArgs e)
         {
-            BindingList<T> bindingList = new BindingList<T>(collection);
-            var sourceCustomer = new BindingSource(bindingList, null);
-            this.dataGridViewRules.DataSource = sourceCustomer;
-            this.dataGridViewRules.Refresh();
+            this.UpdateRulesFromDataGrid(this.rules);
+
+            this.Close();
         }
 
-        private void BindingDataGridToSource(object obj)
+        private void SetRulesToDataGrid(RulesModel rules)
         {
-            var sourceCustomer = new BindingSource(obj, null);
-            sourceCustomer.AllowNew = true;
 
-            this.dataGridViewRules.DataSource = sourceCustomer;
-
-            this.dataGridViewRules.Refresh();
-        }
-
-        private void dataGridViewRules_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            if(row != null)
-            foreach (var r in row)
+            //int index = 0;
+            foreach (var rule in rules.Rules)
             {
-                Console.WriteLine(r); 
+                for (int i = 0; i < rule.Value.Count; i++)
+                {
+                    if (this.dataGridViewRules.Rows.Count == rule.Value.Count)
+                        this.dataGridViewRules.Rows.Add();
+
+                    this.dataGridViewRules[rule.Key, i].Value = rule.Value[i];
+                    //++index;
+                }
             }
+        }
+
+        private void UpdateRulesFromDataGrid(RulesModel rules)
+        {
+            List<string> values = null;
+            for (int i = 0; i < this.dataGridViewRules.ColumnCount; i++)
+            {
+                values = new List<string>();
+                for (int j = 0; j < this.dataGridViewRules.RowCount - 1; j++)
+                {
+                    values.Add(this.dataGridViewRules[i, j].Value.ToString());
+                }
+                this.rules.Rules.Add(this.dataGridViewRules.Columns[i].Name.ToString(), values);
+            }
+            this.ruleBlock.Rules = this.rules;
         }
     }
 }
