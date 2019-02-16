@@ -52,7 +52,7 @@ namespace ExpertSystemWinForms
         /// The fuzzy variables.
         /// </value>
         public ObservableCollection<FuzzyVariableModel> FuzzyVariables { get; set; } = new ObservableCollection<FuzzyVariableModel>();
-        
+
         /// <summary>
         /// Gets or sets the rule blocks.
         /// </summary>
@@ -76,7 +76,7 @@ namespace ExpertSystemWinForms
             this.FuzzyVariables.Add(new FuzzyVariableModel("i_var1", VariableType.Input, new List<TermModel>()
             {
                 new TermModel("low", new TriangleMembershipFunction()),
-                new TermModel("middle", new TriangleMembershipFunction()),
+                new TermModel("middle", new TriangleMembershipFunction() ),
                 new TermModel("high", new TriangleMembershipFunction())
             }, "comment for input"));
             this.FuzzyVariables.Add(new FuzzyVariableModel("i_var2", VariableType.Input, new List<TermModel>()
@@ -94,10 +94,10 @@ namespace ExpertSystemWinForms
             }, "comment for output"));
 
             this.RuleBlocks.Add(new RuleBlockModel("rb1",
-                new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type==VariableType.Input)),
+                new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Input)),
                 new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Output))));
             this.RuleBlocks.Add(new RuleBlockModel("rb2",
-                new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type==VariableType.Input)),
+                new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Input)),
                 new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Output || v.Type == VariableType.Intermediate))));
 
             //temporary
@@ -235,7 +235,7 @@ namespace ExpertSystemWinForms
                 // update ruleBlock node in treeViewNode.
                 this.RemoveOldRuleBlockFromTreeView(oldName);
                 this.AddNewRuleBlockToTreeView(ruleBlock);
-                
+
                 // update lines for ruleBlock.
                 this.LinesSet.RemoveLinesRelativeToElement(panelToUpdate);
                 this.AddLinesBetweenVariablesAndRuleBlock(ruleBlock, panelToUpdate);

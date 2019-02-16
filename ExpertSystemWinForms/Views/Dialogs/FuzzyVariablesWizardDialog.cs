@@ -34,8 +34,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
         public FuzzyVariableWizardDialog()
         {
             InitializeComponent();
-
-            this.newFuzzyVariable = new FuzzyVariableModel();
+            this.chartTerms.Series.Clear(); this.newFuzzyVariable = new FuzzyVariableModel();
         }
 
         /// <summary>
@@ -46,15 +45,21 @@ namespace ExpertSystemWinForms.Views.Dialogs
         {
             InitializeComponent();
 
+            // copy variable
             this.oldFuzzyVariable = fuzzyVariable;
             this.newFuzzyVariable = new FuzzyVariableModel(
-                this.oldFuzzyVariable.Name, 
-                this.oldFuzzyVariable.Type, 
-                this.oldFuzzyVariable.Terms.ToList(), 
+                this.oldFuzzyVariable.Name,
+                this.oldFuzzyVariable.Type,
+                this.oldFuzzyVariable.Terms.ToList(),
                 this.oldFuzzyVariable.Comment);
 
             // Update all fields in dialog according to old Fuzzy Variable.
             this.UpdateListBox();
+            foreach (var term in this.newFuzzyVariable.Terms)
+            {
+                this.UpdateChart(term);
+            }
+
             this.textBoxVariableName.Text = this.newFuzzyVariable.Name;
             this.textBoxVariableComment.Text = this.newFuzzyVariable.Comment;
 
@@ -73,16 +78,6 @@ namespace ExpertSystemWinForms.Views.Dialogs
         }
 
         /// <summary>
-        /// Handles the Click event of the btnClose control.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void BtnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        /// <summary>
         /// Handles the Click event of the btnNext control.
         /// </summary>
         /// <param name="sender">The source of the event.</param>
@@ -97,7 +92,8 @@ namespace ExpertSystemWinForms.Views.Dialogs
             // save variable
             else if (this.tabControl.SelectedIndex == this.tabControl.TabCount - 1)
             {
-                SendVariable();
+                SendVariableToMainForm();
+                this.Close();
             }
         }
 
@@ -121,13 +117,35 @@ namespace ExpertSystemWinForms.Views.Dialogs
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void BtnEnd_Click(object sender, EventArgs e)
         {
-            SendVariable();
+            SendVariableToMainForm();
+            this.Close();
+        }
+
+        /// <summary>
+        /// Handles the SelectedIndexChanged event of the TabControl control. Change 'next button' name 
+        /// and save fuzzy variable if user on the last column.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (this.tabControl.SelectedIndex == this.tabControl.TabCount - 1)
+            {
+                this.btnNext.Text = "Save";
+            }
+            else
+            {
+                if (this.btnNext.Text.Equals("Save"))
+                {
+                    this.btnNext.Text = "Next";
+                }
+            }
         }
 
         /// <summary>
         /// Send the variable to main form.
         /// </summary>
-        private void SendVariable()
+        private void SendVariableToMainForm()
         {
             this.newFuzzyVariable.Name = this.textBoxVariableName.Text;
             this.newFuzzyVariable.Comment = this.textBoxVariableComment.Text;
@@ -164,28 +182,6 @@ namespace ExpertSystemWinForms.Views.Dialogs
             {
                 ownerWindow.AddVariable(this.newFuzzyVariable);
             }
-            this.Close();
-        }
-
-        /// <summary>
-        /// Handles the SelectedIndexChanged event of the TabControl control. Change 'next button' name 
-        /// and save fuzzy variable if user on the last column.
-        /// </summary>
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-        private void TabControl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (this.tabControl.SelectedIndex == this.tabControl.TabCount - 1)
-            {
-                this.btnNext.Text = "Save";
-            }
-            else
-            {
-                if (this.btnNext.Text.Equals("Save"))
-                {
-                    this.btnNext.Text = "Next";
-                }
-            }
         }
 
         /// <summary>
@@ -201,33 +197,29 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 return;
             }
 
-            // TODO here factory.
-
-
+            IMembershipFunction function = null;
             if (this.comboBoxVariableForm.SelectedItem.Equals("Triangle"))
             {
                 // TODO: Make validation for entered values.
-                var triangleFunction = new TriangleMembershipFunction
+                function = new TriangleMembershipFunction
                 {
                     Left = Int32.Parse(this.textBoxTriangleLeft.Text),
                     Middle = Int32.Parse(this.textBoxTriangleMiddle.Text),
                     Right = Int32.Parse(this.textBoxTriangleRight.Text)
                 };
-                term.Function = triangleFunction;
             }
             else if (this.comboBoxVariableForm.SelectedItem.Equals("Gauss"))
             {
                 // TODO: Make validation
-                var gaussFunction = new GaussMembershipFunction
+                function = new GaussMembershipFunction
                 {
-                    B = Single.Parse(this.textBoxGaussB.Text),
-                    C = Single.Parse(this.textBoxGaussC.Text),
-                    MinX = Int32.Parse(this.textBoxGaussMin.Text),
-                    MaxX = Int32.Parse(this.textBoxGaussMax.Text)
+                    B = Int32.Parse(this.textBoxGaussB.Text),
+                    C = Int32.Parse(this.textBoxGaussC.Text)
                 };
-                term.Function = gaussFunction;
             }
+            term.Function = function;
 
+            /// Checks if term was edited or created new one.
             if (this.newFuzzyVariable.Terms.Any(t => t.Name.Equals(this.textBoxTermName.Text.ToString())))
             {
                 int termIndex = this.newFuzzyVariable.Terms.FindIndex(t => t.Name.Equals(this.textBoxTermName.Text));
@@ -245,12 +237,15 @@ namespace ExpertSystemWinForms.Views.Dialogs
         }
 
         /// <summary>
-        /// Updates the chart.
+        /// Updates the chart by drawing membership function.
         /// </summary>
         private void UpdateChart(TermModel term)
-    {
+        {
+            //var series = this.chartTerms.Series["SeriesLines"];
+
             Series series = null;
-            if ((series = this.chartTerms.Series.FindByName(term.Name)) != null){
+            if ((series = this.chartTerms.Series.FindByName(term.Name)) != null)
+            {
                 series.Points.Clear();
             }
             else
@@ -259,28 +254,30 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 this.chartTerms.Series.Add(series);
             }
 
+            //series.ChartType = SeriesChartType.Line;
+            //series.BorderWidth = 2;
+            //////You may want to set the display window to exclude the dummy..
+            //Axis XA = this.chartTerms.ChartAreas[0].AxisX;
+            //XA.Minimum = -10;
+            //XA.Maximum = 10;
+
             if (term.Function is TriangleMembershipFunction)
             {
-                var mmbf = term.Function as TriangleMembershipFunction;
 
                 series.Color = Color.Red;
                 series.ChartType = SeriesChartType.Line;
+                term.Function.DrawFunctionOnSeriesChart(series);
 
-                series.Points.AddXY(mmbf.Left, 0);
-                series.Points.AddXY(mmbf.Middle, 1);
-                series.Points.AddXY(mmbf.Right, 0);
+
             }
             else if (term.Function is GaussMembershipFunction)
             {
-                var mmbf = term.Function as GaussMembershipFunction;
                 series.Color = Color.Blue;
                 series.ChartType = SeriesChartType.Spline;
-                // replace this shit to adequate model
-                for (int i = mmbf.MinX; i < mmbf.MaxX; i++)
-                {
-                    series.Points.AddXY(i, Math.Pow(Math.E, -(Math.Pow(i - mmbf.B, 2) / (2 * Math.Pow(mmbf.C, 2)))));
-                }
+                // Drawing function.
+                term.Function.DrawFunctionOnSeriesChart(series);
             }
+
         }
 
         /// <summary>
@@ -349,7 +346,8 @@ namespace ExpertSystemWinForms.Views.Dialogs
         /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
         private void ListBoxTerms_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if ((sender as ListBox).SelectedIndex >= 0){
+            if ((sender as ListBox).SelectedIndex >= 0)
+            {
                 TermModel term = this.newFuzzyVariable.Terms.ElementAt((sender as ListBox).SelectedIndex);
 
                 this.comboBoxVariableForm.SelectedItem = term.Function.Name;
@@ -375,8 +373,6 @@ namespace ExpertSystemWinForms.Views.Dialogs
             {
                 this.textBoxGaussB.Text = (term.Function as GaussMembershipFunction).B.ToString();
                 this.textBoxGaussC.Text = (term.Function as GaussMembershipFunction).C.ToString();
-                this.textBoxGaussMin.Text = (term.Function as GaussMembershipFunction).MinX.ToString();
-                this.textBoxGaussMax.Text = (term.Function as GaussMembershipFunction).MaxX.ToString();
             }
         }
 
@@ -395,8 +391,6 @@ namespace ExpertSystemWinForms.Views.Dialogs
             //gauss function field.
             this.textBoxGaussB.Text = "0";
             this.textBoxGaussC.Text = "0";
-            this.textBoxGaussMin.Text = "0";
-            this.textBoxGaussMax.Text = "10";
         }
 
         /// <summary>

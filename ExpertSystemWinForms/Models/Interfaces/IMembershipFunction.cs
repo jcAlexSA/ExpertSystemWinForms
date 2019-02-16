@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ExpertSystemWinForms.Models.Interfaces
 {
@@ -18,5 +14,11 @@ namespace ExpertSystemWinForms.Models.Interfaces
         /// The name.
         /// </value>
         string Name { get; }
+
+        /// <summary>
+        /// Draws the function on chart.
+        /// </summary>
+        /// <param name="series">The series on which draw function.</param>
+        void DrawFunctionOnSeriesChart(Series series);
     }
 }

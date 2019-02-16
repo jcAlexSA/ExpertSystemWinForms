@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ExpertSystemWinForms.Models.MembershipFunctions
 {
@@ -23,7 +24,7 @@ namespace ExpertSystemWinForms.Models.MembershipFunctions
         /// <value>
         /// The c params.
         /// </value>
-        public float C { get; set; }
+        public int C { get; set; }
 
         /// <summary>
         /// Gets or sets the B params.
@@ -31,16 +32,53 @@ namespace ExpertSystemWinForms.Models.MembershipFunctions
         /// <value>
         /// The b params.
         /// </value>
-        public float B { get; set; }
+        public int B { get; set; }
 
         /// <summary>
-        /// Minimum Ox axis value.
+        /// Gets or sets the first carrier of function.
         /// </summary>
-        public int MinX { get; set; }
+        /// <value>
+        /// The first carrier.
+        /// </value>
+        public float? Min { get; set; } = null;
 
         /// <summary>
-        /// Maximum Ox axis value.
+        /// Gets or sets the last carrier of function.
         /// </summary>
-        public int MaxX { get; set; }
+        /// <value>
+        /// The second carrier.
+        /// </value>
+        public float? Max { get; set; } = null;
+
+        public float MembershipFunction(float x)
+        {
+            float res = (float)Math.Pow(Math.E, -(Math.Pow(x - this.B, 2) / (2 * Math.Pow(this.C, 2))));
+            return res;
+        }
+
+        /// <summary>
+        /// Draws the function on chart.
+        /// </summary>
+        /// <param name="series">The series on wich function drawing.</param>
+        public void DrawFunctionOnSeriesChart(Series series)
+        {
+            this.Min = -10;
+            this.Max = 10;
+
+            if (this.Min == null || this.Max == null)
+            {
+                this.CalculateMinMaxOfFunction();
+            }
+
+            for (float x = this.Min ?? 0; x < this.Max; x += 0.5f)
+            {
+                series.Points.AddXY(x, this.MembershipFunction(x));
+            }
+        }
+
+        private void CalculateMinMaxOfFunction()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

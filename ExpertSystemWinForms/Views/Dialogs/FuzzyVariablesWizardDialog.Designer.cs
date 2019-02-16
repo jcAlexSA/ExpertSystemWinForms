@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint2 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, 0D);
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.StripLine stripLine1 = new System.Windows.Forms.DataVisualization.Charting.StripLine();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnNext = new System.Windows.Forms.Button();
@@ -77,9 +78,6 @@
             this.textBoxVariableComment = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.labelVariableWizardComment = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBoxGaussMin = new System.Windows.Forms.TextBox();
-            this.textBoxGaussMax = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -105,7 +103,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(417, 407);
+            this.panel1.Size = new System.Drawing.Size(426, 415);
             this.panel1.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -120,11 +118,11 @@
             this.tableLayoutPanel1.Controls.Add(this.btnClose, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnEnd, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 379);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 387);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(417, 28);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(426, 28);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // btnNext
@@ -134,7 +132,7 @@
             this.btnNext.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnNext.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnNext.Location = new System.Drawing.Point(167, 3);
+            this.btnNext.Location = new System.Drawing.Point(176, 3);
             this.btnNext.Name = "btnNext";
             this.btnNext.Size = new System.Drawing.Size(80, 22);
             this.btnNext.TabIndex = 5;
@@ -149,7 +147,7 @@
             this.btnPrevious.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPrevious.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnPrevious.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnPrevious.Location = new System.Drawing.Point(81, 3);
+            this.btnPrevious.Location = new System.Drawing.Point(90, 3);
             this.btnPrevious.Name = "btnPrevious";
             this.btnPrevious.Size = new System.Drawing.Size(80, 22);
             this.btnPrevious.TabIndex = 0;
@@ -160,17 +158,17 @@
             // btnClose
             // 
             this.btnClose.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClose.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnClose.Location = new System.Drawing.Point(339, 3);
+            this.btnClose.Location = new System.Drawing.Point(348, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 22);
             this.btnClose.TabIndex = 2;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = false;
-            this.btnClose.Click += new System.EventHandler(this.BtnClose_Click);
             // 
             // btnEnd
             // 
@@ -179,7 +177,7 @@
             this.btnEnd.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEnd.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnEnd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnEnd.Location = new System.Drawing.Point(253, 3);
+            this.btnEnd.Location = new System.Drawing.Point(262, 3);
             this.btnEnd.Name = "btnEnd";
             this.btnEnd.Size = new System.Drawing.Size(80, 22);
             this.btnEnd.TabIndex = 4;
@@ -199,7 +197,7 @@
             this.tabControl.Location = new System.Drawing.Point(3, 3);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(411, 369);
+            this.tabControl.Size = new System.Drawing.Size(420, 377);
             this.tabControl.TabIndex = 0;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.TabControl_SelectedIndexChanged);
             // 
@@ -214,7 +212,7 @@
             this.firstStep.Location = new System.Drawing.Point(4, 23);
             this.firstStep.Name = "firstStep";
             this.firstStep.Padding = new System.Windows.Forms.Padding(3);
-            this.firstStep.Size = new System.Drawing.Size(403, 342);
+            this.firstStep.Size = new System.Drawing.Size(412, 350);
             this.firstStep.TabIndex = 0;
             this.firstStep.Text = " First Step";
             this.firstStep.UseVisualStyleBackColor = true;
@@ -229,7 +227,7 @@
             this.textBoxVariableName.Location = new System.Drawing.Point(74, 118);
             this.textBoxVariableName.MaxLength = 50;
             this.textBoxVariableName.Name = "textBoxVariableName";
-            this.textBoxVariableName.Size = new System.Drawing.Size(321, 21);
+            this.textBoxVariableName.Size = new System.Drawing.Size(300, 21);
             this.textBoxVariableName.TabIndex = 0;
             this.textBoxVariableName.WordWrap = false;
             // 
@@ -255,7 +253,7 @@
             this.groupBoxVariableType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBoxVariableType.Location = new System.Drawing.Point(3, 153);
             this.groupBoxVariableType.Name = "groupBoxVariableType";
-            this.groupBoxVariableType.Size = new System.Drawing.Size(392, 126);
+            this.groupBoxVariableType.Size = new System.Drawing.Size(402, 126);
             this.groupBoxVariableType.TabIndex = 1;
             this.groupBoxVariableType.TabStop = false;
             this.groupBoxVariableType.Text = "Type";
@@ -305,7 +303,7 @@
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
-            this.groupBox1.Size = new System.Drawing.Size(389, 97);
+            this.groupBox1.Size = new System.Drawing.Size(399, 97);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Define Linguistic Variable";
@@ -316,7 +314,7 @@
             this.labelVariableWizardDescription.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelVariableWizardDescription.Location = new System.Drawing.Point(10, 28);
             this.labelVariableWizardDescription.Name = "labelVariableWizardDescription";
-            this.labelVariableWizardDescription.Size = new System.Drawing.Size(369, 58);
+            this.labelVariableWizardDescription.Size = new System.Drawing.Size(379, 58);
             this.labelVariableWizardDescription.TabIndex = 0;
             this.labelVariableWizardDescription.Text = "The Linguistic Variables Wizard will help you to create a linguistic variable wit" +
     "h an initial set of terms and membership functions. In this step you specify nam" +
@@ -331,7 +329,7 @@
             this.secondStep.Location = new System.Drawing.Point(4, 23);
             this.secondStep.Name = "secondStep";
             this.secondStep.Padding = new System.Windows.Forms.Padding(3);
-            this.secondStep.Size = new System.Drawing.Size(403, 342);
+            this.secondStep.Size = new System.Drawing.Size(412, 350);
             this.secondStep.TabIndex = 1;
             this.secondStep.Text = "Second Step";
             this.secondStep.UseVisualStyleBackColor = true;
@@ -354,43 +352,55 @@
             this.groupBoxAddingTerms.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBoxAddingTerms.Location = new System.Drawing.Point(6, 103);
             this.groupBoxAddingTerms.Name = "groupBoxAddingTerms";
-            this.groupBoxAddingTerms.Size = new System.Drawing.Size(396, 228);
+            this.groupBoxAddingTerms.Size = new System.Drawing.Size(405, 236);
             this.groupBoxAddingTerms.TabIndex = 1;
             this.groupBoxAddingTerms.TabStop = false;
             this.groupBoxAddingTerms.Text = "Add Terms";
             // 
             // chartTerms
             // 
-            chartArea2.AxisX.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Lines;
-            chartArea2.AxisX.IsLabelAutoFit = false;
-            chartArea2.AxisX.LabelStyle.Font = new System.Drawing.Font("Arial", 6F);
-            chartArea2.AxisX.MajorGrid.Enabled = false;
-            chartArea2.AxisX.TitleFont = new System.Drawing.Font("Arial", 5F);
-            chartArea2.AxisY.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Lines;
-            chartArea2.AxisY.InterlacedColor = System.Drawing.Color.White;
-            chartArea2.AxisY.IsLabelAutoFit = false;
-            chartArea2.AxisY.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F);
-            chartArea2.AxisY.LabelStyle.Interval = 0.2D;
-            chartArea2.AxisY.MajorGrid.Enabled = false;
-            chartArea2.AxisY.Maximum = 1D;
-            chartArea2.AxisY.Minimum = 0D;
-            chartArea2.AxisY.TitleFont = new System.Drawing.Font("Arial", 7F);
-            chartArea2.Name = "ChartAreaTerms";
-            this.chartTerms.ChartAreas.Add(chartArea2);
+            this.chartTerms.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea1.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
+            chartArea1.AxisX.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Lines;
+            chartArea1.AxisX.IsLabelAutoFit = false;
+            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Arial", 6F);
+            chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.Gainsboro;
+            stripLine1.BackColor = System.Drawing.Color.Transparent;
+            chartArea1.AxisX.StripLines.Add(stripLine1);
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Arial", 5F);
+            chartArea1.AxisY.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Lines;
+            chartArea1.AxisY.InterlacedColor = System.Drawing.Color.White;
+            chartArea1.AxisY.Interval = 1D;
+            chartArea1.AxisY.IsLabelAutoFit = false;
+            chartArea1.AxisY.IsStartedFromZero = false;
+            chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F);
+            chartArea1.AxisY.LabelStyle.Interval = 0.2D;
+            chartArea1.AxisY.MajorGrid.Enabled = false;
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.Gainsboro;
+            chartArea1.AxisY.Maximum = 1D;
+            chartArea1.AxisY.Minimum = 0D;
+            chartArea1.AxisY.ScaleBreakStyle.StartFromZero = System.Windows.Forms.DataVisualization.Charting.StartFromZero.No;
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Arial", 7F);
+            chartArea1.Name = "ChartAreaTerms";
+            this.chartTerms.ChartAreas.Add(chartArea1);
             this.chartTerms.Location = new System.Drawing.Point(143, 139);
             this.chartTerms.Name = "chartTerms";
-            series3.ChartArea = "ChartAreaTerms";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            series3.Name = "SeriesLines";
-            series3.Points.Add(dataPoint2);
-            series4.ChartArea = "ChartAreaTerms";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series4.Color = System.Drawing.Color.Gray;
-            series4.Name = "SeriesSplines";
-            this.chartTerms.Series.Add(series3);
-            this.chartTerms.Series.Add(series4);
-            this.chartTerms.Size = new System.Drawing.Size(247, 97);
+            series1.ChartArea = "ChartAreaTerms";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            series1.Name = "SeriesLines";
+            series1.Points.Add(dataPoint1);
+            series1.YValuesPerPoint = 10;
+            series2.ChartArea = "ChartAreaTerms";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Color = System.Drawing.Color.Gray;
+            series2.Name = "SeriesSplines";
+            this.chartTerms.Series.Add(series1);
+            this.chartTerms.Series.Add(series2);
+            this.chartTerms.Size = new System.Drawing.Size(256, 91);
             this.chartTerms.TabIndex = 8;
             this.chartTerms.Text = "chart1";
             // 
@@ -401,22 +411,19 @@
             this.panel2.Controls.Add(this.panelTriangle);
             this.panel2.Location = new System.Drawing.Point(6, 83);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(131, 200);
+            this.panel2.Size = new System.Drawing.Size(131, 187);
             this.panel2.TabIndex = 7;
             // 
             // panelGauss
             // 
             this.panelGauss.Controls.Add(this.textBoxGaussC);
-            this.panelGauss.Controls.Add(this.textBoxGaussMax);
-            this.panelGauss.Controls.Add(this.textBoxGaussMin);
             this.panelGauss.Controls.Add(this.textBoxGaussB);
             this.panelGauss.Controls.Add(this.label6);
-            this.panelGauss.Controls.Add(this.label8);
             this.panelGauss.Controls.Add(this.label7);
             this.panelGauss.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelGauss.Location = new System.Drawing.Point(0, 102);
             this.panelGauss.Name = "panelGauss";
-            this.panelGauss.Size = new System.Drawing.Size(131, 92);
+            this.panelGauss.Size = new System.Drawing.Size(131, 68);
             this.panelGauss.TabIndex = 6;
             this.panelGauss.Visible = false;
             // 
@@ -551,9 +558,9 @@
             this.listBoxTerms.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.listBoxTerms.IntegralHeight = false;
             this.listBoxTerms.ItemHeight = 14;
-            this.listBoxTerms.Location = new System.Drawing.Point(210, 24);
+            this.listBoxTerms.Location = new System.Drawing.Point(211, 24);
             this.listBoxTerms.Name = "listBoxTerms";
-            this.listBoxTerms.Size = new System.Drawing.Size(180, 109);
+            this.listBoxTerms.Size = new System.Drawing.Size(188, 109);
             this.listBoxTerms.TabIndex = 4;
             this.listBoxTerms.SelectedIndexChanged += new System.EventHandler(this.ListBoxTerms_SelectedIndexChanged);
             // 
@@ -595,7 +602,7 @@
             "Triangle"});
             this.comboBoxVariableForm.Location = new System.Drawing.Point(61, 53);
             this.comboBoxVariableForm.Name = "comboBoxVariableForm";
-            this.comboBoxVariableForm.Size = new System.Drawing.Size(143, 23);
+            this.comboBoxVariableForm.Size = new System.Drawing.Size(144, 23);
             this.comboBoxVariableForm.TabIndex = 1;
             this.comboBoxVariableForm.Text = "Choose Type";
             this.comboBoxVariableForm.SelectedIndexChanged += new System.EventHandler(this.ComboBoxVariableForm_SelectedIndexChanged);
@@ -628,7 +635,7 @@
             this.textBoxTermName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.textBoxTermName.Location = new System.Drawing.Point(61, 24);
             this.textBoxTermName.Name = "textBoxTermName";
-            this.textBoxTermName.Size = new System.Drawing.Size(143, 21);
+            this.textBoxTermName.Size = new System.Drawing.Size(144, 21);
             this.textBoxTermName.TabIndex = 0;
             // 
             // groupBox2
@@ -641,7 +648,7 @@
             this.groupBox2.Location = new System.Drawing.Point(5, 6);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
-            this.groupBox2.Size = new System.Drawing.Size(397, 90);
+            this.groupBox2.Size = new System.Drawing.Size(406, 90);
             this.groupBox2.TabIndex = 0;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "MBF Definition";
@@ -652,7 +659,7 @@
             this.labelVariableWizardMBFDescription.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelVariableWizardMBFDescription.Location = new System.Drawing.Point(10, 28);
             this.labelVariableWizardMBFDescription.Name = "labelVariableWizardMBFDescription";
-            this.labelVariableWizardMBFDescription.Size = new System.Drawing.Size(377, 51);
+            this.labelVariableWizardMBFDescription.Size = new System.Drawing.Size(386, 51);
             this.labelVariableWizardMBFDescription.TabIndex = 8;
             this.labelVariableWizardMBFDescription.Text = "In this step you specify the number of terms, that determines the choice of term " +
     "names and the membership function definitions for the set of terms to be created" +
@@ -665,7 +672,7 @@
             this.thirdStep.Location = new System.Drawing.Point(4, 23);
             this.thirdStep.Name = "thirdStep";
             this.thirdStep.Padding = new System.Windows.Forms.Padding(3);
-            this.thirdStep.Size = new System.Drawing.Size(403, 342);
+            this.thirdStep.Size = new System.Drawing.Size(412, 350);
             this.thirdStep.TabIndex = 2;
             this.thirdStep.Text = "Third Step";
             this.thirdStep.UseVisualStyleBackColor = true;
@@ -679,7 +686,7 @@
             this.textBoxVariableComment.Location = new System.Drawing.Point(7, 102);
             this.textBoxVariableComment.Multiline = true;
             this.textBoxVariableComment.Name = "textBoxVariableComment";
-            this.textBoxVariableComment.Size = new System.Drawing.Size(395, 208);
+            this.textBoxVariableComment.Size = new System.Drawing.Size(405, 180);
             this.textBoxVariableComment.TabIndex = 0;
             // 
             // groupBox3
@@ -692,7 +699,7 @@
             this.groupBox3.Location = new System.Drawing.Point(6, 6);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
-            this.groupBox3.Size = new System.Drawing.Size(396, 89);
+            this.groupBox3.Size = new System.Drawing.Size(406, 89);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Comment For Variable";
@@ -703,48 +710,18 @@
             this.labelVariableWizardComment.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.labelVariableWizardComment.Location = new System.Drawing.Point(10, 28);
             this.labelVariableWizardComment.Name = "labelVariableWizardComment";
-            this.labelVariableWizardComment.Size = new System.Drawing.Size(376, 50);
+            this.labelVariableWizardComment.Size = new System.Drawing.Size(386, 50);
             this.labelVariableWizardComment.TabIndex = 9;
             this.labelVariableWizardComment.Text = "The Linguistic Variables Wizard will help you to create a linguistic variable wit" +
     "h an initial set of terms and membership functions. In this step you specify nam" +
     "e, color and type of the variable.";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(3, 66);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(24, 15);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "x E";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // textBoxGaussMin
-            // 
-            this.textBoxGaussMin.Font = new System.Drawing.Font("Arial", 9F);
-            this.textBoxGaussMin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxGaussMin.Location = new System.Drawing.Point(30, 63);
-            this.textBoxGaussMin.Name = "textBoxGaussMin";
-            this.textBoxGaussMin.Size = new System.Drawing.Size(47, 21);
-            this.textBoxGaussMin.TabIndex = 0;
-            this.textBoxGaussMin.Text = "0";
-            // 
-            // textBoxGaussMax
-            // 
-            this.textBoxGaussMax.Font = new System.Drawing.Font("Arial", 9F);
-            this.textBoxGaussMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxGaussMax.Location = new System.Drawing.Point(80, 63);
-            this.textBoxGaussMax.Name = "textBoxGaussMax";
-            this.textBoxGaussMax.Size = new System.Drawing.Size(47, 21);
-            this.textBoxGaussMax.TabIndex = 0;
-            this.textBoxGaussMax.Text = "10";
-            // 
             // FuzzyVariableWizardDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 407);
+            this.CancelButton = this.btnClose;
+            this.ClientSize = new System.Drawing.Size(426, 415);
             this.Controls.Add(this.panel1);
             this.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -822,8 +799,5 @@
         private System.Windows.Forms.Label labelVariableWizardMBFDescription;
         private System.Windows.Forms.Label labelVariableWizardComment;
         private System.Windows.Forms.DataVisualization.Charting.Chart chartTerms;
-        private System.Windows.Forms.TextBox textBoxGaussMax;
-        private System.Windows.Forms.TextBox textBoxGaussMin;
-        private System.Windows.Forms.Label label8;
     }
 }
