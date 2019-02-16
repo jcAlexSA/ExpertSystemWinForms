@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.StripLine stripLine1 = new System.Windows.Forms.DataVisualization.Charting.StripLine();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0,0,0,0,0,0,0,0,0");
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
@@ -364,13 +363,20 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             chartArea1.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
             chartArea1.AxisX.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Lines;
-            chartArea1.AxisX.IsLabelAutoFit = false;
+            chartArea1.AxisX.Interval = 1D;
+            chartArea1.AxisX.IntervalOffsetType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea1.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Number;
+            chartArea1.AxisX.IsStartedFromZero = false;
+            chartArea1.AxisX.LabelAutoFitMaxFontSize = 5;
+            chartArea1.AxisX.LabelAutoFitMinFontSize = 5;
             chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Arial", 6F);
-            chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisX.LineColor = System.Drawing.Color.DimGray;
+            chartArea1.AxisX.MajorGrid.Interval = 0D;
+            chartArea1.AxisX.MajorGrid.IntervalOffset = 0D;
             chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.Gainsboro;
-            stripLine1.BackColor = System.Drawing.Color.Transparent;
-            chartArea1.AxisX.StripLines.Add(stripLine1);
+            chartArea1.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
             chartArea1.AxisX.TitleFont = new System.Drawing.Font("Arial", 5F);
+            chartArea1.AxisX.TitleForeColor = System.Drawing.Color.DimGray;
             chartArea1.AxisY.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Lines;
             chartArea1.AxisY.InterlacedColor = System.Drawing.Color.White;
             chartArea1.AxisY.Interval = 1D;
@@ -378,12 +384,15 @@
             chartArea1.AxisY.IsStartedFromZero = false;
             chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F);
             chartArea1.AxisY.LabelStyle.Interval = 0.2D;
-            chartArea1.AxisY.MajorGrid.Enabled = false;
+            chartArea1.AxisY.LineColor = System.Drawing.Color.DimGray;
+            chartArea1.AxisY.MajorGrid.Interval = 0D;
             chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.Gainsboro;
+            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
             chartArea1.AxisY.Maximum = 1D;
             chartArea1.AxisY.Minimum = 0D;
             chartArea1.AxisY.ScaleBreakStyle.StartFromZero = System.Windows.Forms.DataVisualization.Charting.StartFromZero.No;
             chartArea1.AxisY.TitleFont = new System.Drawing.Font("Arial", 7F);
+            chartArea1.AxisY.TitleForeColor = System.Drawing.Color.DimGray;
             chartArea1.Name = "ChartAreaTerms";
             this.chartTerms.ChartAreas.Add(chartArea1);
             this.chartTerms.Location = new System.Drawing.Point(143, 139);

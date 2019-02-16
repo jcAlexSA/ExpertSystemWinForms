@@ -54,11 +54,11 @@
             this.tableLayoutPanel1.Controls.Add(this.btnClose, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnOk, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 314);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 285);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(486, 31);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(445, 31);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // btnClose
@@ -70,7 +70,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnClose.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnClose.Location = new System.Drawing.Point(389, 3);
+            this.btnClose.Location = new System.Drawing.Point(348, 3);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(87, 25);
@@ -86,7 +86,7 @@
             this.btnOk.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnOk.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.btnOk.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.btnOk.Location = new System.Drawing.Point(289, 3);
+            this.btnOk.Location = new System.Drawing.Point(248, 3);
             this.btnOk.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(87, 25);
@@ -105,7 +105,7 @@
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
             this.menuStripMain.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStripMain.Size = new System.Drawing.Size(486, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(445, 24);
             this.menuStripMain.TabIndex = 3;
             this.menuStripMain.Text = "menuStripRulesControl";
             // 
@@ -134,7 +134,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 24);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(486, 290);
+            this.panel1.Size = new System.Drawing.Size(445, 261);
             this.panel1.TabIndex = 4;
             // 
             // dataGridViewRules
@@ -143,11 +143,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewRules.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewRules.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
+            this.dataGridViewRules.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.dataGridViewRules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewRules.Location = new System.Drawing.Point(11, 3);
             this.dataGridViewRules.Name = "dataGridViewRules";
-            this.dataGridViewRules.Size = new System.Drawing.Size(462, 280);
+            this.dataGridViewRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewRules.Size = new System.Drawing.Size(421, 251);
             this.dataGridViewRules.TabIndex = 0;
             // 
             // RulesWizardDialog
@@ -157,7 +158,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(486, 345);
+            this.ClientSize = new System.Drawing.Size(445, 316);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStripMain);

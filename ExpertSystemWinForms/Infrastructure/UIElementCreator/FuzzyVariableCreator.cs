@@ -11,12 +11,17 @@ using System.Windows.Forms;
 namespace ExpertSystemWinForms.Infrastructure
 {
     /// <summary>
-    /// Represent a creator 
+    /// Represent a creator of UI variable element.
     /// </summary>
     /// <seealso cref="ExpertSystemWinForms.Models.Interfaces.IUserControlCreator" />
     public class FuzzyVariableCreator : IUserControlCreator
     {
-        public Control CreateElement(string name)
+        /// <summary>
+        /// Creates the element.
+        /// </summary>
+        /// <param name="name">The name of variable.</param>
+        /// <returns>UI control that correspond to fuzzy variable.</returns>
+        public Control CreateElement(string name, Point? location = null)
         {
             Label variable = new Label();
 
@@ -32,7 +37,7 @@ namespace ExpertSystemWinForms.Infrastructure
             variable.Height = 20;
 
             variable.Font = new Font("Arial", 8, FontStyle.Bold);
-            variable.Location = new Point(10, 10);
+            variable.Location = location ?? new Point(10, 10);
 
             ControlExtension.Draggable(variable, true);
 

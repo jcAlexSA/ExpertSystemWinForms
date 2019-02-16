@@ -254,21 +254,12 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 this.chartTerms.Series.Add(series);
             }
 
-            //series.ChartType = SeriesChartType.Line;
-            //series.BorderWidth = 2;
-            //////You may want to set the display window to exclude the dummy..
-            //Axis XA = this.chartTerms.ChartAreas[0].AxisX;
-            //XA.Minimum = -10;
-            //XA.Maximum = 10;
-
             if (term.Function is TriangleMembershipFunction)
             {
 
                 series.Color = Color.Red;
                 series.ChartType = SeriesChartType.Line;
                 term.Function.DrawFunctionOnSeriesChart(series);
-
-
             }
             else if (term.Function is GaussMembershipFunction)
             {

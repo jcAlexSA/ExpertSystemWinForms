@@ -33,7 +33,7 @@ namespace ExpertSystemWinForms.Infrastructure
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
-        public Control CreateElement(string name)
+        public Control CreateElement(string name, Point? location = null)
         {
             Panel panel = new Panel();
             panel.Width = 150;
@@ -48,10 +48,9 @@ namespace ExpertSystemWinForms.Infrastructure
             panel.Tag = name;
 
             panel.Font = new Font("Arial", 8, FontStyle.Bold);
-            panel.Location = new Point(250, 10);
+            panel.Location = location ?? new Point(250, 10);
 
             ControlExtension.Draggable(panel, true);
-
 
             Label variable = new Label();
 

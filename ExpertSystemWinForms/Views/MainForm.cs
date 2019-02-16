@@ -2,12 +2,14 @@
 using ExpertSystemWinForms.Models;
 using ExpertSystemWinForms.Models.MembershipFunction;
 using ExpertSystemWinForms.Views.Dialogs;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -689,7 +691,27 @@ namespace ExpertSystemWinForms
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO: saving
+            SaveFileDialog saveFileDialog = new SaveFileDialog()
+            {
+                Filter = "JSON File|*.json",
+                Title = "Save Project",
+                InitialDirectory = Environment.CurrentDirectory,
+                RestoreDirectory = true
+            };
+            saveFileDialog.ShowDialog();
+
+            if (!string.IsNullOrWhiteSpace(saveFileDialog.FileName))
+            {
+                var fileName = saveFileDialog.FileName;
+                JsonSerializer serializer = new JsonSerializer();
+
+                File.WriteAllText(fileName, JsonConvert.SerializeObject(this.FuzzyVariables));
+                using (var file = File.CreateText(fileName))
+                {
+                    serializer.Serialize(file, this.FuzzyVariables);
+                    serializer.Serialize(file, this.RuleBlocks);
+                }
+            }
         }
 
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)

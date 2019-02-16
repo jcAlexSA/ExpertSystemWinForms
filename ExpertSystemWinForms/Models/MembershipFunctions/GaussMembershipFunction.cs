@@ -70,7 +70,7 @@ namespace ExpertSystemWinForms.Models.MembershipFunctions
                 this.CalculateMinMaxOfFunction();
             }
 
-            for (float x = this.Min ?? 0; x < this.Max; x += 0.5f)
+            for (int x = (int)(this.Min ?? 0); x < this.Max; x++)
             {
                 series.Points.AddXY(x, this.MembershipFunction(x));
             }

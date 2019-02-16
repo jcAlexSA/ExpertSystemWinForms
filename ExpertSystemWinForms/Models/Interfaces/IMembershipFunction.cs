@@ -16,7 +16,7 @@ namespace ExpertSystemWinForms.Models.Interfaces
         string Name { get; }
 
         /// <summary>
-        /// Draws the function on chart.
+        /// Draws the function on Series chart.
         /// </summary>
         /// <param name="series">The series on which draw function.</param>
         void DrawFunctionOnSeriesChart(Series series);

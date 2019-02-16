@@ -1,7 +1,9 @@
-﻿namespace ExpertSystemWinForms.Infrastructure.Interfaces
+﻿using System.Drawing;
+
+namespace ExpertSystemWinForms.Infrastructure.Interfaces
 {
     public interface IUserControlCreator    // TODO: Change this name.
     {
-        System.Windows.Forms.Control CreateElement(string name);
+        System.Windows.Forms.Control CreateElement(string name, Point? location);
     }
 }

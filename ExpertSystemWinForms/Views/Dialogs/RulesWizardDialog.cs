@@ -1,14 +1,9 @@
 ﻿using ExpertSystemWinForms.Models;
-using ExpertSystemWinForms.Models.MembershipFunction;
 using ExpertSystemWinForms.Models.RulesModels;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ExpertSystemWinForms.Views.Dialogs
@@ -34,12 +29,41 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 rules = this.ruleBlock.Rules;
             }
 
-            this.AddColumnsAndCreateCellTemplates(this.rules, this.ruleBlock.InputFuzzyVariables, this.ruleBlock.OutputFuzzyVariables);
+            this.AddColumnsAndCreateItsCellTemplatesIntoDataGrid(this.rules, this.ruleBlock.InputFuzzyVariables, this.ruleBlock.OutputFuzzyVariables);
 
             this.SetRulesToDataGrid(this.rules);
         }
-        
-        private void AddColumnsAndCreateCellTemplates(RulesModel rules, ICollection<FuzzyVariableModel> inputVariables, ICollection<FuzzyVariableModel> ourputVariables)
+
+        private void BtnOk_Click(object sender, EventArgs e)
+        {
+            // Check on validity.
+            if (this.IsRulesInvalideInDataGrid())
+            {
+                var dialogResult = MessageBox.Show("You must fill the rows completely.\nUnfilled rules will not be saved!\nContinue to fill rules?", "Warning!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if(dialogResult == DialogResult.Yes)
+                {
+                    return;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    this.RemoveInvalidRulesFromDataGrid();
+                }
+            }
+
+            this.GetRulesFromDataGrid(this.rules);
+            // save rules into ruleBlock
+            this.ruleBlock.Rules = rules;
+            this.Close();
+        }
+
+        #region Data grid logic
+        /// <summary>
+        /// Add columns and create templates for them using variable's term.
+        /// </summary>
+        /// <param name="rules"></param>
+        /// <param name="inputVariables"></param>
+        /// <param name="ourputVariables"></param>
+        private void AddColumnsAndCreateItsCellTemplatesIntoDataGrid(RulesModel rules, ICollection<FuzzyVariableModel> inputVariables, ICollection<FuzzyVariableModel> ourputVariables)
         {
             foreach (var variable in inputVariables.Concat(ourputVariables))
             {
@@ -54,31 +78,58 @@ namespace ExpertSystemWinForms.Views.Dialogs
             this.dataGridViewRules.Columns[inputVariables.Count - 1].DividerWidth = 3;  // width = 3px
         }
 
-        private void BtnOk_Click(object sender, EventArgs e)
+        private bool IsRulesInvalideInDataGrid()
         {
-            this.UpdateRulesFromDataGrid(this.rules);
+            for (int i = 0; i < this.dataGridViewRules.ColumnCount; i++)
+            {
+                for (int j = 0; j < this.dataGridViewRules.RowCount - 1; j++)
+                {
+                    if (this.dataGridViewRules[i, j].Value == null)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
 
-            this.Close();
+        private void RemoveInvalidRulesFromDataGrid()
+        {
+            var invalideIndexes = new List<int>();
+
+            for (int i = 0; i < this.dataGridViewRules.ColumnCount; i++)
+            {
+                for (int j = 0; j < this.dataGridViewRules.RowCount - 1; j++)
+                {
+                    if (this.dataGridViewRules[i,j].Value == null && !invalideIndexes.Contains(j))
+                    {
+                        invalideIndexes.Add(j);
+                    }
+                }
+            }
+            foreach (var index in invalideIndexes)
+            {
+                this.dataGridViewRules.Rows.RemoveAt(index);
+            }
         }
 
         private void SetRulesToDataGrid(RulesModel rules)
         {
-
-            //int index = 0;
-            foreach (var rule in rules.Rules)
+            if (rules.Rules.Any(r => r.Value.Count > this.dataGridViewRules.RowCount))
             {
-                for (int i = 0; i < rule.Value.Count; i++)
-                {
-                    if (this.dataGridViewRules.Rows.Count == rule.Value.Count)
-                        this.dataGridViewRules.Rows.Add();
+                this.dataGridViewRules.Rows.Add(rules.Rules.Select(r => r.Value.Count).FirstOrDefault());
+            }
 
-                    this.dataGridViewRules[rule.Key, i].Value = rule.Value[i];
-                    //++index;
+            foreach (var ruleItem in rules.Rules) // dictionary <string, List<string>>
+            {
+                for (int i = 0; i < ruleItem.Value.Count; i++)
+                {
+                    this.dataGridViewRules[ruleItem.Key, i].Value = ruleItem.Value[i];
                 }
             }
         }
 
-        private void UpdateRulesFromDataGrid(RulesModel rules)
+        private void GetRulesFromDataGrid(RulesModel rules)
         {
             List<string> values = null;
             for (int i = 0; i < this.dataGridViewRules.ColumnCount; i++)
@@ -86,11 +137,20 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 values = new List<string>();
                 for (int j = 0; j < this.dataGridViewRules.RowCount - 1; j++)
                 {
-                    values.Add(this.dataGridViewRules[i, j].Value.ToString());
+                    values.Add(this.dataGridViewRules[i, j].Value?.ToString());
                 }
-                this.rules.Rules.Add(this.dataGridViewRules.Columns[i].Name.ToString(), values);
+                // rewrites values or creates new one.
+                if (this.rules.Rules.ContainsKey(this.dataGridViewRules.Columns[i].Name))
+                {
+                    rules.Rules[this.dataGridViewRules.Columns[i].Name] = values;
+                }
+                else
+                {
+                    rules.Rules.Add(this.dataGridViewRules.Columns[i].Name.ToString(), values);
+                }
             }
-            this.ruleBlock.Rules = this.rules;
         }
+
+        #endregion
     }
 }
