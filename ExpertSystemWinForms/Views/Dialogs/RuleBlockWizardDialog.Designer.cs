@@ -51,6 +51,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.radioButtonCriteriaMimMax = new System.Windows.Forms.RadioButton();
+            this.radioButtonCriteriaProd = new System.Windows.Forms.RadioButton();
+            this.radioButtonCriteriaMean = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -69,8 +71,8 @@
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.groupBox1.Location = new System.Drawing.Point(14, 14);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(12, 12, 12, 12);
-            this.groupBox1.Size = new System.Drawing.Size(431, 96);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(5);
+            this.groupBox1.Size = new System.Drawing.Size(431, 86);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Define Rule Block Configuration";
@@ -79,9 +81,10 @@
             // 
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(12, 29);
+            this.label4.Location = new System.Drawing.Point(5, 22);
+            this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(407, 55);
+            this.label4.Size = new System.Drawing.Size(421, 59);
             this.label4.TabIndex = 0;
             this.label4.Text = resources.GetString("label4.Text");
             // 
@@ -89,7 +92,7 @@
             // 
             this.labelName.AutoSize = true;
             this.labelName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelName.Location = new System.Drawing.Point(26, 119);
+            this.labelName.Location = new System.Drawing.Point(32, 109);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(103, 15);
             this.labelName.TabIndex = 1;
@@ -101,7 +104,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxRuleBlockName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxRuleBlockName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxRuleBlockName.Location = new System.Drawing.Point(154, 116);
+            this.textBoxRuleBlockName.Location = new System.Drawing.Point(160, 106);
             this.textBoxRuleBlockName.Name = "textBoxRuleBlockName";
             this.textBoxRuleBlockName.Size = new System.Drawing.Size(279, 21);
             this.textBoxRuleBlockName.TabIndex = 1;
@@ -112,9 +115,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.tableLayoutPanel2);
-            this.groupBox2.Location = new System.Drawing.Point(14, 143);
+            this.groupBox2.Location = new System.Drawing.Point(14, 133);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(431, 204);
+            this.groupBox2.Size = new System.Drawing.Size(431, 196);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             // 
@@ -140,7 +143,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 234F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(425, 184);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(425, 176);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // label3
@@ -199,9 +202,9 @@
             this.buttonToInput.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonToInput.Font = new System.Drawing.Font("Arial Black", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonToInput.ForeColor = System.Drawing.Color.Green;
-            this.buttonToInput.Location = new System.Drawing.Point(7, 117);
+            this.buttonToInput.Location = new System.Drawing.Point(7, 110);
             this.buttonToInput.Name = "buttonToInput";
-            this.buttonToInput.Size = new System.Drawing.Size(90, 29);
+            this.buttonToInput.Size = new System.Drawing.Size(90, 26);
             this.buttonToInput.TabIndex = 11;
             this.buttonToInput.Text = "Input";
             this.buttonToInput.UseVisualStyleBackColor = false;
@@ -214,9 +217,9 @@
             this.buttonToOutput.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonToOutput.Font = new System.Drawing.Font("Arial Black", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonToOutput.ForeColor = System.Drawing.Color.Teal;
-            this.buttonToOutput.Location = new System.Drawing.Point(7, 45);
+            this.buttonToOutput.Location = new System.Drawing.Point(7, 38);
             this.buttonToOutput.Name = "buttonToOutput";
-            this.buttonToOutput.Size = new System.Drawing.Size(90, 29);
+            this.buttonToOutput.Size = new System.Drawing.Size(90, 26);
             this.buttonToOutput.TabIndex = 10;
             this.buttonToOutput.Text = "Output";
             this.buttonToOutput.UseVisualStyleBackColor = false;
@@ -229,9 +232,9 @@
             this.buttonRemoveSelected.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.buttonRemoveSelected.Font = new System.Drawing.Font("Arial Black", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonRemoveSelected.ForeColor = System.Drawing.Color.Maroon;
-            this.buttonRemoveSelected.Location = new System.Drawing.Point(7, 82);
+            this.buttonRemoveSelected.Location = new System.Drawing.Point(7, 75);
             this.buttonRemoveSelected.Name = "buttonRemoveSelected";
-            this.buttonRemoveSelected.Size = new System.Drawing.Size(90, 29);
+            this.buttonRemoveSelected.Size = new System.Drawing.Size(90, 26);
             this.buttonRemoveSelected.TabIndex = 9;
             this.buttonRemoveSelected.Text = "Remove";
             this.buttonRemoveSelected.UseVisualStyleBackColor = false;
@@ -282,15 +285,15 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.26513F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.73487F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 173F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 174F));
             this.tableLayoutPanel1.Controls.Add(this.buttonAccept, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonCancel, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 452);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 442);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(459, 33);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(459, 28);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // buttonAccept
@@ -301,7 +304,7 @@
             this.buttonAccept.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonAccept.Location = new System.Drawing.Point(186, 3);
             this.buttonAccept.Name = "buttonAccept";
-            this.buttonAccept.Size = new System.Drawing.Size(96, 27);
+            this.buttonAccept.Size = new System.Drawing.Size(95, 22);
             this.buttonAccept.TabIndex = 0;
             this.buttonAccept.Text = "OK";
             this.buttonAccept.UseVisualStyleBackColor = false;
@@ -313,9 +316,9 @@
             this.buttonCancel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCancel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCancel.Location = new System.Drawing.Point(288, 3);
+            this.buttonCancel.Location = new System.Drawing.Point(287, 3);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(168, 27);
+            this.buttonCancel.Size = new System.Drawing.Size(169, 22);
             this.buttonCancel.TabIndex = 1;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = false;
@@ -326,17 +329,19 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.groupBox3);
-            this.panel2.Location = new System.Drawing.Point(17, 353);
+            this.panel2.Location = new System.Drawing.Point(17, 332);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(427, 91);
+            this.panel2.Size = new System.Drawing.Size(427, 104);
             this.panel2.TabIndex = 5;
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.radioButtonCriteriaMean);
+            this.groupBox3.Controls.Add(this.radioButtonCriteriaProd);
             this.groupBox3.Controls.Add(this.radioButtonCriteriaMimMax);
-            this.groupBox3.Location = new System.Drawing.Point(73, 18);
+            this.groupBox3.Location = new System.Drawing.Point(77, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(278, 69);
+            this.groupBox3.Size = new System.Drawing.Size(115, 98);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Norms";
@@ -346,13 +351,34 @@
             this.radioButtonCriteriaMimMax.AutoSize = true;
             this.radioButtonCriteriaMimMax.Checked = true;
             this.radioButtonCriteriaMimMax.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radioButtonCriteriaMimMax.Location = new System.Drawing.Point(17, 29);
+            this.radioButtonCriteriaMimMax.Location = new System.Drawing.Point(9, 20);
             this.radioButtonCriteriaMimMax.Name = "radioButtonCriteriaMimMax";
             this.radioButtonCriteriaMimMax.Size = new System.Drawing.Size(70, 18);
             this.radioButtonCriteriaMimMax.TabIndex = 0;
-            this.radioButtonCriteriaMimMax.TabStop = true;
             this.radioButtonCriteriaMimMax.Text = "MINMAX";
             this.radioButtonCriteriaMimMax.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonCriteriaProd
+            // 
+            this.radioButtonCriteriaProd.AutoSize = true;
+            this.radioButtonCriteriaProd.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButtonCriteriaProd.Location = new System.Drawing.Point(9, 44);
+            this.radioButtonCriteriaProd.Name = "radioButtonCriteriaProd";
+            this.radioButtonCriteriaProd.Size = new System.Drawing.Size(54, 18);
+            this.radioButtonCriteriaProd.TabIndex = 0;
+            this.radioButtonCriteriaProd.Text = "PROD";
+            this.radioButtonCriteriaProd.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonCriteriaMean
+            // 
+            this.radioButtonCriteriaMean.AutoSize = true;
+            this.radioButtonCriteriaMean.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButtonCriteriaMean.Location = new System.Drawing.Point(9, 68);
+            this.radioButtonCriteriaMean.Name = "radioButtonCriteriaMean";
+            this.radioButtonCriteriaMean.Size = new System.Drawing.Size(56, 18);
+            this.radioButtonCriteriaMean.TabIndex = 0;
+            this.radioButtonCriteriaMean.Text = "MEAN";
+            this.radioButtonCriteriaMean.UseVisualStyleBackColor = true;
             // 
             // RuleBlockWizardDialog
             // 
@@ -360,7 +386,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(459, 485);
+            this.ClientSize = new System.Drawing.Size(459, 470);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.groupBox2);
@@ -410,5 +436,7 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton radioButtonCriteriaMimMax;
+        private System.Windows.Forms.RadioButton radioButtonCriteriaMean;
+        private System.Windows.Forms.RadioButton radioButtonCriteriaProd;
     }
 }

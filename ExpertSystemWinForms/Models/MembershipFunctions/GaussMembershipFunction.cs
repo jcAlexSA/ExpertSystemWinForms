@@ -50,6 +50,11 @@ namespace ExpertSystemWinForms.Models.MembershipFunctions
         /// </value>
         public float? Max { get; set; } = null;
 
+        /// <summary>
+        /// Memberships the function.
+        /// </summary>
+        /// <param name="x">The x value.</param>
+        /// <returns>Return result of calculation based on X value.</returns>
         public float MembershipFunction(float x)
         {
             float res = (float)Math.Pow(Math.E, -(Math.Pow(x - this.B, 2) / (2 * Math.Pow(this.C, 2))));
@@ -62,15 +67,15 @@ namespace ExpertSystemWinForms.Models.MembershipFunctions
         /// <param name="series">The series on wich function drawing.</param>
         public void DrawFunctionOnSeriesChart(Series series)
         {
-            this.Min = -10;
-            this.Max = 10;
+            //this.Min = -10;
+            //this.Max = 10;
 
             if (this.Min == null || this.Max == null)
             {
                 this.CalculateMinMaxOfFunction();
             }
 
-            for (int x = (int)(this.Min ?? 0); x < this.Max; x++)
+            for (float x = (int)this.Min; x <= this.Max; x+=1f)
             {
                 series.Points.AddXY(x, this.MembershipFunction(x));
             }
@@ -78,7 +83,17 @@ namespace ExpertSystemWinForms.Models.MembershipFunctions
 
         private void CalculateMinMaxOfFunction()
         {
-            throw new NotImplementedException();
+            var x = (float)this.B;
+            float? result = 1;
+
+            do
+            {
+                result = (float)this.MembershipFunction(x);
+                x -= 1f;
+            } while (result > 0.001);
+
+            this.Min = (float)Math.Round(x);
+            this.Max = (float)Math.Round(-x) * 2;
         }
     }
 }

@@ -20,6 +20,14 @@ namespace ExpertSystemWinForms
 {
     public partial class MainForm : Form
     {
+        /// <summary>
+        /// The project name.
+        /// </summary>
+        private string fileName = null;
+
+        /// <summary>
+        /// The graphics to drawing.
+        /// </summary>
         private Graphics graphics;
 
         /// <summary>
@@ -637,6 +645,12 @@ namespace ExpertSystemWinForms
 
         #region Actions with project (Invoke when something from FILE_menu choosed)
 
+
+        private void InteractiveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// Handles the Click event of the CloseToolStripMenuItem control.
         /// Close main form.
@@ -679,46 +693,72 @@ namespace ExpertSystemWinForms
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //if (this.ShowSavingOfferDialog("Open project without saving?") == DialogResult.Yes)
+            //using (OpenFileDialog openFileDialog = new OpenFileDialog())
             //{
+            //    openFileDialog.InitialDirectory = Environment.CurrentDirectory;
+            //    openFileDialog.Filter = "JSON File|*.json";
+            //    openFileDialog.RestoreDirectory = true;
 
-            //}
-            //else
-            //{
-            //    //TODO: open saving dialog
+            //    if (openFileDialog.ShowDialog() == DialogResult.OK)
+            //    {
+            //        //Get the path of specified file
+            //        this.fileName = openFileDialog.FileName;
+
+            //        var v = JsonConvert.DeserializeObject<ObservableCollection<FuzzyVariableModel>>(File.ReadAllText(fileName), new JsonSerializerSettings
+            //        {
+            //            TypeNameHandling = TypeNameHandling.All
+            //        });
+
+            //        // deserialize JSON directly from a file
+            //        using (StreamReader file = File.OpenText(this.fileName))
+            //        {
+            //            JsonSerializer serializer = new JsonSerializer();
+            //            var variables = (ObservableCollection<FuzzyVariableModel>)serializer.Deserialize(file, typeof(ObservableCollection<FuzzyVariableModel>));
+            //        }
+            //    }
             //}
         }
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog()
-            {
-                Filter = "JSON File|*.json",
-                Title = "Save Project",
-                InitialDirectory = Environment.CurrentDirectory,
-                RestoreDirectory = true
-            };
-            saveFileDialog.ShowDialog();
-
-            if (!string.IsNullOrWhiteSpace(saveFileDialog.FileName))
-            {
-                var fileName = saveFileDialog.FileName;
-                JsonSerializer serializer = new JsonSerializer();
-
-                File.WriteAllText(fileName, JsonConvert.SerializeObject(this.FuzzyVariables));
-                using (var file = File.CreateText(fileName))
-                {
-                    serializer.Serialize(file, this.FuzzyVariables);
-                    serializer.Serialize(file, this.RuleBlocks);
-                }
-            }
+            this.SaveProjectToFile(string.IsNullOrEmpty(this.fileName));
         }
 
         private void SaveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // TODO: saving to new file
+            this.SaveProjectToFile(true);
         }
 
+        private void SaveProjectToFile(bool saveToNewFile)
+        {
+            if (saveToNewFile || !(File.Exists(this.fileName)))
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog()
+                {
+                    Filter = "JSON File|*.json",
+                    Title = "Save Project",
+                    InitialDirectory = Environment.CurrentDirectory,
+                    RestoreDirectory = true
+                };
+                saveFileDialog.ShowDialog();
+
+                this.fileName = saveFileDialog.FileName;
+            }
+
+            JsonSerializer serializer = new JsonSerializer();
+
+            File.WriteAllText(this.fileName, JsonConvert.SerializeObject(this.FuzzyVariables));
+            using (var file = File.CreateText(this.fileName))
+            {
+                serializer.Serialize(file, this.FuzzyVariables);
+                serializer.Serialize(file, this.RuleBlocks);
+
+                file.Close();
+            }
+
+            this.Text = string.Format($"Expert System - {Path.GetFileName(this.fileName)}");
+        }
         #endregion
+
     }
 }
