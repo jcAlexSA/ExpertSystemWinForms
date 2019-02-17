@@ -47,6 +47,8 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newVariableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newRuleBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.interactiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,8 +73,6 @@
             this.editRuleBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeRuleBlockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.interactiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.mainPanel.SuspendLayout();
             this.contextMenuStripTreeView.SuspendLayout();
@@ -168,6 +168,21 @@
             this.newRuleBlockToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.newRuleBlockToolStripMenuItem.Text = "New Rule Block";
             this.newRuleBlockToolStripMenuItem.Click += new System.EventHandler(this.NewRuleBlockToolStripMenuItem_Click);
+            // 
+            // debugToolStripMenuItem
+            // 
+            this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.interactiveToolStripMenuItem});
+            this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
+            this.debugToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.debugToolStripMenuItem.Text = "Debug";
+            // 
+            // interactiveToolStripMenuItem
+            // 
+            this.interactiveToolStripMenuItem.Name = "interactiveToolStripMenuItem";
+            this.interactiveToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.interactiveToolStripMenuItem.Text = "Interactive";
+            this.interactiveToolStripMenuItem.Click += new System.EventHandler(this.InteractiveToolStripMenuItem_Click);
             // 
             // toolsToolStripMenuItem
             // 
@@ -383,21 +398,6 @@
             this.removeRuleBlockToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.removeRuleBlockToolStripMenuItem.Text = "Remove Rule Block";
             this.removeRuleBlockToolStripMenuItem.Click += new System.EventHandler(this.RemoveRuleBlockToolStripMenuItem_Click);
-            // 
-            // debugToolStripMenuItem
-            // 
-            this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.interactiveToolStripMenuItem});
-            this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
-            this.debugToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.debugToolStripMenuItem.Text = "Debug";
-            // 
-            // interactiveToolStripMenuItem
-            // 
-            this.interactiveToolStripMenuItem.Name = "interactiveToolStripMenuItem";
-            this.interactiveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.interactiveToolStripMenuItem.Text = "Interactive";
-            this.interactiveToolStripMenuItem.Click += new System.EventHandler(this.InteractiveToolStripMenuItem_Click);
             // 
             // MainForm
             // 

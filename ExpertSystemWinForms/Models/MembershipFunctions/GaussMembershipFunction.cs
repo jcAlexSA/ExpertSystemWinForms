@@ -40,7 +40,7 @@ namespace ExpertSystemWinForms.Models.MembershipFunctions
         /// <value>
         /// The first carrier.
         /// </value>
-        public float? Min { get; set; } = null;
+        public int? Min { get; set; } = null;
 
         /// <summary>
         /// Gets or sets the last carrier of function.
@@ -48,7 +48,7 @@ namespace ExpertSystemWinForms.Models.MembershipFunctions
         /// <value>
         /// The second carrier.
         /// </value>
-        public float? Max { get; set; } = null;
+        public int? Max { get; set; } = null;
 
         /// <summary>
         /// Memberships the function.
@@ -81,19 +81,22 @@ namespace ExpertSystemWinForms.Models.MembershipFunctions
             }
         }
 
+        /// <summary>
+        /// Calculates the minimum maximum of function.
+        /// </summary>
         private void CalculateMinMaxOfFunction()
         {
-            var x = (float)this.B;
-            float? result = 1;
+            int x = this.B;
+            float result = 1;
 
             do
             {
                 result = (float)this.MembershipFunction(x);
-                x -= 1f;
+                x -= 1;
             } while (result > 0.001);
 
-            this.Min = (float)Math.Round(x);
-            this.Max = (float)Math.Round(-x) * 2;
+            this.Min = (int?)Math.Floor((double)x);
+            this.Max = -this.Min * 2;
         }
     }
 }

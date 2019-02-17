@@ -42,12 +42,7 @@ namespace ExpertSystemWinForms.Models.MembershipFunction
         /// The high value.
         /// </value>
         public int Right { get; set; }
-
-        public float MembershipFunction()
-        {
-            throw new NotImplementedException("Function not impelented");
-        }
-
+        
         /// <summary>
         /// Draws the function on chart.
         /// </summary>

@@ -57,6 +57,7 @@
     <Compile Include="Infrastructure\LinesSet.cs" />
     <Compile Include="Infrastructure\UIElementCreator\RuleBlockCreator.cs" />
     <Compile Include="Models\FuzzyVariableModel.cs" />
+    <Compile Include="Models\InputValueVariableModel.cs" />
     <Compile Include="Models\Interfaces\IMembershipFunction.cs" />
     <Compile Include="Infrastructure\Interfaces\IUserControlCreator.cs" />
     <Compile Include="Models\Interfaces\IRules.cs" />

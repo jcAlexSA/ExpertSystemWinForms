@@ -1,8 +1,10 @@
 ﻿using ExpertSystemWinForms.Infrastructure;
 using ExpertSystemWinForms.Models;
+using ExpertSystemWinForms.Models.Interfaces;
 using ExpertSystemWinForms.Models.MembershipFunction;
 using ExpertSystemWinForms.Views.Dialogs;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -85,30 +87,36 @@ namespace ExpertSystemWinForms
 
             this.FuzzyVariables.Add(new FuzzyVariableModel("i_var1", VariableType.Input, new List<TermModel>()
             {
-                new TermModel("low", new TriangleMembershipFunction()),
-                new TermModel("middle", new TriangleMembershipFunction() ),
-                new TermModel("high", new TriangleMembershipFunction())
-            }, "comment for input"));
+                new TermModel("low", new TriangleMembershipFunction(){ Left = 0, Middle = 0, Right = 5 }),
+                new TermModel("middle", new TriangleMembershipFunction() { Left = 0, Middle = 5, Right = 10 }),
+                new TermModel("high", new TriangleMembershipFunction(){ Left = 5, Middle = 10, Right = 10 })
+            }, "comment for input 1"));
             this.FuzzyVariables.Add(new FuzzyVariableModel("i_var2", VariableType.Input, new List<TermModel>()
             {
-                new TermModel("light", new TriangleMembershipFunction()),
-                new TermModel("normal", new TriangleMembershipFunction()),
-                new TermModel("hard", new TriangleMembershipFunction())
-            }, "comment for input"));
-            this.FuzzyVariables.Add(new FuzzyVariableModel("mid_var3", VariableType.Intermediate, new List<TermModel>(), "cvx"));
-            this.FuzzyVariables.Add(new FuzzyVariableModel("mid_var4", VariableType.Intermediate, new List<TermModel>(), "cv"));
-            this.FuzzyVariables.Add(new FuzzyVariableModel("out_var5", VariableType.Output, new List<TermModel>(){
+                new TermModel("light", new TriangleMembershipFunction(){ Left = 0, Middle = 0, Right = 25 }),
+                new TermModel("normal", new TriangleMembershipFunction(){ Left = 0, Middle = 25, Right = 50 }),
+                new TermModel("hard", new TriangleMembershipFunction(){ Left = 25, Middle = 50, Right = 50 })
+            }, "comment for input 2"));
+            this.FuzzyVariables.Add(new FuzzyVariableModel("i_var3", VariableType.Input, new List<TermModel>()
+            {
+                new TermModel("less", new TriangleMembershipFunction(){ Left = 0, Middle = 0, Right = 25 }),
+                new TermModel("center", new TriangleMembershipFunction(){ Left = 0, Middle = 25, Right = 50 }),
+                new TermModel("biggest", new TriangleMembershipFunction(){ Left = 25, Middle = 50, Right = 50 })
+            }, "comment for input 2"));
+            //this.FuzzyVariables.Add(new FuzzyVariableModel("mid_var3", VariableType.Intermediate, new List<TermModel>(), "cvx"));
+            //this.FuzzyVariables.Add(new FuzzyVariableModel("mid_var4", VariableType.Intermediate, new List<TermModel>(), "cv"));
+            this.FuzzyVariables.Add(new FuzzyVariableModel("out_var", VariableType.Output, new List<TermModel>(){
                 new TermModel("positive", new TriangleMembershipFunction()),
                 new TermModel("normal", new TriangleMembershipFunction()),
                 new TermModel("negative", new TriangleMembershipFunction())
-            }, "comment for output"));
+            }, "comment for output 1"));
 
-            this.RuleBlocks.Add(new RuleBlockModel("rb1",
+            this.RuleBlocks.Add(new RuleBlockModel("Main_Rule_Block",
                 new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Input)),
                 new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Output))));
-            this.RuleBlocks.Add(new RuleBlockModel("rb2",
-                new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Input)),
-                new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Output || v.Type == VariableType.Intermediate))));
+            //this.RuleBlocks.Add(new RuleBlockModel("rb2",
+            //    new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Input)),
+            //    new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Output || v.Type == VariableType.Intermediate))));
 
             //temporary
             this.Labels.ForEach(lbl => lbl.Move += this.OnUIElementMove);
@@ -640,6 +648,14 @@ namespace ExpertSystemWinForms
             rulesWizard.Owner = this;
             rulesWizard.ShowDialog();
         }
+
+        public void OpenInteractiveDebugDialog()
+        {
+            var debugDialog = new InteractiveDebug(this.RuleBlocks);
+
+            debugDialog.Owner = this;
+            debugDialog.ShowDialog();
+        }
         #endregion
 
 
@@ -648,7 +664,7 @@ namespace ExpertSystemWinForms
 
         private void InteractiveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.OpenInteractiveDebugDialog();
         }
 
         /// <summary>
@@ -704,11 +720,8 @@ namespace ExpertSystemWinForms
             //        //Get the path of specified file
             //        this.fileName = openFileDialog.FileName;
 
-            //        var v = JsonConvert.DeserializeObject<ObservableCollection<FuzzyVariableModel>>(File.ReadAllText(fileName), new JsonSerializerSettings
-            //        {
-            //            TypeNameHandling = TypeNameHandling.All
-            //        });
-
+            //        var obj = JsonConvert.DeserializeObject<ObservableCollection<FuzzyVariableModel>>(File.ReadAllText(this.fileName));
+                                        
             //        // deserialize JSON directly from a file
             //        using (StreamReader file = File.OpenText(this.fileName))
             //        {
@@ -729,6 +742,7 @@ namespace ExpertSystemWinForms
             this.SaveProjectToFile(true);
         }
 
+
         private void SaveProjectToFile(bool saveToNewFile)
         {
             if (saveToNewFile || !(File.Exists(this.fileName)))
@@ -747,7 +761,11 @@ namespace ExpertSystemWinForms
 
             JsonSerializer serializer = new JsonSerializer();
 
-            File.WriteAllText(this.fileName, JsonConvert.SerializeObject(this.FuzzyVariables));
+            File.WriteAllText(this.fileName, JsonConvert.SerializeObject(this.FuzzyVariables, new JsonSerializerSettings()
+            {
+                TypeNameHandling = TypeNameHandling.Auto
+            }));
+
             using (var file = File.CreateText(this.fileName))
             {
                 serializer.Serialize(file, this.FuzzyVariables);
@@ -758,7 +776,55 @@ namespace ExpertSystemWinForms
 
             this.Text = string.Format($"Expert System - {Path.GetFileName(this.fileName)}");
         }
-        #endregion
+        public abstract class JsonCreationConverter<T> : JsonConverter
+        {
+            protected abstract T Create(Type objectType, JObject jObject);
 
+            public override bool CanConvert(Type objectType)
+            {
+                return typeof(T) == objectType;
+            }
+
+            public override object ReadJson(JsonReader reader, Type objectType,
+                object existingValue, JsonSerializer serializer)
+            {
+                try
+                {
+                    var jObject = JObject.Load(reader);
+                    var target = Create(objectType, jObject);
+                    serializer.Populate(jObject.CreateReader(), target);
+                    return target;
+                }
+                catch (JsonReaderException)
+                {
+                    return null;
+                }
+            }
+
+            public override void WriteJson(JsonWriter writer, object value,
+                JsonSerializer serializer)
+            {
+                throw new NotImplementedException();
+            }
+        }
+        public class AnimalConverter : JsonCreationConverter<IMembershipFunction>
+        {
+            protected override IMembershipFunction Create(Type objectType, JObject jObject)
+            {
+                var v = jObject["Type"].Value<IMembershipFunction>();
+
+                //switch ((Constants.AnimalType)jObject["Type"].Value<int>())
+                //{
+                //    case Constants.AnimalType.Cat:
+                //        return new Cat();
+                //    case Constants.AnimalType.Dog:
+                //        return new Dog();
+                //    case Constants.AnimalType.Pig:
+                //        return new Pig();
+                //}
+                return null;
+            }
+        }
+        #endregion
     }
 }
