@@ -42,7 +42,15 @@ namespace ExpertSystemWinForms.Models.MembershipFunction
         /// The high value.
         /// </value>
         public int Right { get; set; }
-        
+
+        /// <summary>
+        /// Gets or sets the fuzzificated value.
+        /// </summary>
+        /// <value>
+        /// The fuzzificated value.
+        /// </value>
+        public float? FuzzificatedValue { get; private set; }
+
         /// <summary>
         /// Draws the function on chart.
         /// </summary>
@@ -54,10 +62,38 @@ namespace ExpertSystemWinForms.Models.MembershipFunction
             series.Points.AddXY(this.Left, 0);
             series.Points.AddXY(this.Middle, 1);
             series.Points.AddXY(this.Right, 0);
-         
+
             // Hides the Line segment before the 1st real point.
             series.Points[0].Color = Color.Transparent;
             series.Points[1].Color = Color.Transparent;
+        }
+
+        /// <summary>
+        /// Fuzzificate the specified value.
+        /// </summary>
+        /// <param name="value">The value to fuzzificate.</param>
+        /// <returns>The fuzzificated value.</returns>
+        public void Fuzzificate(float value)
+        {
+            float result = 0;
+            if (value < this.Left || value > this.Right)
+            {
+                result = 0;
+            }
+            else if (this.Left <= value && value <= this.Middle && this.Middle != this.Left)
+            {
+                result = (value - this.Left) / (this.Middle - this.Left);
+            }
+            else if (this.Middle <= value && value <= this.Right && this.Right != this.Middle)
+            {
+                result = (this.Right - value) / (this.Right - this.Middle);
+            }
+            else
+            {
+                result = 1;
+            }
+
+            this.FuzzificatedValue = result;
         }
     }
 }

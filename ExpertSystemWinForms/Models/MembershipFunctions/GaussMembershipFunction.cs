@@ -51,6 +51,14 @@ namespace ExpertSystemWinForms.Models.MembershipFunctions
         public int? Max { get; set; } = null;
 
         /// <summary>
+        /// Gets or sets the fuzzificated value.
+        /// </summary>
+        /// <value>
+        /// The fuzzificated value.
+        /// </value>
+        public float? FuzzificatedValue { get; private set; }
+
+        /// <summary>
         /// Memberships the function.
         /// </summary>
         /// <param name="x">The x value.</param>
@@ -97,6 +105,16 @@ namespace ExpertSystemWinForms.Models.MembershipFunctions
 
             this.Min = (int?)Math.Floor((double)x);
             this.Max = -this.Min * 2;
+        }
+
+        /// <summary>
+        /// Fuzzifications the specified value.
+        /// </summary>
+        /// <param name="value">The value to fuzzificate.</param>
+        /// <returns>The fuzzificated value.</returns>
+        public void Fuzzificate(float value)
+        {
+            this.FuzzificatedValue = this.MembershipFunction(value);
         }
     }
 }

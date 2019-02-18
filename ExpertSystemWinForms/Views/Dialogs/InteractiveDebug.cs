@@ -36,16 +36,6 @@ namespace ExpertSystemWinForms.Views.Dialogs
         private List<FuzzyVariableModel> outputVariables = new List<FuzzyVariableModel>();
 
         /// <summary>
-        /// The input values for variables.
-        /// </summary>
-        private Dictionary<string, InputValueVariableModel> inputValues = new Dictionary<string, InputValueVariableModel>();
-
-        /// <summary>
-        /// The output values for variables.
-        /// </summary>
-        private Dictionary<string, float> outputValues = new Dictionary<string, float>(); 
-
-        /// <summary>
         /// Initializes a new instance of the <see cref="InteractiveDebug"/> class.
         /// </summary>
         /// <param name="ruleBlocks">The rule blocks.</param>
@@ -55,32 +45,30 @@ namespace ExpertSystemWinForms.Views.Dialogs
 
             this.ruleBlocks = ruleBlocks;
 
-            foreach (var list in this.ruleBlocks.Select(rb => rb.InputFuzzyVariables))
+            foreach (var variables in this.ruleBlocks.Select(rb => rb.InputFuzzyVariables))
             {
-                this.inputVariables.AddRange(list.Where(v => v.Type == VariableType.Input).ToList());
+                this.inputVariables.AddRange(variables.Where(v => v.Type == VariableType.Input).ToList());
             }
             this.inputVariables = this.inputVariables.Distinct().ToList();
 
-            foreach (var list in this.ruleBlocks.Select(rb => rb.OutputFuzzyVariables))
+            foreach (var variables in this.ruleBlocks.Select(rb => rb.OutputFuzzyVariables))
             {
-                this.outputVariables.AddRange(list.Where(v => v.Type == VariableType.Output).ToList());
+                this.outputVariables.AddRange(variables.Where(v => v.Type == VariableType.Output).ToList());
             }
             this.outputVariables = this.outputVariables.Distinct().ToList();
             
-
-            // Create dictionary with input values.
-            foreach (var item in this.inputVariables)
+            foreach (var variable in this.inputVariables)
             {
-                this.inputValues.Add(item.Name, new InputValueVariableModel());
+                if (!variable.InputValue.IsSet())
+                {
+                    variable.CalculateMinimumMaximunValuesForVariable();
+                }
             }
-            // Create dictionary with output values.
-            foreach (var item in this.outputVariables)
-            {
-                this.outputValues.Add(item.Name, 0);
-            }
-            
+                        
             this.SetItemsToListBox(this.listBoxInputVariables, this.inputVariables);
             this.SetItemsToListBox(this.listBoxOutputVariables, this.outputVariables);
+
+            this.CalculateResult();
         }
 
 
@@ -92,7 +80,17 @@ namespace ExpertSystemWinForms.Views.Dialogs
         private void SetItemsToListBox(ListBox listBox, List<FuzzyVariableModel> items)
         {
             listBox.Items.Clear();
-            listBox.Items.AddRange(items.Select(v => v.Name).ToArray());
+            listBox.Items.AddRange(items.Select(v => this.FormatListBoxItem(v.Name, v.InputValue.Value)).ToArray());
+        }
+
+        private string FormatListBoxItem(string name, float? value)
+        {
+            return string.Format($"{name}\t\t{value}");
+        }
+
+        private void UpdateListBoxItem(ListBox listBox, int index, string value)
+        {
+            listBox.Items[index] = value;
         }
 
         /// <summary>
@@ -100,62 +98,35 @@ namespace ExpertSystemWinForms.Views.Dialogs
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ListBoxInputVariables_Click(object sender, EventArgs e)
+        private void ListBoxInputVariables_Click(object sender, EventArgs e)        // TODO: change this to valueChange
         {
             if (this.listBoxInputVariables.SelectedIndex >= 0)
             {
                 string selectedVariableName = this.listBoxInputVariables.SelectedItem.ToString();
-                var variable = this.inputVariables.FirstOrDefault(v => v.Name.Equals(selectedVariableName));
+                var variable = this.inputVariables.FirstOrDefault(v => selectedVariableName.Contains(v.Name));
 
                 if (variable != null)
                 {
-                    if (!this.inputValues[variable.Name].IsSet())
+                    if (!variable.InputValue.IsSet())
                     {
-                        InputValueVariableModel inputs = this.CalculateMinimumMaximunValuesForVariable(variable);
-                        this.inputValues[variable.Name] = inputs;
+                        variable.CalculateMinimumMaximunValuesForVariable();
                     }
 
-                    this.numericUpDownInputValue.Minimum = (decimal)this.inputValues[variable.Name].Min;
-                    this.numericUpDownInputValue.Maximum = (decimal)this.inputValues[variable.Name].Max;
-                    this.numericUpDownInputValue.Value = (decimal)this.inputValues[variable.Name].Value;
+                    this.numericUpDownInputValue.Minimum = (decimal)variable.InputValue.Min;
+                    this.numericUpDownInputValue.Maximum = (decimal)variable.InputValue.Max;
+                    this.numericUpDownInputValue.Value = (decimal)variable.InputValue.Value;
 
-                    this.UpdateMinMaxValue((int)this.numericUpDownInputValue.Minimum, (int)this.numericUpDownInputValue.Maximum);
+                    this.UpdateMinMaxValueLabel((int)this.numericUpDownInputValue.Minimum, (int)this.numericUpDownInputValue.Maximum);
                 }
             }
         }
-
-
-        private InputValueVariableModel CalculateMinimumMaximunValuesForVariable(FuzzyVariableModel variable)
-        {
-            var inputs = new InputValueVariableModel();
-
-            int min = 0;
-            int max = 0;
-            foreach (var term in variable.Terms)
-            {
-                if (term.Function is TriangleMembershipFunction funcTriangle)
-                {
-                    min = funcTriangle.Left < min ? funcTriangle.Left : min;
-                    max = funcTriangle.Right > max ? funcTriangle.Right : max;
-                }
-                else if (term.Function is GaussMembershipFunction funcGauss)
-                {
-                    min = (int)(Math.Floor((float)funcGauss.Min) < min ? Math.Floor((float)funcGauss.Min) : min);
-                    max = (int)(Math.Round((float)funcGauss.Max, 0, MidpointRounding.AwayFromZero) > max ? Math.Round((float)funcGauss.Max, 0, MidpointRounding.AwayFromZero) : max);
-                }
-            }
-            inputs.Min = inputs.Value = min;
-            inputs.Max = max;
-
-            return inputs;
-        }
-
+        
         /// <summary>
-        /// Updates the min-max values for label.
+        /// Updates the min-max values for Label control.
         /// </summary>
         /// <param name="min">The minimun value.</param>
         /// <param name="max">The maximum value.</param>
-        private void UpdateMinMaxValue(float min, float max)
+        private void UpdateMinMaxValueLabel(float min, float max)
         {
             this.labelMinMax.Text = string.Format($"x: [{min}; {max}]");
         }
@@ -170,13 +141,56 @@ namespace ExpertSystemWinForms.Views.Dialogs
             if (this.listBoxInputVariables.SelectedIndex >= 0)
             {
                 string selectedVariableName = this.listBoxInputVariables.SelectedItem.ToString();
-                var variable = this.inputVariables.FirstOrDefault(v => v.Name.Equals(selectedVariableName));
+                var variable = this.inputVariables.FirstOrDefault(v => selectedVariableName.Contains(v.Name));
 
                 if (variable != null)
                 {
-                    this.inputValues[variable.Name].Value = (float)this.numericUpDownInputValue.Value;
+                    variable.InputValue.Value = (float)this.numericUpDownInputValue.Value;
+                    this.UpdateListBoxItem(this.listBoxInputVariables,
+                        this.listBoxInputVariables.SelectedIndex,
+                        this.FormatListBoxItem(variable.Name, variable.InputValue.Value));
+
+                    this.CalculateResult();
                 }
             }
+        }
+
+        private void CalculateResult()
+        {
+            if (this.inputVariables.Any(v => !v.InputValue.IsSet()))
+            {
+                return;
+            }
+
+            foreach (var variable in this.inputVariables)
+            {
+                foreach (var term in variable.Terms)
+                {
+                    term.Function.Fuzzificate((float)variable.InputValue.Value);
+                }
+            }
+
+            // get ordered rules.
+            List<List<string>> rules = ruleBlocks[0].Rules.GetRulesAsRows();
+
+
+            // mamdani || minmax
+            Dictionary<string, List<float>> operatorMin = new Dictionary<string, List<float>>();
+            foreach (var item in rules.Select(r => r.Last()).Distinct())
+            {
+                operatorMin.Add(item, new List<float>());
+            }
+
+            foreach (var rule in rules)
+            {
+                // rule 
+                for (int i = 0; i < this.inputVariables.Count; i++)
+                {
+                    var variable = this.inputVariables[i];
+
+                }
+            }
+
         }
     }
 }

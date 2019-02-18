@@ -55,7 +55,7 @@
             this.listBoxInputVariables.ItemHeight = 15;
             this.listBoxInputVariables.Location = new System.Drawing.Point(3, 17);
             this.listBoxInputVariables.Name = "listBoxInputVariables";
-            this.listBoxInputVariables.Size = new System.Drawing.Size(143, 154);
+            this.listBoxInputVariables.Size = new System.Drawing.Size(143, 93);
             this.listBoxInputVariables.TabIndex = 0;
             this.listBoxInputVariables.Click += new System.EventHandler(this.ListBoxInputVariables_Click);
             // 
@@ -68,7 +68,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(149, 174);
+            this.groupBox1.Size = new System.Drawing.Size(149, 113);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Inputs";
@@ -80,9 +80,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.listBoxOutputVariables);
             this.groupBox2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.groupBox2.Location = new System.Drawing.Point(3, 183);
+            this.groupBox2.Location = new System.Drawing.Point(3, 122);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(149, 174);
+            this.groupBox2.Size = new System.Drawing.Size(149, 113);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Outputs";
@@ -94,7 +94,7 @@
             this.listBoxOutputVariables.ItemHeight = 15;
             this.listBoxOutputVariables.Location = new System.Drawing.Point(3, 17);
             this.listBoxOutputVariables.Name = "listBoxOutputVariables";
-            this.listBoxOutputVariables.Size = new System.Drawing.Size(143, 154);
+            this.listBoxOutputVariables.Size = new System.Drawing.Size(143, 93);
             this.listBoxOutputVariables.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -108,13 +108,13 @@
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panelChart, 1, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 12);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 51);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(622, 360);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(565, 238);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // panelChart
@@ -128,7 +128,7 @@
             this.panelChart.Name = "panelChart";
             this.panelChart.Padding = new System.Windows.Forms.Padding(5);
             this.tableLayoutPanel1.SetRowSpan(this.panelChart, 2);
-            this.panelChart.Size = new System.Drawing.Size(447, 340);
+            this.panelChart.Size = new System.Drawing.Size(390, 218);
             this.panelChart.TabIndex = 3;
             // 
             // dataGridViewRules
@@ -140,7 +140,7 @@
             this.dataGridViewRules.Location = new System.Drawing.Point(5, 5);
             this.dataGridViewRules.Name = "dataGridViewRules";
             this.dataGridViewRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewRules.Size = new System.Drawing.Size(437, 330);
+            this.dataGridViewRules.Size = new System.Drawing.Size(380, 208);
             this.dataGridViewRules.TabIndex = 1;
             // 
             // panelBottom
@@ -149,10 +149,10 @@
             this.panelBottom.Controls.Add(this.comboBoxMethods);
             this.panelBottom.Controls.Add(this.labelMinMax);
             this.panelBottom.Controls.Add(this.numericUpDownInputValue);
-            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelBottom.Location = new System.Drawing.Point(0, 378);
+            this.panelBottom.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelBottom.Location = new System.Drawing.Point(0, 0);
             this.panelBottom.Name = "panelBottom";
-            this.panelBottom.Size = new System.Drawing.Size(646, 54);
+            this.panelBottom.Size = new System.Drawing.Size(565, 45);
             this.panelBottom.TabIndex = 4;
             // 
             // comboBoxMethods
@@ -165,7 +165,7 @@
             this.comboBoxMethods.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.comboBoxMethods.Items.AddRange(new object[] {
             "Mamdani"});
-            this.comboBoxMethods.Location = new System.Drawing.Point(465, 14);
+            this.comboBoxMethods.Location = new System.Drawing.Point(379, 11);
             this.comboBoxMethods.Name = "comboBoxMethods";
             this.comboBoxMethods.Size = new System.Drawing.Size(158, 24);
             this.comboBoxMethods.TabIndex = 2;
@@ -174,7 +174,7 @@
             // labelMinMax
             // 
             this.labelMinMax.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelMinMax.Location = new System.Drawing.Point(176, 14);
+            this.labelMinMax.Location = new System.Drawing.Point(176, 11);
             this.labelMinMax.Name = "labelMinMax";
             this.labelMinMax.Size = new System.Drawing.Size(160, 23);
             this.labelMinMax.TabIndex = 1;
@@ -192,7 +192,7 @@
             0,
             0,
             65536});
-            this.numericUpDownInputValue.Location = new System.Drawing.Point(17, 14);
+            this.numericUpDownInputValue.Location = new System.Drawing.Point(17, 11);
             this.numericUpDownInputValue.Maximum = new decimal(new int[] {
             10,
             0,
@@ -213,7 +213,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 14F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(646, 432);
+            this.ClientSize = new System.Drawing.Size(565, 288);
             this.Controls.Add(this.panelBottom);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));

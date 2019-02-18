@@ -19,5 +19,28 @@ namespace ExpertSystemWinForms.Models.RulesModels
         {
 
         }
+
+        public List<List<string>> GetRulesAsRows()
+        {
+            if (this.Rules == null)
+            {
+                return null;
+            }
+
+            var list = new List<List<string>>();
+
+            List<string> subList = null;
+            for (int i = 0; i < this.Rules.Values.FirstOrDefault().Count; i++)
+            {
+                subList = new List<string>();
+                foreach (var key in this.Rules.Keys)
+                {
+                    subList.Add(this.Rules[key][i]);
+                }
+                list.Add(subList);
+            }
+
+            return list.OrderBy(r => r.Last()).ToList();
+        }
     }
 }
