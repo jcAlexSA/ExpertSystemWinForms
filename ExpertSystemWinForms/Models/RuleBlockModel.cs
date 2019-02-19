@@ -46,6 +46,14 @@ namespace ExpertSystemWinForms.Models
         public RulesModel Rules { get; set; }
 
         /// <summary>
+        /// Gets or sets the operator.
+        /// </summary>
+        /// <value>
+        /// The operator.
+        /// </value>
+        public NormOperator NormOperator { get; set; } = NormOperator.MinMax;   // TEMPORARY!!! TODO HERE AN INTERFACE !!!
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="RuleBlockModel"/> class.
         /// </summary>
         public RuleBlockModel()
@@ -81,6 +89,21 @@ namespace ExpertSystemWinForms.Models
         /// <param name="name">The name.</param>
         /// <param name="inputFuzzyVariables">The input fuzzy variables.</param>
         /// <param name="outputFuzzyVariables">The output fuzzy variables.</param>
+        /// <param name="normOperator">The norm operator.</param>
+        public RuleBlockModel(string name, ObservableCollection<FuzzyVariableModel> inputFuzzyVariables, ObservableCollection<FuzzyVariableModel> outputFuzzyVariables, NormOperator normOperator)
+        {
+            this.Name = name;
+            this.InputFuzzyVariables = inputFuzzyVariables;
+            this.OutputFuzzyVariables = outputFuzzyVariables;
+            this.NormOperator = normOperator;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="RuleBlockModel"/> class.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="inputFuzzyVariables">The input fuzzy variables.</param>
+        /// <param name="outputFuzzyVariables">The output fuzzy variables.</param>
         /// <param name="rules">The rules.</param>
         public RuleBlockModel(string name, ObservableCollection<FuzzyVariableModel> inputFuzzyVariables, ObservableCollection<FuzzyVariableModel> outputFuzzyVariables, RulesModel rules)
         {
@@ -89,5 +112,15 @@ namespace ExpertSystemWinForms.Models
             this.OutputFuzzyVariables = outputFuzzyVariables;
             this.Rules = rules;
         }
+    }
+
+    /// <summary>
+    /// Norm operators.
+    /// </summary>
+    public enum NormOperator
+    {
+        MinMax,
+        Prod,
+        Mean
     }
 }

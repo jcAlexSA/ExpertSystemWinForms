@@ -3,13 +3,9 @@ using ExpertSystemWinForms.Models.Interfaces;
 using ExpertSystemWinForms.Models.MembershipFunction;
 using ExpertSystemWinForms.Models.MembershipFunctions;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 
@@ -241,8 +237,6 @@ namespace ExpertSystemWinForms.Views.Dialogs
         /// </summary>
         private void UpdateChart(TermModel term)
         {
-            //var series = this.chartTerms.Series["SeriesLines"];
-
             Series series = null;
             if ((series = this.chartTerms.Series.FindByName(term.Name)) != null)
             {
@@ -256,7 +250,6 @@ namespace ExpertSystemWinForms.Views.Dialogs
 
             if (term.Function is TriangleMembershipFunction)
             {
-
                 series.Color = Color.Red;
                 series.ChartType = SeriesChartType.Line;
                 term.Function.DrawFunctionOnSeriesChart(series);
@@ -265,10 +258,9 @@ namespace ExpertSystemWinForms.Views.Dialogs
             {
                 series.Color = Color.Blue;
                 series.ChartType = SeriesChartType.Spline;
-                // Drawing function.
                 term.Function.DrawFunctionOnSeriesChart(series);
             }
-
+            //term.Function.DrawFunctionOnSeriesChart(series);
         }
 
         /// <summary>

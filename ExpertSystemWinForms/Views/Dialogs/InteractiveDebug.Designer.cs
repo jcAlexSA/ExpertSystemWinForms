@@ -28,24 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.DataPoint dataPoint1 = new System.Windows.Forms.DataVisualization.Charting.DataPoint(0D, "0,0,0,0,0,0,0,0,0,0");
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.listBoxInputVariables = new System.Windows.Forms.ListBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listBoxOutputVariables = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelChart = new System.Windows.Forms.Panel();
-            this.dataGridViewRules = new System.Windows.Forms.DataGridView();
             this.panelBottom = new System.Windows.Forms.Panel();
             this.comboBoxMethods = new System.Windows.Forms.ComboBox();
             this.labelMinMax = new System.Windows.Forms.Label();
             this.numericUpDownInputValue = new System.Windows.Forms.NumericUpDown();
+            this.chartTerms = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panelChart.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRules)).BeginInit();
             this.panelBottom.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInputValue)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTerms)).BeginInit();
             this.SuspendLayout();
             // 
             // listBoxInputVariables
@@ -122,26 +126,13 @@
             this.panelChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelChart.Controls.Add(this.dataGridViewRules);
-            this.panelChart.Location = new System.Drawing.Point(165, 10);
-            this.panelChart.Margin = new System.Windows.Forms.Padding(10);
+            this.panelChart.Controls.Add(this.chartTerms);
+            this.panelChart.Location = new System.Drawing.Point(158, 3);
             this.panelChart.Name = "panelChart";
             this.panelChart.Padding = new System.Windows.Forms.Padding(5);
             this.tableLayoutPanel1.SetRowSpan(this.panelChart, 2);
-            this.panelChart.Size = new System.Drawing.Size(390, 218);
+            this.panelChart.Size = new System.Drawing.Size(404, 232);
             this.panelChart.TabIndex = 3;
-            // 
-            // dataGridViewRules
-            // 
-            this.dataGridViewRules.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataGridViewRules.BackgroundColor = System.Drawing.Color.LightSteelBlue;
-            this.dataGridViewRules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewRules.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewRules.Location = new System.Drawing.Point(5, 5);
-            this.dataGridViewRules.Name = "dataGridViewRules";
-            this.dataGridViewRules.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewRules.Size = new System.Drawing.Size(380, 208);
-            this.dataGridViewRules.TabIndex = 1;
             // 
             // panelBottom
             // 
@@ -178,7 +169,7 @@
             this.labelMinMax.Name = "labelMinMax";
             this.labelMinMax.Size = new System.Drawing.Size(160, 23);
             this.labelMinMax.TabIndex = 1;
-            this.labelMinMax.Text = "x: [0; 10]";
+            this.labelMinMax.Text = "x: [0; 0]";
             this.labelMinMax.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // numericUpDownInputValue
@@ -201,12 +192,60 @@
             this.numericUpDownInputValue.Name = "numericUpDownInputValue";
             this.numericUpDownInputValue.Size = new System.Drawing.Size(143, 23);
             this.numericUpDownInputValue.TabIndex = 0;
-            this.numericUpDownInputValue.Value = new decimal(new int[] {
-            55,
-            0,
-            0,
-            65536});
             this.numericUpDownInputValue.ValueChanged += new System.EventHandler(this.NumericUpDownInputValue_ValueChanged);
+            // 
+            // chartTerms
+            // 
+            chartArea1.AlignmentOrientation = ((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations)((System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Vertical | System.Windows.Forms.DataVisualization.Charting.AreaAlignmentOrientations.Horizontal)));
+            chartArea1.AxisX.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Lines;
+            chartArea1.AxisX.Crossing = 0D;
+            chartArea1.AxisX.IntervalAutoMode = System.Windows.Forms.DataVisualization.Charting.IntervalAutoMode.VariableCount;
+            chartArea1.AxisX.LabelAutoFitMaxFontSize = 5;
+            chartArea1.AxisX.LabelAutoFitMinFontSize = 5;
+            chartArea1.AxisX.LabelStyle.Font = new System.Drawing.Font("Arial", 6F);
+            chartArea1.AxisX.LineColor = System.Drawing.Color.DimGray;
+            chartArea1.AxisX.MajorGrid.Interval = 0D;
+            chartArea1.AxisX.MajorGrid.IntervalOffset = 0D;
+            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.Gainsboro;
+            chartArea1.AxisX.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            chartArea1.AxisX.TitleFont = new System.Drawing.Font("Arial", 5F);
+            chartArea1.AxisX.TitleForeColor = System.Drawing.Color.DimGray;
+            chartArea1.AxisY.ArrowStyle = System.Windows.Forms.DataVisualization.Charting.AxisArrowStyle.Lines;
+            chartArea1.AxisY.InterlacedColor = System.Drawing.Color.White;
+            chartArea1.AxisY.Interval = 1D;
+            chartArea1.AxisY.IsLabelAutoFit = false;
+            chartArea1.AxisY.IsStartedFromZero = false;
+            chartArea1.AxisY.LabelStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 5F);
+            chartArea1.AxisY.LabelStyle.Interval = 0.2D;
+            chartArea1.AxisY.LineColor = System.Drawing.Color.DimGray;
+            chartArea1.AxisY.MajorGrid.Interval = 0D;
+            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.Gainsboro;
+            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dash;
+            chartArea1.AxisY.Maximum = 1D;
+            chartArea1.AxisY.Minimum = 0D;
+            chartArea1.AxisY.ScaleBreakStyle.StartFromZero = System.Windows.Forms.DataVisualization.Charting.StartFromZero.No;
+            chartArea1.AxisY.TitleFont = new System.Drawing.Font("Arial", 7F);
+            chartArea1.AxisY.TitleForeColor = System.Drawing.Color.DimGray;
+            chartArea1.Name = "ChartAreaTerms";
+            this.chartTerms.ChartAreas.Add(chartArea1);
+            this.chartTerms.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.chartTerms.Location = new System.Drawing.Point(5, 5);
+            this.chartTerms.Name = "chartTerms";
+            series1.ChartArea = "ChartAreaTerms";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            series1.Name = "SeriesLines";
+            series1.Points.Add(dataPoint1);
+            series1.YValuesPerPoint = 10;
+            series2.ChartArea = "ChartAreaTerms";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
+            series2.Color = System.Drawing.Color.Gray;
+            series2.Name = "SeriesSplines";
+            this.chartTerms.Series.Add(series1);
+            this.chartTerms.Series.Add(series2);
+            this.chartTerms.Size = new System.Drawing.Size(394, 222);
+            this.chartTerms.TabIndex = 9;
+            this.chartTerms.Text = "chart1";
             // 
             // InteractiveDebug
             // 
@@ -224,9 +263,9 @@
             this.groupBox2.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panelChart.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewRules)).EndInit();
             this.panelBottom.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownInputValue)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartTerms)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -239,10 +278,10 @@
         private System.Windows.Forms.ListBox listBoxOutputVariables;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Panel panelChart;
-        private System.Windows.Forms.DataGridView dataGridViewRules;
         private System.Windows.Forms.Panel panelBottom;
         private System.Windows.Forms.Label labelMinMax;
         private System.Windows.Forms.NumericUpDown numericUpDownInputValue;
         private System.Windows.Forms.ComboBox comboBoxMethods;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartTerms;
     }
 }

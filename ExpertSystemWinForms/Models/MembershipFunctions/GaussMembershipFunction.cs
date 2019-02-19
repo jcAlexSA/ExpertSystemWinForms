@@ -104,7 +104,7 @@ namespace ExpertSystemWinForms.Models.MembershipFunctions
             } while (result > 0.001);
 
             this.Min = (int?)Math.Floor((double)x);
-            this.Max = -this.Min * 2;
+            this.Max = (2 * this.B) - this.Min;
         }
 
         /// <summary>

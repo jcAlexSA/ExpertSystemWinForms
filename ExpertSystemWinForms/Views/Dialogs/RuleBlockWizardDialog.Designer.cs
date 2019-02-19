@@ -49,17 +49,15 @@
             this.buttonAccept = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.radioButtonCriteriaMimMax = new System.Windows.Forms.RadioButton();
-            this.radioButtonCriteriaProd = new System.Windows.Forms.RadioButton();
             this.radioButtonCriteriaMean = new System.Windows.Forms.RadioButton();
+            this.radioButtonCriteriaProd = new System.Windows.Forms.RadioButton();
+            this.radioButtonCriteriaMimMax = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -117,7 +115,7 @@
             this.groupBox2.Controls.Add(this.tableLayoutPanel2);
             this.groupBox2.Location = new System.Drawing.Point(14, 133);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(431, 196);
+            this.groupBox2.Size = new System.Drawing.Size(431, 218);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             // 
@@ -143,7 +141,7 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 234F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(425, 176);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(425, 198);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // label3
@@ -285,14 +283,14 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.26513F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.73487F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 174F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 175F));
             this.tableLayoutPanel1.Controls.Add(this.buttonAccept, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonCancel, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 442);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 397);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 28F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(459, 28);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
@@ -302,7 +300,7 @@
             this.buttonAccept.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonAccept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAccept.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAccept.Location = new System.Drawing.Point(186, 3);
+            this.buttonAccept.Location = new System.Drawing.Point(185, 3);
             this.buttonAccept.Name = "buttonAccept";
             this.buttonAccept.Size = new System.Drawing.Size(95, 22);
             this.buttonAccept.TabIndex = 0;
@@ -316,9 +314,9 @@
             this.buttonCancel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCancel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCancel.Location = new System.Drawing.Point(287, 3);
+            this.buttonCancel.Location = new System.Drawing.Point(286, 3);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(169, 22);
+            this.buttonCancel.Size = new System.Drawing.Size(170, 22);
             this.buttonCancel.TabIndex = 1;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = false;
@@ -328,57 +326,48 @@
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.groupBox3);
-            this.panel2.Location = new System.Drawing.Point(17, 332);
+            this.panel2.Controls.Add(this.radioButtonCriteriaMean);
+            this.panel2.Controls.Add(this.radioButtonCriteriaProd);
+            this.panel2.Controls.Add(this.radioButtonCriteriaMimMax);
+            this.panel2.Location = new System.Drawing.Point(17, 357);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(427, 104);
+            this.panel2.Size = new System.Drawing.Size(427, 34);
             this.panel2.TabIndex = 5;
             // 
-            // groupBox3
+            // radioButtonCriteriaMean
             // 
-            this.groupBox3.Controls.Add(this.radioButtonCriteriaMean);
-            this.groupBox3.Controls.Add(this.radioButtonCriteriaProd);
-            this.groupBox3.Controls.Add(this.radioButtonCriteriaMimMax);
-            this.groupBox3.Location = new System.Drawing.Point(77, 3);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(115, 98);
-            this.groupBox3.TabIndex = 0;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Norms";
-            // 
-            // radioButtonCriteriaMimMax
-            // 
-            this.radioButtonCriteriaMimMax.AutoSize = true;
-            this.radioButtonCriteriaMimMax.Checked = true;
-            this.radioButtonCriteriaMimMax.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radioButtonCriteriaMimMax.Location = new System.Drawing.Point(9, 20);
-            this.radioButtonCriteriaMimMax.Name = "radioButtonCriteriaMimMax";
-            this.radioButtonCriteriaMimMax.Size = new System.Drawing.Size(70, 18);
-            this.radioButtonCriteriaMimMax.TabIndex = 0;
-            this.radioButtonCriteriaMimMax.Text = "MINMAX";
-            this.radioButtonCriteriaMimMax.UseVisualStyleBackColor = true;
+            this.radioButtonCriteriaMean.AutoSize = true;
+            this.radioButtonCriteriaMean.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButtonCriteriaMean.Location = new System.Drawing.Point(322, 9);
+            this.radioButtonCriteriaMean.Name = "radioButtonCriteriaMean";
+            this.radioButtonCriteriaMean.Size = new System.Drawing.Size(56, 18);
+            this.radioButtonCriteriaMean.TabIndex = 0;
+            this.radioButtonCriteriaMean.Text = "MEAN";
+            this.radioButtonCriteriaMean.UseVisualStyleBackColor = true;
             // 
             // radioButtonCriteriaProd
             // 
             this.radioButtonCriteriaProd.AutoSize = true;
             this.radioButtonCriteriaProd.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radioButtonCriteriaProd.Location = new System.Drawing.Point(9, 44);
+            this.radioButtonCriteriaProd.Location = new System.Drawing.Point(179, 9);
             this.radioButtonCriteriaProd.Name = "radioButtonCriteriaProd";
             this.radioButtonCriteriaProd.Size = new System.Drawing.Size(54, 18);
             this.radioButtonCriteriaProd.TabIndex = 0;
             this.radioButtonCriteriaProd.Text = "PROD";
             this.radioButtonCriteriaProd.UseVisualStyleBackColor = true;
             // 
-            // radioButtonCriteriaMean
+            // radioButtonCriteriaMimMax
             // 
-            this.radioButtonCriteriaMean.AutoSize = true;
-            this.radioButtonCriteriaMean.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.radioButtonCriteriaMean.Location = new System.Drawing.Point(9, 68);
-            this.radioButtonCriteriaMean.Name = "radioButtonCriteriaMean";
-            this.radioButtonCriteriaMean.Size = new System.Drawing.Size(56, 18);
-            this.radioButtonCriteriaMean.TabIndex = 0;
-            this.radioButtonCriteriaMean.Text = "MEAN";
-            this.radioButtonCriteriaMean.UseVisualStyleBackColor = true;
+            this.radioButtonCriteriaMimMax.AutoSize = true;
+            this.radioButtonCriteriaMimMax.Checked = true;
+            this.radioButtonCriteriaMimMax.Font = new System.Drawing.Font("Arial", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.radioButtonCriteriaMimMax.Location = new System.Drawing.Point(48, 9);
+            this.radioButtonCriteriaMimMax.Name = "radioButtonCriteriaMimMax";
+            this.radioButtonCriteriaMimMax.Size = new System.Drawing.Size(70, 18);
+            this.radioButtonCriteriaMimMax.TabIndex = 0;
+            this.radioButtonCriteriaMimMax.TabStop = true;
+            this.radioButtonCriteriaMimMax.Text = "MINMAX";
+            this.radioButtonCriteriaMimMax.UseVisualStyleBackColor = true;
             // 
             // RuleBlockWizardDialog
             // 
@@ -386,7 +375,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(459, 470);
+            this.ClientSize = new System.Drawing.Size(459, 425);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.groupBox2);
@@ -405,8 +394,7 @@
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -434,7 +422,6 @@
         private System.Windows.Forms.ListBox listBoxInputVariablesCollection;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.RadioButton radioButtonCriteriaMimMax;
         private System.Windows.Forms.RadioButton radioButtonCriteriaMean;
         private System.Windows.Forms.RadioButton radioButtonCriteriaProd;

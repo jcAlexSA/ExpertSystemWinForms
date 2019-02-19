@@ -50,18 +50,62 @@ namespace ExpertSystemWinForms.Views.Dialogs
             InitializeComponent();
 
             this.oldRuleBlock = ruleBlock;
-            this.newRuleBlock = new RuleBlockModel(this.oldRuleBlock.Name, 
-                new ObservableCollection<FuzzyVariableModel>(this.oldRuleBlock.InputFuzzyVariables), 
-                new ObservableCollection<FuzzyVariableModel>(this.oldRuleBlock.OutputFuzzyVariables));
+            this.newRuleBlock = new RuleBlockModel(this.oldRuleBlock.Name,
+                new ObservableCollection<FuzzyVariableModel>(this.oldRuleBlock.InputFuzzyVariables),
+                new ObservableCollection<FuzzyVariableModel>(this.oldRuleBlock.OutputFuzzyVariables),
+                this.oldRuleBlock.NormOperator);
 
             this.textBoxRuleBlockName.Text = this.newRuleBlock.Name;
 
             this.fuzzyVariables = new ObservableCollection<FuzzyVariableModel>(
-                fuzzyVariables.Where(v => !this.newRuleBlock.InputFuzzyVariables.Any(i => i.Name.Equals(v.Name)) 
+                fuzzyVariables.Where(v => !this.newRuleBlock.InputFuzzyVariables.Any(i => i.Name.Equals(v.Name))
                                         && !this.newRuleBlock.OutputFuzzyVariables.Any(i => i.Name.Equals(v.Name))));
             this.listBoxVariablesCollection.Items.AddRange(this.fuzzyVariables.Select(p => p.Name).ToArray());
             this.listBoxInputVariablesCollection.Items.AddRange(this.newRuleBlock.InputFuzzyVariables.Select(p => p.Name).ToArray());
             this.listBoxOutputVariablesCollection.Items.AddRange(this.newRuleBlock.OutputFuzzyVariables.Select(p => p.Name).ToArray());
+
+            this.SetRadioButtonNormOperator(this.newRuleBlock.NormOperator);
+        }
+
+        /// <summary>
+        /// Sets the RadioButton norm operator.
+        /// </summary>
+        /// <param name="normOperator">The norm operator.</param>
+        private void SetRadioButtonNormOperator(NormOperator normOperator)
+        {
+            switch (normOperator)
+            {
+                case NormOperator.MinMax:
+                    this.radioButtonCriteriaMimMax.Checked = true;
+                    break;
+                case NormOperator.Prod:
+                    this.radioButtonCriteriaProd.Checked = true;
+                    break;
+                case NormOperator.Mean:
+                    this.radioButtonCriteriaMean.Checked = true;
+                    break;
+            }
+        }
+
+        /// <summary>
+        /// Gets the checked norm operator.
+        /// </summary>
+        /// <returns></returns>
+        private NormOperator GetCheckedNormOperator()
+        {
+            if (this.radioButtonCriteriaMimMax.Checked)
+            {
+                return NormOperator.MinMax;
+            }
+            else if (this.radioButtonCriteriaProd.Checked)
+            {
+                return NormOperator.Prod;
+            }
+            else if (this.radioButtonCriteriaMean.Checked)
+            {
+                return NormOperator.Mean;
+            }
+            return NormOperator.MinMax;
         }
 
         /// <summary>
@@ -98,7 +142,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
 
             var owner = (MainForm)this.Owner;
 
-            if (this.oldRuleBlock == null )
+            if (this.oldRuleBlock == null)
             {
                 owner.AddRuleBlock(this.newRuleBlock);
             }
@@ -109,6 +153,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 this.oldRuleBlock.Name = this.newRuleBlock.Name;
                 this.oldRuleBlock.InputFuzzyVariables = this.newRuleBlock.InputFuzzyVariables;
                 this.oldRuleBlock.OutputFuzzyVariables = this.newRuleBlock.OutputFuzzyVariables;
+                this.oldRuleBlock.NormOperator = this.GetCheckedNormOperator();
 
                 owner.SetRuleBlock(this.oldRuleBlock, oldName);
             }
@@ -126,7 +171,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
             if (selectedIndex < 0 || selectedIndex >= this.fuzzyVariables.Count)
             {
                 return;
-            }            
+            }
 
             if (this.fuzzyVariables[selectedIndex].Type == VariableType.Input ||
                 this.fuzzyVariables[selectedIndex].Type == VariableType.Intermediate)

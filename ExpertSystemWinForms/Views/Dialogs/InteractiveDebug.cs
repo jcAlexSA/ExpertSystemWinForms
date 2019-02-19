@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ExpertSystemWinForms.Views.Dialogs
 {
@@ -56,7 +57,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 this.outputVariables.AddRange(variables.Where(v => v.Type == VariableType.Output).ToList());
             }
             this.outputVariables = this.outputVariables.Distinct().ToList();
-            
+
             foreach (var variable in this.inputVariables)
             {
                 if (!variable.InputValue.IsSet())
@@ -64,7 +65,10 @@ namespace ExpertSystemWinForms.Views.Dialogs
                     variable.CalculateMinimumMaximunValuesForVariable();
                 }
             }
-                        
+
+            // show default terms in fuzzy result.
+            this.outputVariables.FirstOrDefault()?.Terms.ForEach(t => this.UpdateChart(t));
+
             this.SetItemsToListBox(this.listBoxInputVariables, this.inputVariables);
             this.SetItemsToListBox(this.listBoxOutputVariables, this.outputVariables);
 
@@ -83,9 +87,9 @@ namespace ExpertSystemWinForms.Views.Dialogs
             listBox.Items.AddRange(items.Select(v => this.FormatListBoxItem(v.Name, v.InputValue.Value)).ToArray());
         }
 
-        private string FormatListBoxItem(string name, float? value)
+        private string FormatListBoxItem(string name, object value)
         {
-            return string.Format($"{name}\t\t{value}");
+            return string.Format($"{name}\t{value}");
         }
 
         private void UpdateListBoxItem(ListBox listBox, int index, string value)
@@ -116,17 +120,49 @@ namespace ExpertSystemWinForms.Views.Dialogs
                     this.numericUpDownInputValue.Maximum = (decimal)variable.InputValue.Max;
                     this.numericUpDownInputValue.Value = (decimal)variable.InputValue.Value;
 
-                    this.UpdateMinMaxValueLabel((int)this.numericUpDownInputValue.Minimum, (int)this.numericUpDownInputValue.Maximum);
+                    this.UpdateMinMaxLabelValue((int)this.numericUpDownInputValue.Minimum, (int)this.numericUpDownInputValue.Maximum);
                 }
             }
         }
-        
+
+        /// <summary>
+        /// Updates the chart with according to term function.
+        /// </summary>
+        /// <param name="term"></param>
+        /// <param name="width"></param>
+        private void UpdateChart(TermModel term, int width = 2)
+        {
+            Series series = null;
+            if ((series = this.chartTerms.Series.FindByName(term.Name)) != null)
+            {
+                series.Points.Clear();
+            }
+            else
+            {
+                series = new Series(term.Name);
+                this.chartTerms.Series.Add(series);
+            }
+            series.BorderWidth = width;
+
+            if (term.Function is TriangleMembershipFunction)
+            {
+                series.Color = Color.Red;
+                series.ChartType = SeriesChartType.Line;
+            }
+            else if (term.Function is GaussMembershipFunction)
+            {
+                series.Color = Color.Blue;
+                series.ChartType = SeriesChartType.Spline;
+            }
+            term.Function.DrawFunctionOnSeriesChart(series);
+        }
+
         /// <summary>
         /// Updates the min-max values for Label control.
         /// </summary>
         /// <param name="min">The minimun value.</param>
         /// <param name="max">The maximum value.</param>
-        private void UpdateMinMaxValueLabel(float min, float max)
+        private void UpdateMinMaxLabelValue(float min, float max)
         {
             this.labelMinMax.Text = string.Format($"x: [{min}; {max}]");
         }
@@ -155,6 +191,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
             }
         }
 
+
         private void CalculateResult()
         {
             if (this.inputVariables.Any(v => !v.InputValue.IsSet()))
@@ -181,16 +218,82 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 operatorMin.Add(item, new List<float>());
             }
 
-            foreach (var rule in rules)
+            List<float> listMin = null;
+            switch (this.ruleBlocks[0].NormOperator)
             {
-                // rule 
-                for (int i = 0; i < this.inputVariables.Count; i++)
-                {
-                    var variable = this.inputVariables[i];
+                case NormOperator.MinMax:
+                    foreach (var rule in rules)
+                    {
+                        listMin = new List<float>();
+                        for (int i = 0; i < this.inputVariables.Count; i++)
+                        {
+                            var variable = this.inputVariables[i];
+                            listMin.Add((float)variable.Terms.FirstOrDefault(t => t.Name.Equals(rule[i])).Function.FuzzificatedValue);
+                        }
+                        operatorMin[rule.Last()].Add(listMin.Min());
+                    }
+                    break;
+                case NormOperator.Prod:
+                    foreach (var rule in rules)
+                    {
+                        listMin = new List<float>();
+                        listMin.Add(1);
+                        for (int i = 0; i < this.inputVariables.Count; i++)
+                        {
+                            var variable = this.inputVariables[i];
+                            listMin.Add(listMin.Last() * (float)variable.Terms.FirstOrDefault(t => t.Name.Equals(rule[i])).Function.FuzzificatedValue);
+                        }
+                        operatorMin[rule.Last()].Add(listMin.Min());
+                    }
+                    break;
+                case NormOperator.Mean:
+                    foreach (var rule in rules)
+                    {
+                        listMin = new List<float>();
+                        float sum = 0f;
+                        for (int i = 0; i < this.inputVariables.Count; i++)
+                        {
+                            var variable = this.inputVariables[i];
+                            sum += (float)variable.Terms.FirstOrDefault(t => t.Name.Equals(rule[i])).Function.FuzzificatedValue;
+                        }
+                        operatorMin[rule.Last()].Add(sum /= (rule.Count - 1));
+                    }
+                    break;
+            }
 
+
+            //foreach (var rule in rules)
+            //{
+            //    listMin = new List<float>();
+            //    for (int i = 0; i < this.inputVariables.Count; i++)
+            //    {
+            //        var variable = this.inputVariables[i];
+            //        listMin.Add((float)variable.Terms.FirstOrDefault(t => t.Name.Equals(rule[i])).Function.FuzzificatedValue);
+            //    }
+            //    operatorMin[rule.Last()].Add(listMin.Min());
+            //}
+
+            KeyValuePair<string, float> result = new KeyValuePair<string, float>(string.Empty, Single.MinValue);
+            foreach (var item in operatorMin)
+            {
+                if (item.Value.Max() > result.Value)
+                {
+                    result = new KeyValuePair<string, float>(item.Key, item.Value.Max());
                 }
             }
 
+            this.UpdateListBoxItem(this.listBoxOutputVariables,
+                0,
+                this.FormatListBoxItem(this.outputVariables.FirstOrDefault().Name,
+                string.Format($"{result.Key}: {Math.Round(result.Value, 2)}")));
+
+            foreach (var terms in this.outputVariables.Select(v => v.Terms))
+            {
+                foreach (var term in terms)
+                {
+                    this.UpdateChart(term, term.Name.Equals(result.Key) ? 4 : 2);
+                }
+            }
         }
     }
 }

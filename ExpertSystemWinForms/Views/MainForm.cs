@@ -104,10 +104,10 @@ namespace ExpertSystemWinForms
                 new TermModel("high", new TriangleMembershipFunction(){ Left = 25, Middle = 50, Right = 50 })
             }, "comment for input 3"));
             this.FuzzyVariables.Add(new FuzzyVariableModel("out_var", VariableType.Output, new List<TermModel>(){
-                new TermModel("A1", new TriangleMembershipFunction()),
-                new TermModel("A2", new TriangleMembershipFunction()),
-                new TermModel("B", new TriangleMembershipFunction()),
-                new TermModel("C", new TriangleMembershipFunction())
+                new TermModel("A1", new TriangleMembershipFunction(){ Left = 0, Middle = 0, Right = 35 }),
+                new TermModel("A2", new TriangleMembershipFunction(){ Left = 0, Middle = 35, Right = 70 }),
+                new TermModel("B", new TriangleMembershipFunction(){ Left = 35, Middle = 70, Right = 100 }),
+                new TermModel("C", new TriangleMembershipFunction(){ Left = 70, Middle = 100, Right = 100 })
             }, "comment for output 1"));
 
             this.RuleBlocks.Add(new RuleBlockModel("Main_Rule_Block",
