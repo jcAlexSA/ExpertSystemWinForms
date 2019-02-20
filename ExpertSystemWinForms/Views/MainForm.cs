@@ -138,78 +138,66 @@ namespace ExpertSystemWinForms
             // variables set for first ruleBlock.
             this.FuzzyVariables.Add(new FuzzyVariableModel("i_var1", VariableType.Input, new List<TermModel>()
             {
-                new TermModel("low", new TriangleMembershipFunction(){ Left = 0, Middle = 0, Right = 5 }),
-                new TermModel("medium", new TriangleMembershipFunction() { Left = 0, Middle = 5, Right = 10 }),
-                new TermModel("high", new TriangleMembershipFunction(){ Left = 5, Middle = 10, Right = 10 })
+                new TermModel("low", new TriangleMembershipFunction(){ Left = 0, Middle = 5, Right = 10 }),
+                new TermModel("medium", new TriangleMembershipFunction() { Left = 5, Middle = 10, Right = 15 })
             }, "comment for input 1"));
             this.FuzzyVariables.Add(new FuzzyVariableModel("i_var2", VariableType.Input, new List<TermModel>()
             {
-                new TermModel("low", new TriangleMembershipFunction(){ Left = 0, Middle = 0, Right = 25 }),
-                new TermModel("medium", new TriangleMembershipFunction(){ Left = 0, Middle = 25, Right = 50 }),
-                new TermModel("high", new TriangleMembershipFunction(){ Left = 25, Middle = 50, Right = 50 })
+                new TermModel("low", new TriangleMembershipFunction(){  Left = 0, Middle = 5, Right = 10  }),
+                new TermModel("medium", new TriangleMembershipFunction(){ Left = 5, Middle = 10, Right = 15 })
             }, "comment for input 2"));
+
+            // variables set for second ruleBlock.
             this.FuzzyVariables.Add(new FuzzyVariableModel("i_var3", VariableType.Input, new List<TermModel>()
             {
-                new TermModel("low", new TriangleMembershipFunction(){ Left = 0, Middle = 0, Right = 25 }),
-                new TermModel("medium", new TriangleMembershipFunction(){ Left = 0, Middle = 25, Right = 50 }),
-                new TermModel("high", new TriangleMembershipFunction(){ Left = 25, Middle = 50, Right = 50 })
+                new TermModel("less", new TriangleMembershipFunction(){  Left = 0, Middle = 5, Right = 10  }),
+                new TermModel("bigger", new TriangleMembershipFunction(){  Left = 5, Middle = 10, Right = 15 })
             }, "comment for input 3"));
-
-            // variables set for second ruleBlock.
             this.FuzzyVariables.Add(new FuzzyVariableModel("i_var4", VariableType.Input, new List<TermModel>()
             {
-                new TermModel("low", new TriangleMembershipFunction(){ Left = 0, Middle = 0, Right = 5 }),
-                new TermModel("medium", new TriangleMembershipFunction() { Left = 0, Middle = 5, Right = 10 }),
-                new TermModel("high", new TriangleMembershipFunction(){ Left = 5, Middle = 10, Right = 10 })
+                new TermModel("less", new TriangleMembershipFunction(){  Left = 0, Middle = 5, Right = 10  }),
+                new TermModel("bigger", new TriangleMembershipFunction(){ Left = 5, Middle = 10, Right = 15 })
             }, "comment for input 4"));
-            this.FuzzyVariables.Add(new FuzzyVariableModel("i_var5", VariableType.Input, new List<TermModel>()
-            {
-                new TermModel("low", new TriangleMembershipFunction(){ Left = 0, Middle = 0, Right = 25 }),
-                new TermModel("medium", new TriangleMembershipFunction(){ Left = 0, Middle = 25, Right = 50 }),
-                new TermModel("high", new TriangleMembershipFunction(){ Left = 25, Middle = 50, Right = 50 })
-            }, "comment for input 5"));
 
             // variables set for second ruleBlock.
+            this.FuzzyVariables.Add(new FuzzyVariableModel("intermediate_var5", VariableType.Intermediate, new List<TermModel>()
+            {
+                new TermModel("Small", new TriangleMembershipFunction(){ Left = 0, Middle = 5, Right = 10  }),
+                new TermModel("Middle", new TriangleMembershipFunction(){ Left = 5, Middle = 10, Right = 15  }),
+                new TermModel("Big", new TriangleMembershipFunction() { Left = 10, Middle = 15, Right = 20 })
+            }, "comment for intermediate 6"));
             this.FuzzyVariables.Add(new FuzzyVariableModel("intermediate_var6", VariableType.Intermediate, new List<TermModel>()
             {
-                new TermModel("low", new TriangleMembershipFunction(){ Left = 0, Middle = 0, Right = 5 }),
-                new TermModel("medium", new TriangleMembershipFunction() { Left = 0, Middle = 5, Right = 10 }),
-                new TermModel("high", new TriangleMembershipFunction(){ Left = 5, Middle = 10, Right = 10 })
-            }, "comment for intermediate 6"));
-            this.FuzzyVariables.Add(new FuzzyVariableModel("intermediate_var7", VariableType.Intermediate, new List<TermModel>()
-            {
-                new TermModel("low", new TriangleMembershipFunction(){ Left = 0, Middle = 0, Right = 25 }),
-                new TermModel("medium", new TriangleMembershipFunction(){ Left = 0, Middle = 25, Right = 50 }),
-                new TermModel("high", new TriangleMembershipFunction(){ Left = 25, Middle = 50, Right = 50 })
+                new TermModel("Small", new TriangleMembershipFunction(){  Left = 0, Middle = 5, Right = 10  }),
+                new TermModel("Middle", new TriangleMembershipFunction(){ Left = 5, Middle = 10, Right = 15  }),
+                new TermModel("Big", new TriangleMembershipFunction() { Left = 10, Middle = 15, Right = 20 })
             }, "comment for intermediate 7"));
 
             this.FuzzyVariables.Add(new FuzzyVariableModel("out_var", VariableType.Output, new List<TermModel>(){
-                new TermModel("A1", new TriangleMembershipFunction(){ Left = 0, Middle = 0, Right = 35 }),
-                new TermModel("A2", new TriangleMembershipFunction(){ Left = 0, Middle = 35, Right = 70 }),
-                new TermModel("B", new TriangleMembershipFunction(){ Left = 35, Middle = 70, Right = 100 }),
-                new TermModel("C", new TriangleMembershipFunction(){ Left = 70, Middle = 100, Right = 100 })
+                new TermModel("Light", new TriangleMembershipFunction(){ Left = 0, Middle = 0, Right = 35 }),
+                new TermModel("Normal", new TriangleMembershipFunction(){ Left = 0, Middle = 35, Right = 70 }),
+                new TermModel("High", new TriangleMembershipFunction(){ Left = 35, Middle = 70, Right = 100 }),
             }, "comment for output 1"));
 
             // first rule block
             this.RuleBlocks.Add(new RuleBlockModel("First_Rule_Block",
-                new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Input).Take(3)),
+                new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Input).Take(2)),
                 new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Intermediate).Take(1)),
                 new Models.RulesModels.RulesModel()));
 
-            this.RuleBlocks.Last().Rules.Rules.Add("i_var1", new List<string> { "low", "low", "low", "low", "low", "low", "low", "low", "low", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "medium", "high", "high", "high", "high", "high", "high", "high", "high", "high" });
-            this.RuleBlocks.Last().Rules.Rules.Add("i_var2", new List<string> { "low", "low", "low", "medium", "medium", "medium", "high", "high", "high", "low", "low", "low", "medium", "medium", "medium", "high", "high", "high", "low", "low", "low", "medium", "medium", "medium", "high", "high", "high" });
-            this.RuleBlocks.Last().Rules.Rules.Add("i_var3", new List<string> { "low", "medium", "high", "low", "medium", "high", "low", "medium", "high", "low", "medium", "high", "low", "medium", "high", "low", "medium", "high", "low", "medium", "high", "low", "medium", "high", "low", "medium", "high" });
-            this.RuleBlocks.Last().Rules.Rules.Add("intermediate_var6", new List<string> { "low", "low", "medium", "low", "medium", "medium", "medium", "medium", "medium", "low", "medium", "medium", "low", "medium", "medium", "medium", "medium", "high", "low", "medium", "high", "medium", "medium", "high", "medium", "high", "high" });
+            this.RuleBlocks.Last().Rules.Rules.Add("i_var1", new List<string> { "low", "low", "medium", "medium" });
+            this.RuleBlocks.Last().Rules.Rules.Add("i_var2", new List<string> { "low", "medium", "low", "medium" });
+            this.RuleBlocks.Last().Rules.Rules.Add("intermediate_var5", new List<string> { "Small", "Middle", "Middle", "Big" });
 
             // second rule block
             this.RuleBlocks.Add(new RuleBlockModel("Second_Rule_Block",
-                new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Input).Skip(3)),
+                new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Input).Skip(2)),
                 new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Intermediate).Skip(1)),
                 new Models.RulesModels.RulesModel()));
 
-            this.RuleBlocks.Last().Rules.Rules.Add("i_var4", new List<string> { "low", "low", "low", "medium", "medium", "medium", "high", "high", "high" });
-            this.RuleBlocks.Last().Rules.Rules.Add("i_var5", new List<string> { "low", "medium", "high", "low", "medium", "high", "low", "medium", "high" });
-            this.RuleBlocks.Last().Rules.Rules.Add("intermediate_var7", new List<string> { "low", "medium", "medium", "medium", "medium", "high", "medium", "high", "high" });
+            this.RuleBlocks.Last().Rules.Rules.Add("i_var3", new List<string> { "less", "less", "bigger",  "bigger" });
+            this.RuleBlocks.Last().Rules.Rules.Add("i_var4", new List<string> { "less", "bigger", "less",  "bigger" });
+            this.RuleBlocks.Last().Rules.Rules.Add("intermediate_var6", new List<string> { "Small", "Middle", "Middle", "Big" });
 
             // main rule block
             this.RuleBlocks.Add(new RuleBlockModel("Main_Rule_Block",
@@ -217,9 +205,9 @@ namespace ExpertSystemWinForms
                  new ObservableCollection<FuzzyVariableModel>(this.FuzzyVariables.Where(v => v.Type == VariableType.Output)),
                  new Models.RulesModels.RulesModel()));
 
-            this.RuleBlocks.Last().Rules.Rules.Add("intermediate_var6", new List<string> { "low", "low", "low", "medium", "medium", "medium", "high", "high", "high" });
-            this.RuleBlocks.Last().Rules.Rules.Add("intermediate_var7", new List<string> { "low", "medium", "high", "low", "medium", "high", "low", "medium", "high" });
-            this.RuleBlocks.Last().Rules.Rules.Add("out_var", new List<string> { "A1", "A2", "B", "C", "A1", "A2", "B", "C", "A1", });
+            this.RuleBlocks.Last().Rules.Rules.Add("intermediate_var5", new List<string> { "Small", "Small", "Small", "Middle", "Middle", "Middle", "Big", "Big", "Big" });
+            this.RuleBlocks.Last().Rules.Rules.Add("intermediate_var6", new List<string> { "Small", "Middle", "Big", "Small", "Middle", "Big", "Small", "Middle", "Big" });
+            this.RuleBlocks.Last().Rules.Rules.Add("out_var", new List<string> { "Light", "Light", "Normal", "Light", "Normal", "High", "Normal", "High", "High", });
 
         }
 

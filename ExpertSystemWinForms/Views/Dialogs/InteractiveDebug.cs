@@ -75,6 +75,9 @@ namespace ExpertSystemWinForms.Views.Dialogs
             //this.CalculateResultOld();
             var rulesBlockWithOutVariables = this.ruleBlocks
                 .Where(rb => rb.OutputFuzzyVariables.Any(v => v.Type == VariableType.Output)).ToList();
+
+            this.ClearVariablesValue();
+
             this.CalculateResult(rulesBlockWithOutVariables);
         }
 
@@ -192,7 +195,32 @@ namespace ExpertSystemWinForms.Views.Dialogs
                     //this.CalculateResultOld();
                     var rulesBlockWithOutVariables = this.ruleBlocks
                         .Where(rb => rb.OutputFuzzyVariables.Any(v => v.Type == VariableType.Output)).ToList();
+
+                    this.ClearVariablesValue();
+
                     this.CalculateResult(rulesBlockWithOutVariables);
+                }
+            }
+        }
+
+        private void ClearVariablesValue()
+        {
+            this.outputVariables.Where(v => v.Type == VariableType.Output).ToList().ForEach(v => v.InputValue = new InputValueVariableModel());
+            for (int i = 0; i < this.ruleBlocks.Count; i++)
+            {
+                for (int j = 0; j < ruleBlocks[i].InputFuzzyVariables.Count(); j++)
+                {
+                    if (ruleBlocks[i].InputFuzzyVariables[j].Type == VariableType.Intermediate || ruleBlocks[i].InputFuzzyVariables[j].Type == VariableType.Output)
+                    {
+                        ruleBlocks[i].InputFuzzyVariables[j].InputValue = new InputValueVariableModel();
+                    }
+                }
+                for (int j = 0; j < ruleBlocks[i].OutputFuzzyVariables.Count(); j++)
+                {
+                    if (ruleBlocks[i].OutputFuzzyVariables[j].Type == VariableType.Intermediate || ruleBlocks[i].OutputFuzzyVariables[j].Type == VariableType.Output)
+                    {
+                        ruleBlocks[i].OutputFuzzyVariables[j].InputValue = new InputValueVariableModel();
+                    }
                 }
             }
         }
@@ -211,7 +239,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
                     {
                         continue;
                     }
-                    else        
+                    else
                     {
                         List<RuleBlockModel> rb = this.ruleBlocks.Where(r => r.OutputFuzzyVariables.Any(v => v.Name.Equals(variable.Name))).ToList();
                         this.CalculateResult(rb);
@@ -311,9 +339,18 @@ namespace ExpertSystemWinForms.Views.Dialogs
             //result variable. very shit code!!
             var vr = ruleBlock.OutputFuzzyVariables.Where(v => v.Terms.Any(t => t.Name.Equals(result.Key))).FirstOrDefault();
             vr.CalculateMinimumMaximunValuesForVariable();
-            vr.InputValue.Value = result.Value;
-            
-            Console.WriteLine($"results: {result}");
+            //vr.InputValue.Value = result.Value;
+            if (vr.Terms.FirstOrDefault(t => t.Name.Equals(result.Key)).Function is TriangleMembershipFunction tf)
+            {
+                vr.InputValue.Value = tf.Middle;
+            }
+            else if (vr.Terms.FirstOrDefault(t => t.Name.Equals(result.Key)).Function is TriangleMembershipFunction gf)
+            {
+                vr.InputValue.Value = gf.Middle;
+            }
+            result = new KeyValuePair<string, float>(result.Key, (float)vr.InputValue.Value);
+
+            Console.WriteLine($"accumulates values: {result}");
             return result;
         }
 
