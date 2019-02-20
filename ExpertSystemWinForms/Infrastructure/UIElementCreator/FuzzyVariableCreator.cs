@@ -33,7 +33,7 @@ namespace ExpertSystemWinForms.Infrastructure
             variable.Text = name;
             variable.Name = "labelVariable" + name;
 
-            variable.Width = 90;
+            variable.Width = name.Length + 100;
             variable.Height = 20;
 
             variable.Font = new Font("Arial", 8, FontStyle.Bold);

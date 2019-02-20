@@ -240,14 +240,13 @@
             // 
             // listBoxOutputVariablesCollection
             // 
-            this.listBoxOutputVariablesCollection.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listBoxOutputVariablesCollection.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.listBoxOutputVariablesCollection.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.listBoxOutputVariablesCollection.FormattingEnabled = true;
             this.listBoxOutputVariablesCollection.ItemHeight = 15;
             this.listBoxOutputVariablesCollection.Location = new System.Drawing.Point(322, 18);
             this.listBoxOutputVariablesCollection.Name = "listBoxOutputVariablesCollection";
-            this.listBoxOutputVariablesCollection.Size = new System.Drawing.Size(100, 228);
+            this.listBoxOutputVariablesCollection.Size = new System.Drawing.Size(100, 214);
             this.listBoxOutputVariablesCollection.TabIndex = 3;
             this.listBoxOutputVariablesCollection.Tag = "OutputVariables";
             this.listBoxOutputVariablesCollection.Click += new System.EventHandler(this.ListBoxVariablesCollection_Click);
@@ -281,9 +280,9 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 64.26513F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35.73487F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 175F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.Controls.Add(this.buttonAccept, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonCancel, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -300,9 +299,9 @@
             this.buttonAccept.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonAccept.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonAccept.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonAccept.Location = new System.Drawing.Point(185, 3);
+            this.buttonAccept.Location = new System.Drawing.Point(262, 3);
             this.buttonAccept.Name = "buttonAccept";
-            this.buttonAccept.Size = new System.Drawing.Size(95, 22);
+            this.buttonAccept.Size = new System.Drawing.Size(94, 22);
             this.buttonAccept.TabIndex = 0;
             this.buttonAccept.Text = "OK";
             this.buttonAccept.UseVisualStyleBackColor = false;
@@ -314,9 +313,9 @@
             this.buttonCancel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonCancel.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCancel.Location = new System.Drawing.Point(286, 3);
+            this.buttonCancel.Location = new System.Drawing.Point(362, 3);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(170, 22);
+            this.buttonCancel.Size = new System.Drawing.Size(94, 22);
             this.buttonCancel.TabIndex = 1;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = false;

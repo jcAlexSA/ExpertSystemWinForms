@@ -72,7 +72,10 @@ namespace ExpertSystemWinForms.Views.Dialogs
             this.SetItemsToListBox(this.listBoxInputVariables, this.inputVariables);
             this.SetItemsToListBox(this.listBoxOutputVariables, this.outputVariables);
 
-            this.CalculateResult();
+            //this.CalculateResultOld();
+            var rulesBlockWithOutVariables = this.ruleBlocks
+                .Where(rb => rb.OutputFuzzyVariables.Any(v => v.Type == VariableType.Output)).ToList();
+            this.CalculateResult(rulesBlockWithOutVariables);
         }
 
 
@@ -186,32 +189,148 @@ namespace ExpertSystemWinForms.Views.Dialogs
                         this.listBoxInputVariables.SelectedIndex,
                         this.FormatListBoxItem(variable.Name, variable.InputValue.Value));
 
-                    this.CalculateResult();
+                    //this.CalculateResultOld();
+                    var rulesBlockWithOutVariables = this.ruleBlocks
+                        .Where(rb => rb.OutputFuzzyVariables.Any(v => v.Type == VariableType.Output)).ToList();
+                    this.CalculateResult(rulesBlockWithOutVariables);
                 }
             }
         }
 
+        private void CalculateResult(List<RuleBlockModel> ruleBlocks)
+        {
+            KeyValuePair<string, float> result = new KeyValuePair<string, float>("No", -1);
+            foreach (var ruleBlock in ruleBlocks)
+            {
+                // get all input variables from ruleBlock
+                var inputVariables = ruleBlock.InputFuzzyVariables;
 
-        private void CalculateResult()
+                foreach (var variable in inputVariables)
+                {
+                    if (variable.InputValue.Value != null /*&& variable.Type == VariableType.Input*/)
+                    {
+                        continue;
+                    }
+                    else        
+                    {
+                        List<RuleBlockModel> rb = this.ruleBlocks.Where(r => r.OutputFuzzyVariables.Any(v => v.Name.Equals(variable.Name))).ToList();
+                        this.CalculateResult(rb);
+                    }
+                }
+                result = this.Calculate(inputVariables.ToList(), ruleBlock);
+            }
+
+            //update listBox value.
+            this.UpdateListBoxItem(this.listBoxOutputVariables, 0,
+                this.FormatListBoxItem(this.outputVariables.FirstOrDefault().Name,
+                string.Format($"{result.Key}: {Math.Round(result.Value, 2)}")));
+
+            // updates the chart and set wider with best alternative.
+            foreach (var terms in this.outputVariables.Select(v => v.Terms))
+            {
+                foreach (var term in terms)
+                {
+                    this.UpdateChart(term, term.Name.Equals(result.Key) ? 4 : 2);
+                }
+            }
+        }
+
+        private KeyValuePair<string, float> Calculate(List<FuzzyVariableModel> inputVariables, RuleBlockModel ruleBlock)
+        {
+            if (inputVariables.Any(v => !v.InputValue.IsSet()))
+            {
+                return new KeyValuePair<string, float>("No_", -2);
+                throw new Exception("Something went wrong in Calculation Results");
+            }
+
+            // fuzzificate variables
+            inputVariables.ForEach(v => v.Terms.ForEach(t => t.Function.Fuzzificate((float)v.InputValue.Value)));
+
+            // get ordered rules.
+            List<List<string>> rules = ruleBlock.Rules.GetRulesAsRows();
+
+            // get all alternatives (output terms)
+            Dictionary<string, List<float>> operatorMin = new Dictionary<string, List<float>>();
+            foreach (var item in rules.Select(r => r.Last()).Distinct())        // TODO: THIS SHIT NOW WORKS ONLY WITH ONE OUTPUT VARIABLE!!!!!!
+            {
+                operatorMin.Add(item, new List<float>());
+            }
+
+            List<float> listMin = null;
+            switch (ruleBlock.NormOperator)
+            {
+                case NormOperator.MinMax:
+                    foreach (var rule in rules)
+                    {
+                        listMin = new List<float>();
+                        for (int i = 0; i < inputVariables.Count; i++)
+                        {
+                            var variable = inputVariables[i];
+                            listMin.Add((float)variable.Terms.FirstOrDefault(t => t.Name.Equals(rule[i])).Function.FuzzificatedValue);
+                        }
+                        operatorMin[rule.Last()].Add(listMin.Min());
+                    }
+                    break;
+                case NormOperator.Prod:
+                    foreach (var rule in rules)
+                    {
+                        listMin = new List<float>();
+                        listMin.Add(1);
+                        for (int i = 0; i < inputVariables.Count; i++)
+                        {
+                            var variable = inputVariables[i];
+                            listMin.Add(listMin.Last() * (float)variable.Terms.FirstOrDefault(t => t.Name.Equals(rule[i])).Function.FuzzificatedValue);
+                        }
+                        operatorMin[rule.Last()].Add(listMin.Min());
+                    }
+                    break;
+                case NormOperator.Mean:
+                    foreach (var rule in rules)
+                    {
+                        listMin = new List<float>();
+                        float sum = 0f;
+                        for (int i = 0; i < inputVariables.Count; i++)
+                        {
+                            var variable = inputVariables[i];
+                            sum += (float)variable.Terms.FirstOrDefault(t => t.Name.Equals(rule[i])).Function.FuzzificatedValue;
+                        }
+                        operatorMin[rule.Last()].Add(sum /= (rule.Count - 1));
+                    }
+                    break;
+            }
+
+            // gets best alternative.
+            KeyValuePair<string, float> result = new KeyValuePair<string, float>(string.Empty, Single.MinValue);
+            foreach (var item in operatorMin)
+            {
+                if (item.Value.Max() > result.Value)
+                {
+                    result = new KeyValuePair<string, float>(item.Key, item.Value.Max());
+                }
+            }
+            //result variable. very shit code!!
+            var vr = ruleBlock.OutputFuzzyVariables.Where(v => v.Terms.Any(t => t.Name.Equals(result.Key))).FirstOrDefault();
+            vr.CalculateMinimumMaximunValuesForVariable();
+            vr.InputValue.Value = result.Value;
+            
+            Console.WriteLine($"results: {result}");
+            return result;
+        }
+
+        private void CalculateResultOld(List<FuzzyVariableModel> variables)
         {
             if (this.inputVariables.Any(v => !v.InputValue.IsSet()))
             {
                 return;
             }
 
-            foreach (var variable in this.inputVariables)
-            {
-                foreach (var term in variable.Terms)
-                {
-                    term.Function.Fuzzificate((float)variable.InputValue.Value);
-                }
-            }
+            // fuzzificate all input variables.
+            this.inputVariables.ForEach(v => v.Terms.ForEach(t => t.Function.Fuzzificate((float)v.InputValue.Value)));
 
             // get ordered rules.
             List<List<string>> rules = ruleBlocks[0].Rules.GetRulesAsRows();
 
-
-            // mamdani || minmax
+            // get all alternatives (output terms)
             Dictionary<string, List<float>> operatorMin = new Dictionary<string, List<float>>();
             foreach (var item in rules.Select(r => r.Last()).Distinct())
             {
@@ -261,18 +380,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
                     break;
             }
 
-
-            //foreach (var rule in rules)
-            //{
-            //    listMin = new List<float>();
-            //    for (int i = 0; i < this.inputVariables.Count; i++)
-            //    {
-            //        var variable = this.inputVariables[i];
-            //        listMin.Add((float)variable.Terms.FirstOrDefault(t => t.Name.Equals(rule[i])).Function.FuzzificatedValue);
-            //    }
-            //    operatorMin[rule.Last()].Add(listMin.Min());
-            //}
-
+            // gets best alternative.
             KeyValuePair<string, float> result = new KeyValuePair<string, float>(string.Empty, Single.MinValue);
             foreach (var item in operatorMin)
             {
@@ -282,11 +390,12 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 }
             }
 
-            this.UpdateListBoxItem(this.listBoxOutputVariables,
-                0,
+            // update listBox value.
+            this.UpdateListBoxItem(this.listBoxOutputVariables, 0,
                 this.FormatListBoxItem(this.outputVariables.FirstOrDefault().Name,
                 string.Format($"{result.Key}: {Math.Round(result.Value, 2)}")));
 
+            // updates the chart and set wider with best alternative.
             foreach (var terms in this.outputVariables.Select(v => v.Terms))
             {
                 foreach (var term in terms)
