@@ -54,6 +54,14 @@ namespace ExpertSystemWinForms.Models
         public NormOperator NormOperator { get; set; } = NormOperator.MinMax;   // TEMPORARY!!! TODO HERE AN INTERFACE !!!
 
         /// <summary>
+        /// Gets or sets the deffuzification method.
+        /// </summary>
+        /// <value>
+        /// The deffuzification method.
+        /// </value>
+        public Deffuzification DeffuzificationMethod { get; set; } = Deffuzification.MM;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="RuleBlockModel"/> class.
         /// </summary>
         public RuleBlockModel()
@@ -90,12 +98,14 @@ namespace ExpertSystemWinForms.Models
         /// <param name="inputFuzzyVariables">The input fuzzy variables.</param>
         /// <param name="outputFuzzyVariables">The output fuzzy variables.</param>
         /// <param name="normOperator">The norm operator.</param>
-        public RuleBlockModel(string name, ObservableCollection<FuzzyVariableModel> inputFuzzyVariables, ObservableCollection<FuzzyVariableModel> outputFuzzyVariables, NormOperator normOperator)
+        public RuleBlockModel(string name, ObservableCollection<FuzzyVariableModel> inputFuzzyVariables, 
+            ObservableCollection<FuzzyVariableModel> outputFuzzyVariables, NormOperator normOperator, Deffuzification deffuzification)
         {
             this.Name = name;
             this.InputFuzzyVariables = inputFuzzyVariables;
             this.OutputFuzzyVariables = outputFuzzyVariables;
             this.NormOperator = normOperator;
+            this.DeffuzificationMethod = deffuzification;
         }
 
         /// <summary>
@@ -122,5 +132,12 @@ namespace ExpertSystemWinForms.Models
         MinMax,
         Prod,
         Mean
+    }
+
+    public enum Deffuzification
+    {
+        MM,
+        LM,
+        RM
     }
 }

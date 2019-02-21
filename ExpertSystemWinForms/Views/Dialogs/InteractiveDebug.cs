@@ -90,10 +90,15 @@ namespace ExpertSystemWinForms.Views.Dialogs
         private void SetItemsToListBox(ListBox listBox, List<FuzzyVariableModel> items)
         {
             listBox.Items.Clear();
-            listBox.Items.AddRange(items.Select(v => this.FormatListBoxItem(v.Name, v.InputValue.Value)).ToArray());
+            listBox.Items.AddRange(items.Select(v => this.FormatListBoxItem(v.Name, (float)(v.InputValue.Value ?? 0))).ToArray());
         }
 
-        private string FormatListBoxItem(string name, object value)
+        private string FormatListBoxItem(string name, float value)
+        {
+            return string.Format($"{name}\t{value}");
+        }
+
+        private string FormatListBoxItem(string name, string value)
         {
             return string.Format($"{name}\t{value}");
         }
@@ -190,7 +195,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
                     variable.InputValue.Value = (float)this.numericUpDownInputValue.Value;
                     this.UpdateListBoxItem(this.listBoxInputVariables,
                         this.listBoxInputVariables.SelectedIndex,
-                        this.FormatListBoxItem(variable.Name, variable.InputValue.Value));
+                        this.FormatListBoxItem(variable.Name, (float)(variable.InputValue.Value ?? 0)));
 
                     //this.CalculateResultOld();
                     var rulesBlockWithOutVariables = this.ruleBlocks
@@ -336,21 +341,29 @@ namespace ExpertSystemWinForms.Views.Dialogs
                     result = new KeyValuePair<string, float>(item.Key, item.Value.Max());
                 }
             }
-            //result variable. very shit code!!
-            var vr = ruleBlock.OutputFuzzyVariables.Where(v => v.Terms.Any(t => t.Name.Equals(result.Key))).FirstOrDefault();
-            vr.CalculateMinimumMaximunValuesForVariable();
-            //vr.InputValue.Value = result.Value;
-            if (vr.Terms.FirstOrDefault(t => t.Name.Equals(result.Key)).Function is TriangleMembershipFunction tf)
+            if (result.Value == 0)
             {
-                vr.InputValue.Value = tf.Middle;
+                return new KeyValuePair<string, float>("None", 0);
             }
-            else if (vr.Terms.FirstOrDefault(t => t.Name.Equals(result.Key)).Function is TriangleMembershipFunction gf)
-            {
-                vr.InputValue.Value = gf.Middle;
-            }
-            result = new KeyValuePair<string, float>(result.Key, (float)vr.InputValue.Value);
 
-            Console.WriteLine($"accumulates values: {result}");
+            //result variable. very shit code!!
+            var outputVariable = ruleBlock.OutputFuzzyVariables.Where(v => v.Terms.Any(t => t.Name.Equals(result.Key))).FirstOrDefault();
+            outputVariable.CalculateMinimumMaximunValuesForVariable();
+            
+            // deffuzzification
+            if (outputVariable.Terms.FirstOrDefault(t => t.Name.Equals(result.Key)).Function is TriangleMembershipFunction tf)
+            {
+                //outputVariable.InputValue.Value = tf.Middle;
+                outputVariable.InputValue.Value = tf.Deffuzificate(result.Value, ruleBlock.DeffuzificationMethod);
+            }
+            else if (outputVariable.Terms.FirstOrDefault(t => t.Name.Equals(result.Key)).Function is GaussMembershipFunction gf)
+            {
+                //outputVariable.InputValue.Value = gf.Middle;
+                outputVariable.InputValue.Value = gf.Deffuzificate(result.Value, ruleBlock.DeffuzificationMethod);
+            }
+            result = new KeyValuePair<string, float>(result.Key, (float)outputVariable.InputValue.Value);
+
+            Console.WriteLine($"defuzzificated values: {result}");
             return result;
         }
 

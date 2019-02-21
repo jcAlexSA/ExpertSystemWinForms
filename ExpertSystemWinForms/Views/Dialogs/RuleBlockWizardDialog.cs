@@ -53,7 +53,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
             this.newRuleBlock = new RuleBlockModel(this.oldRuleBlock.Name,
                 new ObservableCollection<FuzzyVariableModel>(this.oldRuleBlock.InputFuzzyVariables),
                 new ObservableCollection<FuzzyVariableModel>(this.oldRuleBlock.OutputFuzzyVariables),
-                this.oldRuleBlock.NormOperator);
+                this.oldRuleBlock.NormOperator, this.oldRuleBlock.DeffuzificationMethod);
 
             this.textBoxRuleBlockName.Text = this.newRuleBlock.Name;
 
@@ -65,6 +65,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
             this.listBoxOutputVariablesCollection.Items.AddRange(this.newRuleBlock.OutputFuzzyVariables.Select(p => p.Name).ToArray());
 
             this.SetRadioButtonNormOperator(this.newRuleBlock.NormOperator);
+            this.SetDeffuzzificationMethod(this.newRuleBlock.DeffuzificationMethod);
         }
 
         /// <summary>
@@ -106,6 +107,29 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 return NormOperator.Mean;
             }
             return NormOperator.MinMax;
+        }
+
+        private void SetDeffuzzificationMethod(Deffuzification deffuzification)
+        {
+            this.comboBoxDeffuzzificationMethod.SelectedItem = deffuzification.ToString();
+        }
+
+        private Deffuzification GetSelectedDeffuzzification()
+        {
+            string def = this.comboBoxDeffuzzificationMethod.SelectedItem.ToString();
+            if (def.Equals(Deffuzification.MM.ToString()))
+            {
+                return Deffuzification.MM;
+            }
+            else if (def.Equals(Deffuzification.LM.ToString()))
+            {
+                return Deffuzification.LM;
+            }
+            else if (def.Equals(Deffuzification.RM.ToString()))
+            {
+                return Deffuzification.RM;
+            }
+            return Deffuzification.MM;
         }
 
         /// <summary>
@@ -154,6 +178,7 @@ namespace ExpertSystemWinForms.Views.Dialogs
                 this.oldRuleBlock.InputFuzzyVariables = this.newRuleBlock.InputFuzzyVariables;
                 this.oldRuleBlock.OutputFuzzyVariables = this.newRuleBlock.OutputFuzzyVariables;
                 this.oldRuleBlock.NormOperator = this.GetCheckedNormOperator();
+                this.oldRuleBlock.DeffuzificationMethod = this.GetSelectedDeffuzzification();
 
                 owner.SetRuleBlock(this.oldRuleBlock, oldName);
             }

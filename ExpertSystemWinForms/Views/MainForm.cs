@@ -86,8 +86,8 @@ namespace ExpertSystemWinForms
             this.RuleBlocks.CollectionChanged += RuleBlocks_CollectionChanged;
 
             // temporary
-            InitDefaultProjectStructure();
-            //InitDefaultProjectOneIerarchStructure();
+            //InitDefaultProjectStructure();
+            InitDefaultProjectOneIerarchStructure();
 
             // temporary
             this.Labels.ForEach(lbl => lbl.Move += this.OnUIElementMove);
@@ -402,6 +402,18 @@ namespace ExpertSystemWinForms
                     break;
             }
         }
+
+        /// <summary>
+        /// Called when [variable removed]. Removes from rules variable.
+        /// </summary>
+        /// <param name="fuzzyVariable">The fuzzy variable.</param>
+        private void RemoveVariableFromRules(FuzzyVariableModel fuzzyVariable)
+        {
+            foreach (var rule in this.RuleBlocks.Select(rb => rb.Rules.Rules))
+            {
+                rule.Remove(fuzzyVariable.Name);
+            }
+        }
         #endregion
 
 
@@ -460,6 +472,8 @@ namespace ExpertSystemWinForms
 
                 this.RemoveOldVariableFromTreeView(fuzzyVariable.Type, fuzzyVariable.Name);
                 this.LinesSet.RemoveLinesRelativeToElement(label);
+
+                this.RemoveVariableFromRules(fuzzyVariable);
             }
 
         }

@@ -95,5 +95,38 @@ namespace ExpertSystemWinForms.Models.MembershipFunction
 
             this.FuzzificatedValue = result;
         }
+
+        /// <summary>
+        /// Deffuzificates the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="deffuzification">The deffuzification.</param>
+        /// <returns>
+        /// Deffuzzificated value.
+        /// </returns>
+        public float Deffuzificate(float value, Deffuzification deffuzification)
+        {
+            float left, right, middle;
+            left = right = middle = 0f;
+
+            if (deffuzification == Deffuzification.LM)
+            {
+                left = value * (this.Middle - this.Left) + this.Left;
+                return left;
+            }
+            if (deffuzification == Deffuzification.RM)
+            {
+                right = -value * (this.Right - this.Middle) + this.Right;
+                return right;
+            }
+            if (deffuzification == Deffuzification.MM)
+            {
+                left = value * (this.Middle - this.Left) + this.Left;
+                right = -value * (this.Right - this.Middle) + this.Right;
+                middle = (left + right) / 2;
+                return middle;
+            }
+            return 0f;
+        }
     }
 }

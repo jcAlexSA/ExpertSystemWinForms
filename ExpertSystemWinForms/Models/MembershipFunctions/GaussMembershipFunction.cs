@@ -75,15 +75,12 @@ namespace ExpertSystemWinForms.Models.MembershipFunctions
         /// <param name="series">The series on wich function drawing.</param>
         public void DrawFunctionOnSeriesChart(Series series)
         {
-            //this.Min = -10;
-            //this.Max = 10;
-
             if (this.Min == null || this.Max == null)
             {
                 this.CalculateMinMaxOfFunction();
             }
 
-            for (float x = (int)this.Min; x <= this.Max; x+=1f)
+            for (float x = (int)this.Min; x <= this.Max; x += 1f)
             {
                 series.Points.AddXY(x, this.MembershipFunction(x));
             }
@@ -115,6 +112,81 @@ namespace ExpertSystemWinForms.Models.MembershipFunctions
         public void Fuzzificate(float value)
         {
             this.FuzzificatedValue = this.MembershipFunction(value);
+        }
+
+        /// <summary>
+        /// Deffuzificates the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="deffuzification">The deffuzification.</param>
+        /// <returns>
+        /// Deffuzzificated value.
+        /// </returns>
+        public float Deffuzificate(float value, Deffuzification deffuzification)
+        {
+            float left, right, middle;
+            left = right = middle = 0f;
+
+            float step = 0.5f;
+
+            if(deffuzification == Deffuzification.LM)
+            {
+                left = this.GetLeftXValue((float)this.Min, value, step, (float)this.Max);
+                return left;
+            }
+            if(deffuzification == Deffuzification.RM)
+            {
+                right = this.GetRightXValue((float)this.Max, value, -step, (float)this.Min);
+                return right;
+            }
+            if(deffuzification == Deffuzification.MM)
+            {
+                right = this.GetRightXValue((float)this.Max, value, -step, (float)this.Min);
+                left = this.GetLeftXValue((float)this.Min, value, step, (float)this.Max);
+                middle = (left + right) / 2;
+                return middle;
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// Gets the x value.
+        /// </summary>
+        /// <param name="startXValue">The start x value.</param>
+        /// <param name="yTargetValue">The y target value.</param>
+        /// <param name="step">The step.</param>
+        /// <returns></returns>
+        private float GetRightXValue(float startXValue, float yTargetValue, float step, float stopXValue)
+        {
+            float yCurrentValue = 0f;
+
+            yCurrentValue = this.MembershipFunction(startXValue);
+            while (yCurrentValue <= yTargetValue && startXValue >= stopXValue)
+            {
+                startXValue += step;
+                yCurrentValue = this.MembershipFunction(startXValue);
+            }
+            return startXValue;
+        }
+
+        /// <summary>
+        /// Gets the x value.
+        /// </summary>
+        /// <param name="startXValue">The start x value.</param>
+        /// <param name="yTargetValue">The y target value.</param>
+        /// <param name="step">The step.</param>
+        /// <returns></returns>
+        private float GetLeftXValue(float startXValue, float yTargetValue, float step, float stopXValue)
+        {
+            float yCurrentValue = 0f;
+
+            yCurrentValue = this.MembershipFunction(startXValue);
+            while (yCurrentValue <= yTargetValue && startXValue <= stopXValue)
+            {
+                startXValue += step;
+                yCurrentValue = this.MembershipFunction(startXValue);
+            }
+            return startXValue;
         }
     }
 }

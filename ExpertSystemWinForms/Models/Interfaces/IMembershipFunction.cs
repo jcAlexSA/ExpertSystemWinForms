@@ -35,5 +35,13 @@ namespace ExpertSystemWinForms.Models.Interfaces
         /// <param name="value">The value.</param>
         /// <returns></returns>
         void Fuzzificate(float value);
+
+        /// <summary>
+        /// Deffuzificates the specified value.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="deffuzification">The deffuzification.</param>
+        /// <returns>Deffuzzificated value.</returns>
+        float Deffuzificate(float value, Deffuzification deffuzification);
     }
 }
